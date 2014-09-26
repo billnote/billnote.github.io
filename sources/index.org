@@ -1,0 +1,6 @@
+#+TITLE: 索引
+#+STYLE: <link rel="stylesheet" type="text/css" href="./resources/style/style.css" />
+
+文章那么少为啥要索引，其实我也不知道。
+
+#+INCLUDE: sitemap.org

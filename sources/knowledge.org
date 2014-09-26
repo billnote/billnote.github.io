@@ -1,0 +1,123 @@
+#+TITLE: Bill's Knowledge
+#+STYLE: <link rel="stylesheet" type="text/css" href="./resources/style/style.css" />
+#+LINK_HOME: ./index.html
+
+* 前言
+最近突然产生一个想法：把自己了解的所有知识，包括工作的专业知识和业余了解的一些东西;生成一个思维导图。以了解自己究竟都掌握了哪些东西，掌握到了何种程度。
+并希望能够通过思维导图，更有目的和计划的补充自己。且在每隔半年再从新生成新的的知识思维导图，用以对比这半年的成长。
+
+* mymind 思维导图
+#+begin_src dot :file ./resources/svg/my_brain.svg :cmdline -Kdot -Tsvg :exports none
+digraph brain {
+  rankdir=LR
+  technology[color=cadetblue,style=filled]
+  广告技术[color=cadetblue,style=filled]
+  这半年读的书[color=cadetblue,style=filled]
+
+  brain->{technology,广告技术,这半年读的书}
+
+  language[color=cadetblue,style=filled]
+  basic[color=gray,style=filled]
+  database[color=aquamarine,style=filled]
+  tool[color=coral,style=filled]
+
+  technology->{language;basic;tool,database}
+
+  java[color=cadetblue1,style=filled]
+
+  JVM[color=cadetblue2,style=filled]
+  Threads[color=cadetblue2,style=filled]
+  反射技术[color=cadetblue2,style=filled]
+  Servlet[color=cadetblue2,style=filled]
+  GC[color=cadetblue2,style=filled]
+
+  java->JVM[color=grey10,label="熟练",fontsize=10]
+  java->Threads[color=brown1,label="熟练",fontsize=10]
+  java->反射技术[color=grey10,label="熟悉",fontsize=10]
+  java->Servlet[color=grey10,label="熟悉",fontsize=10]
+  java->GC[color=brown1,label="熟练",fontsize=10]
+
+  CSharp[color=cadetblue1,style=filled]
+
+  Linq[color=cadetblue2,style=filled]
+
+  CSharp->Linq[color=brown1,label="熟练",fontsize=10]
+  CSharp->Threads[color=brown1,label="熟练",fontsize=10]
+  CSharp->反射技术[color=grey10,label="熟悉",fontsize=10]
+
+  shell[color=cadetblue1,style=filled]
+  C[color=cadetblue1,style=filled]
+  "C++"[color=cadetblue1,style=filled]
+  scheme[color=cadetblue1,style=filled]
+  elisp[color=cadetblue1,style=filled]
+  go[color=cadetblue1,style=filled]
+  dot[color=cadetblue1,style=filled,URL="../../study_dot.html",target="_blank"]
+
+  language->java[color=brown1,style=bold,label="熟练",fontsize=10]
+  language->CSharp[color=brown1,stytle=bold,label="熟练",fontsize=10]
+  language->shell[color=grey10,label="熟悉",fontsize=10]
+  language->C[color=grey10,label="熟悉",fontsize=10]
+  language->"C++"[color=grey10,label="熟悉",fontsize=10]
+  language->scheme[color=grey20,label="了解",fontsize=10]
+  language->elisp[color=grey20,label="了解",fontsize=10]
+  language->go[color=grey20,style=dotted,label="略懂",fontsize=10]
+  language->dot[color=grey10,label="熟悉",fontsize=10]
+
+  algorithms[color=gray37,style=filled]
+  "data-structure"[color=gray37,style=filled]
+
+  basic->algorithms[color=grey10,label="熟悉",fontsize=10]
+  basic->"data-structure"[color=brown1,style=bold,label="熟练",fontsize=10]
+
+  linux[color=coral2,style=filled]
+  windows[color=coral2,style=filled]
+  emacs[color=coral2,style=filled]
+  VS[color=coral3,style=filled]
+  eclipse[color=coral3,style=filled]
+  "org-mode"[color=coral3,style=filled]
+  iis[color=coral3,style=filled]
+  tomcat[color=coral3,style=filled]
+
+  tool->linux[color=brown1,style=bold,label="fedora 熟练",fontsize=10]
+  tool->windows[color=brown1,style=bold,label="熟练",fontsize=10]
+  tool->emacs[color=grey10,label="熟悉",fontsize=10]
+  tool->"org-mode"[color=grey10,label="熟悉",fontsize=10]
+  tool->VS[color=grey10,label="熟悉",fontsize=10]
+  tool->eclipse[color=grey10,label="熟悉",fontsize=10]
+  tool->iis[color=grey10,label="熟悉",fontsize=10]
+  tool->tomcat[color=grey10,label="熟悉",fontsize=10]
+
+  Oracle[color=aquamarine1,style=filled]
+  MSSqlServer[color=aquamarine1,style=filled]
+  MongoDB[color=aquamarine1,style=filled]
+  Memcached[color=aquamarine1,style=filled]
+
+  database->Oracle[color=grey10,label="熟悉",fontsize=10]
+  database->MSSqlServer[color=grey10,label="熟悉",fontsize=10]
+  database->MongoDB[color=grey10,label="熟悉",fontsize=10]
+  database->Memcached[color=grey10,label="熟悉",fontsize=10]
+
+  汤姆叔叔的小屋[shape=box,color=beige,style=filled]
+  全球通史[shape=box,color=beige,style=filled]
+  追寻生命的意义[shape=box,color=beige,style=filled]
+  清醒思考的艺术[shape=box,color=beige,style=filled]
+  SICP[shape=box,color=beige,style=filled]
+
+  这半年读的书->汤姆叔叔的小屋[color=brown1,style=bold,label="以完成",fontsize=10]
+  这半年读的书->全球通史[color=brown1,style=bold,label="已完成",fontsize=10]
+  这半年读的书->追寻生命的意义[color=brown1,style=bold,label="已完成",fontsize=10]
+  这半年读的书->清醒思考的艺术[color=brown1,style=bold,label="已完成",fontsize=10]
+  这半年读的书->SICP[color=grey10,label="在阅",fontsize=10]
+}
+#+end_src
+
+#+BEGIN_HTML
+<embed src="./resources/svg/my_brain.svg" type="image/svg-xml" />
+#+END_HTML
+
+* 总结
+在梳理思维导图时，发现了很多不足;很多东西都感觉知道，但是却都觉得只知道皮毛，很多的知识点也没有做过有效的记录，及整理。\\
+需要改进的地方有一下几方面：
+  + 学习新东西时要学会记录和总结。
+  + 需要系统的，有计划的，深入的学习某一方面的知识，不能什么都只学会一点皮毛。知其然，更要知其所以然。
+  + 做事，学习需要更强的执行力。
