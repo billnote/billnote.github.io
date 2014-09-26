@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>dot language 学习笔记</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="dot language 学习笔记"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2014-09-25T18:16+0800"/>
+<meta name="author" content="bill.huang"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="./resources/style/style.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">dot language 学习笔记</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 dot 语言简介</a></li>
+<li><a href="#sec-2">2 基本语法</a>
+<ul>
+<li><a href="#sec-2-1">2.1 常用图形</a></li>
+<li><a href="#sec-2-2">2.2 常用线条</a></li>
+<li><a href="#sec-2-3">2.3 常用箭头</a></li>
+<li><a href="#sec-2-4">2.4 常用属性</a>
+<ul>
+<li><a href="#sec-2-4-1">2.4.1 Node常用属性</a></li>
+<li><a href="#sec-2-4-2">2.4.2 Edge常用属性</a></li>
+<li><a href="#sec-2-4-3">2.4.3 Graph常用属性</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-5">2.5 子图</a></li>
+<li><a href="#sec-2-6">2.6 其他用法</a>
+<ul>
+<li><a href="#sec-2-6-1">2.6.1 label使用html标签</a></li>
+<li><a href="#sec-2-6-2">2.6.2 使用label定义子节点</a></li>
+</ul></li>
+</ul>
+</li>
+<li><a href="#sec-3">3 总结</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> dot 语言简介</h2>
+<div class="outline-text-2" id="text-1">
+
+<p>DOT语言是一种文本图形描述语言。文件扩展名通常为.gv或.dot 。它可以导出的格式有：GIF、PNG、SVG、PDF及PostScript。
+</p></div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 基本语法</h2>
+<div class="outline-text-2" id="text-2">
+
+
+</div>
+
+<div id="outline-container-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> 常用图形</h3>
+<div class="outline-text-3" id="text-2-1">
+
+<ul>
+<li>box、polygon、ellipse、circle、point、triangle、invtriangle、plaintext、diamond
+</li>
+</ul>
+
+
+
+
+<pre class="src src-dot">digraph shapes {
+  <span style="color: #00ff00;">"Box"</span>[shape=box]
+  <span style="color: #00ff00;">"Polygon"</span>[shape=polygon,sides=7] /* &#23450;&#20041;&#20102;&#19968;&#20010;7&#36793;&#34892;&#65292;sides&#23646;&#24615;&#23450;&#20041;&#22810;&#36793;&#24418;&#36793;&#30340;&#25968;&#37327; */
+  <span style="color: #00ff00;">"Ellipse"</span>[shape=ellipse]
+  <span style="color: #00ff00;">"Circle"</span>[shape=circle]
+  <span style="color: #00ff00;">"Point"</span>[shape=point]
+  <span style="color: #00ff00;">"triangle"</span>[shape=triangle]
+  <span style="color: #00ff00;">"invtriangle"</span>[shape=invtriangle]
+  <span style="color: #00ff00;">"plaintext"</span>[shape=plaintext]
+  <span style="color: #00ff00;">"diamond"</span>[shape=diamond]
+}
+</pre>
+
+
+<p>
+<img src="shapes.svg"  alt="shapes.svg" />
+</p>
+<p>
+想了解更多内容，那就<a href="http://www.graphviz.org/content/node-shapes">点击我</a>。
+</p></div>
+
+</div>
+
+<div id="outline-container-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> 常用线条</h3>
+<div class="outline-text-3" id="text-2-2">
+
+<ul>
+<li>无向线条、又向线条、双向线条
+</li>
+</ul>
+
+
+
+
+<pre class="src src-dot">digraph lines {
+  <span style="color: #00ff00;">"Undirected1"</span>-&gt;<span style="color: #00ff00;">"Undirected2"</span>[arrowhead=none]
+  <span style="color: #00ff00;">"Undirected1"</span>-&gt;<span style="color: #00ff00;">"Directed1"</span>
+  <span style="color: #00ff00;">"Directed1"</span>-&gt;<span style="color: #00ff00;">"Directed2"</span>[dir=both]
+}
+</pre>
+
+
+<p>
+<img src="lines.svg"  alt="lines.svg" />
+</p>
+<ul>
+<li>实线、虚线、点线、加粗、透明
+</li>
+</ul>
+
+
+
+
+<pre class="src src-dot">digraph lines2 {
+  rankdir=LR
+  <span style="color: #00ff00;">"solid"</span>-&gt;<span style="color: #00ff00;">"dashed"</span>[style=solid]
+  <span style="color: #00ff00;">"dashed"</span>-&gt;<span style="color: #00ff00;">"dotted"</span>[style=dashed]
+  <span style="color: #00ff00;">"dotted"</span>-&gt;<span style="color: #00ff00;">"bold"</span>[style=dotted]
+  <span style="color: #00ff00;">"bold"</span>-&gt;<span style="color: #00ff00;">"invis"</span>[style=bold]
+  <span style="color: #00ff00;">"invis"</span>-&gt;<span style="color: #00ff00;">"solid"</span>[style=invis]
+}
+</pre>
+
+
+<p>
+<img src="lines2.svg"  alt="lines2.svg" />
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> 常用箭头</h3>
+<div class="outline-text-3" id="text-2-3">
+
+<ul>
+<li>box、crow、curve、icurve、diamond、dot、inv、none、normal、tee、vee
+</li>
+</ul>
+
+
+
+
+<pre class="src src-dot">digraph arrow {
+  rankdir=LR
+
+  <span style="color: #00ff00;">"box"</span>-&gt;<span style="color: #00ff00;">"crow"</span>[arrowhead=box]
+  <span style="color: #00ff00;">"crow"</span>-&gt;<span style="color: #00ff00;">"curve"</span>[arrowhead=crow]
+  <span style="color: #00ff00;">"curve"</span>-&gt;<span style="color: #00ff00;">"diamond"</span>[arrowhead=curve]
+  <span style="color: #00ff00;">"diamond"</span>-&gt;<span style="color: #00ff00;">"dot"</span>[arrowhead=diamond]
+  <span style="color: #00ff00;">"dot"</span>-&gt;<span style="color: #00ff00;">"inv"</span>[arrowhead=dot]
+  <span style="color: #00ff00;">"inv"</span>-&gt;<span style="color: #00ff00;">"none"</span>[arrowhead=inv]
+  <span style="color: #00ff00;">"none"</span>-&gt;<span style="color: #00ff00;">"normal"</span>[arrowhead=none]
+  <span style="color: #00ff00;">"normal"</span>-&gt;<span style="color: #00ff00;">"tee"</span>[arrowhead=normal]
+  <span style="color: #00ff00;">"tee"</span>-&gt;<span style="color: #00ff00;">"vee"</span>[arrowhead=tee]
+  <span style="color: #00ff00;">"vee"</span>-&gt;<span style="color: #00ff00;">"box"</span>[arrowhead=vee]
+
+  #&#26469;&#20010;&#39640;&#32423;&#30340;&#29992;&#27861;
+  a-&gt;b[arrowhead=lcrowortee]
+}
+</pre>
+
+
+<p>
+<img src="arrow.svg"  alt="arrow.svg" />
+</p>
+<p>
+想了解更多内容，那就<a href="http://www.graphviz.org/content/arrow-shapes">点击我</a>。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> 常用属性</h3>
+<div class="outline-text-3" id="text-2-4">
+
+
+</div>
+
+<div id="outline-container-2-4-1" class="outline-4">
+<h4 id="sec-2-4-1"><span class="section-number-4">2.4.1</span> Node常用属性</h4>
+<div class="outline-text-4" id="text-2-4-1">
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">属性名</th><th scope="col" class="left">默认值</th><th scope="col" class="left">说明</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">color</td><td class="left">black</td><td class="left">node图形颜色,<a href="http://www.graphviz.org/content/color-names">see color values</a></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">fontcolor</td><td class="left">black</td><td class="left">字体颜色</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">fontname</td><td class="left">Times-Roman</td><td class="left">字体</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">fontsize</td><td class="left">14</td><td class="left">字体大小</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">image</td><td class="left"></td><td class="left">node背景图片地址</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">label</td><td class="left">node name</td><td class="left">node 显示内容</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">shape</td><td class="left">ellipse</td><td class="left">形状</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">style</td><td class="left"></td><td class="left">图形样式，eg. bold、dotted、filled</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">height</td><td class="left">.5</td><td class="left">最低高度尺寸</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">width</td><td class="left">.75</td><td class="left">最低宽度尺寸</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">URL</td><td class="left"></td><td class="left">点击跳转地址</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">target</td><td class="left"></td><td class="left">点击跳转打开方式</td></tr>
+</tbody>
+</table>
+
+
+
+
+<pre class="src src-dot">digraph demo_node {
+   rankdir=LR
+   <span style="color: #00ff00;">"default_node"</span>
+   <span style="color: #00ff00;">"node"</span>[shape=box,color=antiquewhite,style=filled,label=<span style="color: #00ff00;">"node attrs"</span>,fontcolor=brown,fontsize=10,URL=<span style="color: #00ff00;">"http://www.baidu.com"</span>,target=<span style="color: #00ff00;">"_brank"</span>]
+   <span style="color: #00ff00;">"default_node"</span>-&gt;<span style="color: #00ff00;">"node"</span>
+}
+</pre>
+
+
+<p>
+<img src="node.svg"  alt="node.svg" />
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2-4-2" class="outline-4">
+<h4 id="sec-2-4-2"><span class="section-number-4">2.4.2</span> Edge常用属性</h4>
+<div class="outline-text-4" id="text-2-4-2">
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">属性名</th><th scope="col" class="left">默认值</th><th scope="col" class="left">说明</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">arrowhead</td><td class="left">normal</td><td class="left">箭头样式</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">arrowsize</td><td class="left">1.0</td><td class="left">箭头尺寸</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">color</td><td class="left">black</td><td class="left">颜色</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">dir</td><td class="left">forward</td><td class="left">箭头方向</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">edgeURL</td><td class="left"></td><td class="left">点击跳转地址</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">fontcolor</td><td class="left">black</td><td class="left">字体颜色</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">fontname</td><td class="left">Times-Roman</td><td class="left">字体</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">fontsize</td><td class="left">14</td><td class="left">字体大小</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">headport</td><td class="left"></td><td class="left">线条头部连接处，eg.n、ne、e、se、s、sw、w、nw</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">label</td><td class="left"></td><td class="left">描述内容</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">labelfontcolor</td><td class="left">black</td><td class="left">label字体颜色</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">labelfontname</td><td class="left">Times-Roman</td><td class="left">label字体</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">labelfontsize</td><td class="left">14</td><td class="left">label字体大小</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">style</td><td class="left"></td><td class="left">图形样式，eg.bold、dotted、filled</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">tailport</td><td class="left"></td><td class="left">线条尾部连接处，eg.n、ne、e、se、s、sw、w、nw</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">weight</td><td class="left">1</td><td class="left">integer cost of stretching an edge</td></tr>
+</tbody>
+</table>
+
+
+
+
+
+<pre class="src src-dot">digraph demo_edge {
+  rankdir=LR
+  a-&gt;b[label=<span style="color: #00ff00;">"Yes"</span>,labelfontcolor=blue]
+  edge[arrowhead=box,arrowsize=1.5,color=red,dir=both,style=dotted,weight=10]
+  b-&gt;c
+}
+</pre>
+
+
+<p>
+<img src="edge.svg"  alt="edge.svg" />
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2-4-3" class="outline-4">
+<h4 id="sec-2-4-3"><span class="section-number-4">2.4.3</span> Graph常用属性</h4>
+<div class="outline-text-4" id="text-2-4-3">
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">属性名</th><th scope="col" class="left">默认值</th><th scope="col" class="left">说明</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">bgcolor</td><td class="left"></td><td class="left">背景颜色</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">color</td><td class="left">black</td><td class="left">for clusters,outline color,and fill color</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">dpi</td><td class="left">96</td><td class="left">图像输出像素</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">fillcolor</td><td class="left">black</td><td class="left">cluster fill color</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">fontcolor</td><td class="left">black</td><td class="left">字体颜色</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">fontname</td><td class="left">Times-Roman</td><td class="left">字体</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">fontsize</td><td class="left">14</td><td class="left">字体大小</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">label</td><td class="left"></td><td class="left">描述内容</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">landscape</td><td class="left"></td><td class="left">true:orientation=landscape</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">rank</td><td class="left"></td><td class="left">子图等级限制， same,min,max,source,sink</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">rankdir</td><td class="left">TB</td><td class="left">图片排列方式，LR(left to right) or TB(top to bottom)</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">size</td><td class="left"></td><td class="left">最大图片尺寸</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">style</td><td class="left"></td><td class="left">图片样式</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">stylesheet</td><td class="left"></td><td class="left">pathname or URL to XML style sheet for SVG</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">URL</td><td class="left"></td><td class="left">点击跳转地址</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">target</td><td class="left"></td><td class="left">点击跳转打开方式</td></tr>
+</tbody>
+</table>
+
+
+
+
+
+<pre class="src src-dot">digraph demo_graph {
+  bgcolor=beige
+  fontcolor=gray10
+  fontsize=12
+  label=<span style="color: #00ff00;">"this is demo"</span>
+  rankdir=TB
+
+  {rank=same; <span style="color: #00ff00;">"level1"</span> <span style="color: #00ff00;">"a-level1"</span> <span style="color: #00ff00;">"b-level1"</span> <span style="color: #00ff00;">"c-level1"</span>}
+  {rank=smae; <span style="color: #00ff00;">"level2"</span> <span style="color: #00ff00;">"d-level2"</span> <span style="color: #00ff00;">"e-level2"</span>}
+  {rank=same; <span style="color: #00ff00;">"level3"</span> <span style="color: #00ff00;">"f-level3"</span> <span style="color: #00ff00;">"g-level3"</span> <span style="color: #00ff00;">"h-level3"</span> <span style="color: #00ff00;">"i-level3"</span> <span style="color: #00ff00;">"j-level3"</span>}
+  {rank=same; <span style="color: #00ff00;">"level4"</span> <span style="color: #00ff00;">"k-level4"</span>}
+  <span style="color: #00ff00;">"level1"</span>-&gt;<span style="color: #00ff00;">"level2"</span>-&gt;<span style="color: #00ff00;">"level3"</span>-&gt;<span style="color: #00ff00;">"level4"</span>
+  <span style="color: #00ff00;">"a-level1"</span>-&gt;<span style="color: #00ff00;">"d-level2"</span>
+  <span style="color: #00ff00;">"e-level2"</span>-&gt;{<span style="color: #00ff00;">"h-level3"</span>, <span style="color: #00ff00;">"k-level4"</span>}
+  <span style="color: #00ff00;">"b-level1"</span>-&gt;{<span style="color: #00ff00;">"e-level2"</span>, <span style="color: #00ff00;">"f-level3"</span>, <span style="color: #00ff00;">"i-level3"</span>, <span style="color: #00ff00;">"k-level4"</span>}
+  <span style="color: #00ff00;">"c-level1"</span>-&gt;{<span style="color: #00ff00;">"d-level2"</span>, <span style="color: #00ff00;">"g-level3"</span>, <span style="color: #00ff00;">"h-level3"</span>}
+  <span style="color: #00ff00;">"j-level3"</span>-&gt;{<span style="color: #00ff00;">"f-level3"</span>, <span style="color: #00ff00;">"k-level4"</span>}
+}
+</pre>
+
+
+<p>
+<img src="graph.svg"  alt="graph.svg" />
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-2-5" class="outline-3">
+<h3 id="sec-2-5"><span class="section-number-3">2.5</span> 子图</h3>
+<div class="outline-text-3" id="text-2-5">
+
+<p>dot支持将一组元素组合成一个子图，且一个图形可以包含一个及多个子图。<br/>
+使用子图需要注意以下两点：
+</p><ul>
+<li>子图node无法在主图rank中使用。
+</li>
+<li>子图命名必须以："cluster"作为前缀。
+</li>
+</ul>
+
+
+
+
+<pre class="src src-dot">digraph demo_subgraph {
+  bgcolor=beige
+  fontcolor=gray10
+  fontsize=12
+  label=<span style="color: #00ff00;">"this is demo"</span>
+  rankdir=TB
+
+  /* &#29305;&#21035;&#27880;&#24847;: &#23376;&#22270;&#21629;&#21517;&#24517;&#39035;&#20197;<span style="color: #00ff00;">"cluster"</span>&#20026;&#21069;&#32512; */
+  subgraph <span style="color: #00ff00;">"cluster_g1"</span> {
+    label=<span style="color: #00ff00;">"g1"</span>
+    bgcolor=cadetblue
+    <span style="color: #00ff00;">"level1"</span>-&gt;<span style="color: #00ff00;">"level2"</span>-&gt;<span style="color: #00ff00;">"level3"</span>-&gt;<span style="color: #00ff00;">"level4"</span>
+  }
+
+  subgraph <span style="color: #00ff00;">"cluster_g2"</span> {
+    label=<span style="color: #00ff00;">"g2"</span>
+    bgcolor=cornsilk
+    <span style="color: #00ff00;">"level2"</span>
+    <span style="color: #00ff00;">"d-level2"</span>
+    <span style="color: #00ff00;">"e-level2"</span>
+  }
+
+  subgraph <span style="color: #00ff00;">"cluster_g3"</span> {
+    label=<span style="color: #00ff00;">"g3"</span>
+    bgcolor=cornsilk
+    <span style="color: #00ff00;">"level3"</span>
+    <span style="color: #00ff00;">"f-level3"</span>
+    <span style="color: #00ff00;">"g-level3"</span>
+    <span style="color: #00ff00;">"h-level3"</span>
+    <span style="color: #00ff00;">"i-level3"</span>
+    <span style="color: #00ff00;">"j-level3"</span>
+  }
+
+  <span style="color: #00ff00;">"a-level1"</span>-&gt;<span style="color: #00ff00;">"d-level2"</span>
+  <span style="color: #00ff00;">"e-level2"</span>-&gt;{<span style="color: #00ff00;">"h-level3"</span>, <span style="color: #00ff00;">"k-level4"</span>}
+  <span style="color: #00ff00;">"b-level1"</span>-&gt;{<span style="color: #00ff00;">"e-level2"</span>, <span style="color: #00ff00;">"f-level3"</span>, <span style="color: #00ff00;">"i-level3"</span>, <span style="color: #00ff00;">"k-level4"</span>}
+  <span style="color: #00ff00;">"c-level1"</span>-&gt;{<span style="color: #00ff00;">"d-level2"</span>, <span style="color: #00ff00;">"g-level3"</span>, <span style="color: #00ff00;">"h-level3"</span>}
+  <span style="color: #00ff00;">"j-level3"</span>-&gt;{<span style="color: #00ff00;">"f-level3"</span>, <span style="color: #00ff00;">"k-level4"</span>}
+}
+</pre>
+
+
+<p>
+<img src="subgraph.svg"  alt="subgraph.svg" />
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2-6" class="outline-3">
+<h3 id="sec-2-6"><span class="section-number-3">2.6</span> 其他用法</h3>
+<div class="outline-text-3" id="text-2-6">
+
+
+</div>
+
+<div id="outline-container-2-6-1" class="outline-4">
+<h4 id="sec-2-6-1"><span class="section-number-4">2.6.1</span> label使用html标签</h4>
+<div class="outline-text-4" id="text-2-6-1">
+
+
+
+
+<pre class="src src-dot">digraph html {
+  abc [shape=none, margin=0, label=&lt;
+  &lt;TABLE BORDER=<span style="color: #00ff00;">"0"</span> CELLBORDER=<span style="color: #00ff00;">"1"</span> CELLSPACING=<span style="color: #00ff00;">"0"</span> CELLPADDING=<span style="color: #00ff00;">"4"</span>&gt;
+  &lt;TR&gt;&lt;TD ROWSPAN=<span style="color: #00ff00;">"3"</span>&gt;&lt;FONT COLOR=<span style="color: #00ff00;">"red"</span>&gt;hello&lt;/FONT&gt;&lt;BR/&gt;world&lt;/TD&gt;
+  &lt;TD COLSPAN=<span style="color: #00ff00;">"3"</span>&gt;b&lt;/TD&gt;
+  &lt;TD ROWSPAN=<span style="color: #00ff00;">"3"</span> BGCOLOR=<span style="color: #00ff00;">"lightgrey"</span>&gt;g&lt;/TD&gt;
+  &lt;TD ROWSPAN=<span style="color: #00ff00;">"3"</span>&gt;h&lt;/TD&gt;
+  &lt;/TR&gt;
+  &lt;TR&gt;&lt;TD&gt;c&lt;/TD&gt;
+  &lt;TD PORT=<span style="color: #00ff00;">"here"</span>&gt;d&lt;/TD&gt;
+  &lt;TD&gt;e&lt;/TD&gt;
+  &lt;/TR&gt;
+  &lt;TR&gt;&lt;TD COLSPAN=<span style="color: #00ff00;">"3"</span>&gt;f&lt;/TD&gt;
+  &lt;/TR&gt;
+  &lt;/TABLE&gt;&gt;];
+ }
+</pre>
+
+
+<p>
+<img src="label_html.svg"  alt="label_html.svg" />
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2-6-2" class="outline-4">
+<h4 id="sec-2-6-2"><span class="section-number-4">2.6.2</span> 使用label定义子节点</h4>
+<div class="outline-text-4" id="text-2-6-2">
+
+
+
+
+<pre class="src src-dot">digraph structs {
+  node [shape=record];
+  struct1 [shape=record,label=<span style="color: #00ff00;">"&lt;f0&gt; left|&lt;f1&gt; middle|&lt;f2&gt; right"</span>];
+  struct2 [shape=record,label=<span style="color: #00ff00;">"&lt;f0&gt; one|&lt;f1&gt; two"</span>];
+  struct3 [shape=record,label=<span style="color: #00ff00;">"hello\nworld |{ b |{c|&lt;here&gt; d|e}| f}| g | h"</span>];
+  struct1:f1 -&gt; struct2:f0;
+  struct1:f2 -&gt; struct3:here;
+}
+</pre>
+
+
+<p>
+<img src="label_subnode.svg"  alt="label_subnode.svg" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 总结</h2>
+<div class="outline-text-2" id="text-3">
+
+<p>通过这几天对dot语言的学习，发现它还是非常强大和灵活的。只要能够发挥你的组合及想象能力，肯定是能够满足一些基本文档图表的绘制需求。而且还摆脱了普通制图功能繁琐的排版工作，还是非常适合有一定编程基础的用户使用的。<br/>
+个人非常厌恶繁琐的排版工作，因此emacs + org-mode + Graphviz会是以后书写文档的必备工具。<br/>
+之后有时间在将ditaa及plantuml集成进来，毕竟用他们绘制一些专业图表还是更加快捷方便一些。
+</p>
+
+<hr/>
+<p>
+参考文献：<br/>
+<a href="http://www.cnblogs.com/chenfanyu/archive/2013/01/27/2878845.html">http://www.cnblogs.com/chenfanyu/archive/2013/01/27/2878845.html</a> <br/>
+<a href="http://coldnew.github.io/blog/2013/07/13_07e15.html">http://coldnew.github.io/blog/2013/07/13_07e15.html</a> <br/>
+<a href="http://www.graphviz.org">http://www.graphviz.org</a>
+</p></div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2014-09-25T18:16+0800</p>
+<p class="author">Author: bill.huang</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.3f with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>
