@@ -67,7 +67,7 @@ digraph brain {
   "data-structure"[color=gray37,style=filled]
 
   sort[color=gray32,style=filled]
-  插入排序[color=gray32,style=filled,URL="",target="_blank"]
+  插入排序[color=gray32,style=filled,URL="../../algorithms/sort_InsertionSort.html",target="_blank"]
 
   sort->插入排序[color=brown1,style=bold,label="熟练",fontsize=10]
 

@@ -486,8 +486,11 @@
 </g>
 <!-- 插入排序 -->
 <g id="node27" class="node"><title>插入排序</title>
+<g id="a_node27"><a xlink:href="../../algorithms/sort_InsertionSort.html" xlink:title="插入排序" target="_blank">
 <ellipse fill="#525252" stroke="#525252" cx="870" cy="-1152" rx="48.1917" ry="18"/>
 <text text-anchor="middle" x="870" y="-1148.3" font-family="Times,serif" font-size="14.00">插入排序</text>
+</a>
+</g>
 </g>
 <!-- sort&#45;&gt;插入排序 -->
 <g id="edge25" class="edge"><title>sort&#45;&gt;插入排序</title>
