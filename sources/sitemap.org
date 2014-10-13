@@ -1,5 +1,7 @@
 #+TITLE: sitemap
 
    + [[file:knowledge.org][Bill's Knowledge]]
+   + algorithms
+     + [[file:algorithms/sort_InsertionSort.org][插入排序]]
    + [[file:study_dot.org][dot language 学习笔记]]
    + [[file:index.org][索引]]

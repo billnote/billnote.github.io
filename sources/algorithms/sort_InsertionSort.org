@@ -1,0 +1,301 @@
+#+TITLE: 插入排序
+#+STYLE: <link rel="stylesheet" type="text/css" href="../resources/style/style.css" />
+#+LINK_HOME: ../index.html
+
+*插入排序* ：通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。插入排序在实现上，通常采用in-place排序（即只需用到O(1)的额外空间的排序），因而在从后向前扫描过程中，需要反复把已排序元素逐步向后挪位，为最新元素提供插入空间。\\
+图例： file:../resources/img/Insertion-sort-example-300px.gif
+
+* 直接插入排序
+** 算法描述
+ + 简单实现方式[fn:1]
+   1. 从第一个元素开始，该元素可以认为已经被排序
+   2. 取出下一个元素，在已经排序的元素序列中从后向前扫描
+   3. 如果该元素（已排序）大于新元素，将该元素移到下一位置
+   4. 重复步骤3，直到找到已排序的元素小于或者等于新元素的位置
+   5. 将新元素插入到该位置后
+   6. 重复步骤2~5
+
+ + 哨兵实现方式
+   1. 从第一个元素R[ 0 ]开始，该元素可以认为已经被排序，此时哨兵sentinel=R[ 0 ]
+   2. 取出下一个元素R[i]与哨兵比较
+   3. 如果该元素大于哨兵，在已排序的元素序列从哨兵位置开始从前往后扫描
+   4. 如果有序队列元素大于R[i],将R[i]插入该元素之前，赋值哨兵sentinel=R[i]
+   5. 如果该元素等于哨兵，则直接在哨兵位置插入该元素，赋值哨兵sentinel=R[i]
+   6. 如果该元素小于哨兵，在已排序的元素序列从哨兵位置开始从后往前扫描
+   7. 如果有序队列元素小于R[i],将R[i]插入该元素之前，赋值哨兵sentinel=R[i]
+   8. 重复步骤2～7
+
+** 复杂度
+*平均时间复杂度* :O(n^2) \\
+*最差空间复杂度* :O(n)
+** JAVA实现
+#+BEGIN_SRC java
+        //带哨兵的直接插入排序实现方式
+        public static int[] straightInsertionSort(int[] source)
+        {
+                int sentinel = source[0];
+                int sentinelIdx = 0;
+
+                for (int i = 1; i < source.length; i++)
+                {
+                        int tmp = source[i];
+                        int j = sentinelIdx;
+
+                        if (tmp > sentinel)
+                        {
+                                while (j <= i && tmp > source[j])
+                                {
+                                        j++;
+                                }
+                        }
+                        else if (tmp < sentinel)
+                        {
+                                while (j >= 0 && tmp < source[j])
+                                {
+                                        j--;
+                                }
+
+                                j++;
+                        }
+
+                        for (int m = i; m > j; m--)
+                        {
+                                source[m] = source[m - 1];
+                        }
+
+                        sentinel = source[j] = tmp;
+                        sentinelIdx = j;
+                }
+
+                return source;
+        }
+#+END_SRC
+* 二分查找排序
+** 算法描述
+在插入第i个元素时，对前面的0～i-1元素进行折半，先跟他们中间的那个元素比，如果小，则对前半再进行折半，否则对后半进行折半，直到left>right，然后再把第i个元素前1位与目标位置之间的所有元素后移，再把第i个元素放在目标位置上。[fn:2]
+** 复杂度
+*平均时间复杂度* :O(n^2) \\
+*最差空间复杂度* :O(n)
+** JAVA实现
+#+BEGIN_SRC java
+        public static int[] binaryInsertionSort(int[] source)
+        {
+                for (int i = 1; i < source.length; i++)
+                {
+                        int mid = (i - 1) / 2;
+                        int j = mid;
+                        int tmp = source[i];
+
+                        if (tmp > source[mid])
+                        {
+                                while (j <= i && tmp > source[j])
+                                {
+                                        j++;
+                                }
+                        }
+                        else if (tmp < source[mid])
+                        {
+                                while (j >= 0 && tmp < source[j])
+                                {
+                                        j--;
+                                }
+
+                                j++;
+                        }
+
+                        for (int m = i; m > j; m--)
+                        {
+                                source[m] = source[m - 1];
+                        }
+
+                        source[j] = tmp;
+                }
+
+                return source;
+        }
+
+#+END_SRC
+* 希尔排序[fn:3]
+** 算法描述
+希尔排序，也称递减增量排序算法，是插入排序的一种更高效的改进版本。希尔排序是非稳定排序算法。
+
+希尔排序是基于插入排序的以下两点性质而提出改进方法的：
+
+ + 插入排序在对几乎已经排好序的数据操作时， 效率高， 即可以达到线性排序的效率
+ + 但插入排序一般来说是低效的， 因为插入排序每次只能将数据移动一位
+** 步长序列
+步长的选择是希尔排序的重要部分。只要最终步长为1任何步长序列都可以工作。算法最开始以一定的步长进行排序。然后会继续以一定步长进行排序，最终算法以步长为1进行排序。当步长为1时，算法变为插入排序，这就保证了数据一定会被排序。
+
+常见用的步长序列有：
+| 名称      | 公式                                 | 取值                         |
+|-----------+--------------------------------------+------------------------------|
+| 希尔增量  | n / 2^i                              | n/2, (n/2)/2, ..., 1         |
+|-----------+--------------------------------------+------------------------------|
+| Hibbard   | 2^k - 1                              | 2^k - 1, 2^(k-1) - 1, ..., 1 |
+|-----------+--------------------------------------+------------------------------|
+| Sedgewick | 9*4^i - 9*2^i + 1 与 4^i - 3*2^i + 1 | 1, 5, 19, 41, 109, ...       |
+|-----------+--------------------------------------+------------------------------|
+|           |                                      |                              |
+目前已知最优的序列为Sedgewick
+** 复杂度
+| 序列名称  | 最差时间复杂读 | 最差空间复杂度 |
+|-----------+----------------+----------------|
+| 希尔增量  | O(n^2)         | O(n)           |
+|-----------+----------------+----------------|
+| Hibbard   | O(n^(3/2))     | O(n)           |
+|-----------+----------------+----------------|
+| Sedgewick | 不会分析...    | O(n)           |
+|-----------+----------------+----------------|
+|           |                |                |
+** JAVA实现
+#+BEGIN_SRC java
+        public static int[] shellSort(int[] source, int[] increment)
+        {
+                long start = System.currentTimeMillis();
+
+                int d = 0;
+                for (int n = 0; n < increment.length; n++)
+                {
+                        d = increment[n];
+
+                        for (int x = 0; x < d; x++)
+                        {
+                                // 分组
+                                for (int i = x + d; i < source.length; i = i + d)
+                                {
+                                        int temp = source[i];
+                                        int j;
+                                        // 直接插入排序
+                                        for (j = i - d; j >= 0 && source[j] > temp; j -= d)
+                                        {
+                                                source[j + d] = source[j];
+                                        }
+                                        source[j + d] = temp;
+                                }
+                        }
+                }
+                long end = System.currentTimeMillis();
+
+                System.out.println("shellSort time:" + (end - start));
+                return source;
+        }
+#+END_SRC
+** 步长书序JAVA实现
+#+BEGIN_SRC java
+        // 希尔增量
+        public static int[] getShellIncrement(int length)
+        {
+                List<Integer> shellIncrement = new ArrayList<Integer>();
+                int tmp = length / 2;
+
+                while (tmp > 0)
+                {
+                        shellIncrement.add(tmp);
+                        tmp /= 2;
+                }
+
+                return listToArr(shellIncrement);
+        }
+
+        // Hibbard
+        public static int[] getHibbardIncrement(int length)
+        {
+                List<Integer> hibbarIncrement = new ArrayList<Integer>();
+
+                for (int i = 1, increment; (increment = (int) Math.pow(2, i++) - 1) < length;)
+                {
+                        hibbarIncrement.add(increment);
+                }
+
+                return reverseArr(listToArr(hibbarIncrement));
+        }
+
+         // Sedgewick
+        public static int[] getSedgewickIncrement(int length)
+        {
+                List<Integer> sedgewickIncrement = new ArrayList<Integer>();
+
+                for (int i = 0, increment; (increment = 9 * (int) Math.pow(4, i) - 9 * (int) Math.pow(2, i) + 1) < length; i++)
+                {
+                        sedgewickIncrement.add(increment);
+                }
+
+                for (int i = 2, increment; (increment = (int) Math.pow(4, i) - 3 * (int) Math.pow(2, i) + 1) < length; i++)
+                {
+                        sedgewickIncrement.add(increment);
+                }
+
+                return straightInsertionSort(listToArr(sedgewickIncrement));
+        }
+#+END_SRC
+* 性能分析
+本人PC上做的性能测试，仅简单对比一下几种插入排序算法的性能表现，可能不是非常严谨与客观，结构仅作查考吧。
+ + 测试代码
+#+BEGIN_SRC java
+        public void sortPerformanceTest(int n)
+        {
+                int count = n;
+                int[] values = new int[count];
+
+                Random random = new Random();
+
+                for (int i = 0; i < count; i++)
+                {
+                        values[i] = random.nextInt();
+                }
+
+
+                InsertionSort.straightInsertionSort(values);
+                InsertionSort.binaryInsertionSort(values);
+                InsertionSort.shellSort(values, InsertionSort.getShellIncrement(values.length));
+                InsertionSort.shellSort(values, InsertionSort.getHibbardIncrement(values.length));
+                InsertionSort.shellSort(values, InsertionSort.getSedgewickIncrement(values.length));
+        }
+#+END_SRC
+ + 测试结果
+| 算法名称              | 数组长度 | 时间. ms |
+|-----------------------+----------+----------|
+| 直接插入排序          |    10000 |       47 |
+|-----------------------+----------+----------|
+| 二分查找排序          |    10000 |       48 |
+|-----------------------+----------+----------|
+| 希尔排序（希尔增量）  |    10000 |        5 |
+|-----------------------+----------+----------|
+| 希尔排序（Hibbard）   |    10000 |        2 |
+|-----------------------+----------+----------|
+| 希尔排序（Sedgewick） |    10000 |        0 |
+|-----------------------+----------+----------|
+| 直接插入排序          |    50000 |      498 |
+|-----------------------+----------+----------|
+| 二分查找排序          |    50000 |      665 |
+|-----------------------+----------+----------|
+| 希尔排序（希尔增量）  |    50000 |       11 |
+|-----------------------+----------+----------|
+| 希尔排序（Hibbard）   |    50000 |        2 |
+|-----------------------+----------+----------|
+| 希尔排序（Sedgewick） |    50000 |        1 |
+|-----------------------+----------+----------|
+| 直接插入排序          |   100000 |     1879 |
+|-----------------------+----------+----------|
+| 二分查找排序          |   100000 |     5580 |
+|-----------------------+----------+----------|
+| 希尔排序（希尔增量）  |   100000 |       20 |
+|-----------------------+----------+----------|
+| 希尔排序（Hibbard）   |   100000 |        5 |
+|-----------------------+----------+----------|
+| 希尔排序（Sedgewick） |   100000 |        3 |
+|-----------------------+----------+----------|
+|                       |          |          |
+
+ + 总结
+通过上面的对比，可发现在几种插入排序算法中，希尔排序的性能及稳定性都是最优的。且希尔排序性能不会由于排序元素的增强而导致性能急速下降。而希尔排序中又以Sedgewick序列表现最优。\\
+直接插入排序与二分查找排序表现都不是很理想，随着排序元素的增长，算法性能也在快速下降。
+-----
+
+* Footnotes
+
+[fn:1] http://zh.wikipedia.org/wiki/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F
+
+[fn:2] http://baike.baidu.com/view/1950627.htm
+
+[fn:3] http://zh.wikipedia.org/wiki/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F

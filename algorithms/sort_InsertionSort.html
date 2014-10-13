@@ -1,0 +1,677 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>插入排序</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="插入排序"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2014-10-13T12:34+0800"/>
+<meta name="author" content="bill.huang"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+        border: 1pt solid #AEBDCC;
+        background-color: #F3F5F7;
+        padding: 5pt;
+        font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="../resources/style/style.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+<div id="org-div-home-and-up" style="text-align:right;font-size:70%;white-space:nowrap;">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="../index.html"> HOME </a>
+</div>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">插入排序</h1>
+
+<p><b>插入排序</b> ：通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。插入排序在实现上，通常采用in-place排序（即只需用到O(1)的额外空间的排序），因而在从后向前扫描过程中，需要反复把已排序元素逐步向后挪位，为最新元素提供插入空间。<br/>
+图例： <img src="../resources/img/Insertion-sort-example-300px.gif"  alt="../resources/img/Insertion-sort-example-300px.gif" />
+</p>
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 直接插入排序</a>
+<ul>
+<li><a href="#sec-1-1">1.1 算法描述</a></li>
+<li><a href="#sec-1-2">1.2 复杂度</a></li>
+<li><a href="#sec-1-3">1.3 JAVA实现</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2 二分查找排序</a>
+<ul>
+<li><a href="#sec-2-1">2.1 算法描述</a></li>
+<li><a href="#sec-2-2">2.2 复杂度</a></li>
+<li><a href="#sec-2-3">2.3 JAVA实现</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3 希尔排序</a>
+<ul>
+<li><a href="#sec-3-1">3.1 算法描述</a></li>
+<li><a href="#sec-3-2">3.2 步长序列</a></li>
+<li><a href="#sec-3-3">3.3 复杂度</a></li>
+<li><a href="#sec-3-4">3.4 JAVA实现</a></li>
+<li><a href="#sec-3-5">3.5 步长书序JAVA实现</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4 性能分析</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 直接插入排序</h2>
+<div class="outline-text-2" id="text-1">
+
+
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> 算法描述</h3>
+<div class="outline-text-3" id="text-1-1">
+
+<ul>
+<li>简单实现方式<sup><a class="footref" name="fnr-.1" href="#fn-.1">1</a></sup>
+<ol>
+<li>从第一个元素开始，该元素可以认为已经被排序
+</li>
+<li>取出下一个元素，在已经排序的元素序列中从后向前扫描
+</li>
+<li>如果该元素（已排序）大于新元素，将该元素移到下一位置
+</li>
+<li>重复步骤3，直到找到已排序的元素小于或者等于新元素的位置
+</li>
+<li>将新元素插入到该位置后
+</li>
+<li>重复步骤2~5
+
+</li>
+</ol>
+
+</li>
+<li>哨兵实现方式
+<ol>
+<li>从第一个元素R[ 0 ]开始，该元素可以认为已经被排序，此时哨兵sentinel=R[ 0 ]
+</li>
+<li>取出下一个元素R[i]与哨兵比较
+</li>
+<li>如果该元素大于哨兵，在已排序的元素序列从哨兵位置开始从前往后扫描
+</li>
+<li>如果有序队列元素大于R[i],将R[i]插入该元素之前，赋值哨兵sentinel=R[i]
+</li>
+<li>如果该元素等于哨兵，则直接在哨兵位置插入该元素，赋值哨兵sentinel=R[i]
+</li>
+<li>如果该元素小于哨兵，在已排序的元素序列从哨兵位置开始从后往前扫描
+</li>
+<li>如果有序队列元素小于R[i],将R[i]插入该元素之前，赋值哨兵sentinel=R[i]
+</li>
+<li>重复步骤2～7
+</li>
+</ol>
+
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> 复杂度</h3>
+<div class="outline-text-3" id="text-1-2">
+
+<p><b>平均时间复杂度</b> :O(n<sup>2</sup>) <br/>
+<b>最差空间复杂度</b> :O(n)
+</p></div>
+
+</div>
+
+<div id="outline-container-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> JAVA实现</h3>
+<div class="outline-text-3" id="text-1-3">
+
+
+
+
+<pre class="src src-java"><span style="color: #586e75; font-style: italic;">//</span><span style="color: #586e75; font-style: italic;">&#24102;&#21736;&#20853;&#30340;&#30452;&#25509;&#25554;&#20837;&#25490;&#24207;&#23454;&#29616;&#26041;&#24335;</span>
+<span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">int</span>[] <span style="color: #b58900;">straightInsertionSort</span>(<span style="color: #268bd2;">int</span>[] <span style="color: #6c71c4;">source</span>)
+{
+        <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">sentinel</span> = source[0];
+        <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">sentinelIdx</span> = 0;
+
+        <span style="color: #859900;">for</span> (<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">i</span> = 1; i &lt; source.length; i++)
+        {
+                <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">tmp</span> = source[i];
+                <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">j</span> = sentinelIdx;
+
+                <span style="color: #859900;">if</span> (tmp &gt; sentinel)
+                {
+                        <span style="color: #859900;">while</span> (j &lt;= i &amp;&amp; tmp &gt; source[j])
+                        {
+                                j++;
+                        }
+                }
+                <span style="color: #859900;">else</span> <span style="color: #859900;">if</span> (tmp &lt; sentinel)
+                {
+                        <span style="color: #859900;">while</span> (j &gt;= 0 &amp;&amp; tmp &lt; source[j])
+                        {
+                                j--;
+                        }
+
+                        j++;
+                }
+
+                <span style="color: #859900;">for</span> (<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">m</span> = i; m &gt; j; m--)
+                {
+                        source[m] = source[m - 1];
+                }
+
+                sentinel = source[j] = tmp;
+                sentinelIdx = j;
+        }
+
+        <span style="color: #859900;">return</span> source;
+}
+</pre>
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 二分查找排序</h2>
+<div class="outline-text-2" id="text-2">
+
+
+</div>
+
+<div id="outline-container-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> 算法描述</h3>
+<div class="outline-text-3" id="text-2-1">
+
+<p>在插入第i个元素时，对前面的0～i-1元素进行折半，先跟他们中间的那个元素比，如果小，则对前半再进行折半，否则对后半进行折半，直到left&gt;right，然后再把第i个元素前1位与目标位置之间的所有元素后移，再把第i个元素放在目标位置上。<sup><a class="footref" name="fnr-.2" href="#fn-.2">2</a></sup>
+</p></div>
+
+</div>
+
+<div id="outline-container-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> 复杂度</h3>
+<div class="outline-text-3" id="text-2-2">
+
+<p><b>平均时间复杂度</b> :O(n<sup>2</sup>) <br/>
+<b>最差空间复杂度</b> :O(n)
+</p></div>
+
+</div>
+
+<div id="outline-container-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> JAVA实现</h3>
+<div class="outline-text-3" id="text-2-3">
+
+
+
+
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">int</span>[] <span style="color: #b58900;">binaryInsertionSort</span>(<span style="color: #268bd2;">int</span>[] <span style="color: #6c71c4;">source</span>)
+{
+        <span style="color: #859900;">for</span> (<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">i</span> = 1; i &lt; source.length; i++)
+        {
+                <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">mid</span> = (i - 1) / 2;
+                <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">j</span> = mid;
+                <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">tmp</span> = source[i];
+
+                <span style="color: #859900;">if</span> (tmp &gt; source[mid])
+                {
+                        <span style="color: #859900;">while</span> (j &lt;= i &amp;&amp; tmp &gt; source[j])
+                        {
+                                j++;
+                        }
+                }
+                <span style="color: #859900;">else</span> <span style="color: #859900;">if</span> (tmp &lt; source[mid])
+                {
+                        <span style="color: #859900;">while</span> (j &gt;= 0 &amp;&amp; tmp &lt; source[j])
+                        {
+                                j--;
+                        }
+
+                        j++;
+                }
+
+                <span style="color: #859900;">for</span> (<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">m</span> = i; m &gt; j; m--)
+                {
+                        source[m] = source[m - 1];
+                }
+
+                source[j] = tmp;
+        }
+
+        <span style="color: #859900;">return</span> source;
+}
+
+</pre>
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 希尔排序<sup><a class="footref" name="fnr-.3" href="#fn-.3">3</a></sup></h2>
+<div class="outline-text-2" id="text-3">
+
+
+</div>
+
+<div id="outline-container-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> 算法描述</h3>
+<div class="outline-text-3" id="text-3-1">
+
+<p>希尔排序，也称递减增量排序算法，是插入排序的一种更高效的改进版本。希尔排序是非稳定排序算法。
+</p>
+<p>
+希尔排序是基于插入排序的以下两点性质而提出改进方法的：
+</p>
+<ul>
+<li>插入排序在对几乎已经排好序的数据操作时， 效率高， 即可以达到线性排序的效率
+</li>
+<li>但插入排序一般来说是低效的， 因为插入排序每次只能将数据移动一位
+</li>
+</ul>
+
+</div>
+
+</div>
+
+<div id="outline-container-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> 步长序列</h3>
+<div class="outline-text-3" id="text-3-2">
+
+<p>步长的选择是希尔排序的重要部分。只要最终步长为1任何步长序列都可以工作。算法最开始以一定的步长进行排序。然后会继续以一定步长进行排序，最终算法以步长为1进行排序。当步长为1时，算法变为插入排序，这就保证了数据一定会被排序。
+</p>
+<p>
+常见用的步长序列有：
+</p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">名称</th><th scope="col" class="left">公式</th><th scope="col" class="left">取值</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">希尔增量</td><td class="left">n / 2<sup>i</sup></td><td class="left">n/2, (n/2)/2, &hellip;, 1</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">Hibbard</td><td class="left">2<sup>k</sup> - 1</td><td class="left">2<sup>k</sup> - 1, 2<sup>(k-1)</sup> - 1, &hellip;, 1</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">Sedgewick</td><td class="left">9*4<sup>i</sup> - 9*2<sup>i</sup> + 1 与 4<sup>i</sup> - 3*2<sup>i</sup> + 1</td><td class="left">1, 5, 19, 41, 109, &hellip;</td></tr>
+</tbody>
+</table>
+
+目前已知最优的序列为Sedgewick
+</div>
+
+</div>
+
+<div id="outline-container-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> 复杂度</h3>
+<div class="outline-text-3" id="text-3-3">
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">序列名称</th><th scope="col" class="left">最差时间复杂读</th><th scope="col" class="left">最差空间复杂度</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">希尔增量</td><td class="left">O(n<sup>2</sup>)</td><td class="left">O(n)</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">Hibbard</td><td class="left">O(n<sup>(3/2)</sup>)</td><td class="left">O(n)</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">Sedgewick</td><td class="left">不会分析&hellip;</td><td class="left">O(n)</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+<div id="outline-container-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> JAVA实现</h3>
+<div class="outline-text-3" id="text-3-4">
+
+
+
+
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">int</span>[] <span style="color: #b58900;">shellSort</span>(<span style="color: #268bd2;">int</span>[] <span style="color: #6c71c4;">source</span>, <span style="color: #268bd2;">int</span>[] <span style="color: #6c71c4;">increment</span>)
+{
+        <span style="color: #268bd2;">long</span> <span style="color: #6c71c4;">start</span> = System.currentTimeMillis();
+
+        <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">d</span> = 0;
+        <span style="color: #859900;">for</span> (<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">n</span> = 0; n &lt; increment.length; n++)
+        {
+                d = increment[n];
+
+                <span style="color: #859900;">for</span> (<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">x</span> = 0; x &lt; d; x++)
+                {
+                        <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">&#20998;&#32452;</span>
+                        <span style="color: #859900;">for</span> (<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">i</span> = x + d; i &lt; source.length; i = i + d)
+                        {
+                                <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">temp</span> = source[i];
+                                <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">j</span>;
+                                <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">&#30452;&#25509;&#25554;&#20837;&#25490;&#24207;</span>
+                                <span style="color: #859900;">for</span> (j = i - d; j &gt;= 0 &amp;&amp; source[j] &gt; temp; j -= d)
+                                {
+                                        source[j + d] = source[j];
+                                }
+                                source[j + d] = temp;
+                        }
+                }
+        }
+        <span style="color: #268bd2;">long</span> <span style="color: #6c71c4;">end</span> = System.currentTimeMillis();
+
+        System.out.println(<span style="color: #2aa198;">"shellSort time:"</span> + (end - start));
+        <span style="color: #859900;">return</span> source;
+}
+</pre>
+
+</div>
+
+</div>
+
+<div id="outline-container-3-5" class="outline-3">
+<h3 id="sec-3-5"><span class="section-number-3">3.5</span> 步长书序JAVA实现</h3>
+<div class="outline-text-3" id="text-3-5">
+
+
+
+
+<pre class="src src-java"><span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">&#24076;&#23572;&#22686;&#37327;</span>
+<span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">int</span>[] <span style="color: #b58900;">getShellIncrement</span>(<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">length</span>)
+{
+        List&lt;Integer&gt; shellIncrement = <span style="color: #859900;">new</span> <span style="color: #268bd2;">ArrayList</span>&lt;Integer&gt;();
+        <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">tmp</span> = length / 2;
+
+        <span style="color: #859900;">while</span> (tmp &gt; 0)
+        {
+                shellIncrement.add(tmp);
+                tmp /= 2;
+        }
+
+        <span style="color: #859900;">return</span> listToArr(shellIncrement);
+}
+
+<span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">Hibbard</span>
+<span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">int</span>[] <span style="color: #b58900;">getHibbardIncrement</span>(<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">length</span>)
+{
+        List&lt;Integer&gt; hibbarIncrement = <span style="color: #859900;">new</span> <span style="color: #268bd2;">ArrayList</span>&lt;Integer&gt;();
+
+        <span style="color: #859900;">for</span> (<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">i</span> = 1, <span style="color: #6c71c4;">increment</span>; (increment = (<span style="color: #268bd2;">int</span>) Math.pow(2, i++) - 1) &lt; length;)
+        {
+                hibbarIncrement.add(increment);
+        }
+
+        <span style="color: #859900;">return</span> reverseArr(listToArr(hibbarIncrement));
+}
+
+ <span style="color: #586e75; font-style: italic;">// </span><span style="color: #586e75; font-style: italic;">Sedgewick</span>
+<span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">int</span>[] <span style="color: #b58900;">getSedgewickIncrement</span>(<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">length</span>)
+{
+        List&lt;Integer&gt; sedgewickIncrement = <span style="color: #859900;">new</span> <span style="color: #268bd2;">ArrayList</span>&lt;Integer&gt;();
+
+        <span style="color: #859900;">for</span> (<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">i</span> = 0, <span style="color: #6c71c4;">increment</span>; (increment = 9 * (<span style="color: #268bd2;">int</span>) Math.pow(4, i) - 9 * (<span style="color: #268bd2;">int</span>) Math.pow(2, i) + 1) &lt; length; i++)
+        {
+                sedgewickIncrement.add(increment);
+        }
+
+        <span style="color: #859900;">for</span> (<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">i</span> = 2, <span style="color: #6c71c4;">increment</span>; (increment = (<span style="color: #268bd2;">int</span>) Math.pow(4, i) - 3 * (<span style="color: #268bd2;">int</span>) Math.pow(2, i) + 1) &lt; length; i++)
+        {
+                sedgewickIncrement.add(increment);
+        }
+
+        <span style="color: #859900;">return</span> straightInsertionSort(listToArr(sedgewickIncrement));
+}
+</pre>
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 性能分析</h2>
+<div class="outline-text-2" id="text-4">
+
+<p>本人PC上做的性能测试，仅简单对比一下几种插入排序算法的性能表现，可能不是非常严谨与客观，结构仅作查考吧。
+</p><ul>
+<li>测试代码
+</li>
+</ul>
+
+
+
+
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">sortPerformanceTest</span>(<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">n</span>)
+{
+        <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">count</span> = n;
+        <span style="color: #268bd2;">int</span>[] <span style="color: #6c71c4;">values</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">int</span>[count];
+
+        <span style="color: #268bd2;">Random</span> <span style="color: #6c71c4;">random</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">Random</span>();
+
+        <span style="color: #859900;">for</span> (<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">i</span> = 0; i &lt; count; i++)
+        {
+                values[i] = random.nextInt();
+        }
+
+
+        InsertionSort.straightInsertionSort(values);
+        InsertionSort.binaryInsertionSort(values);
+        InsertionSort.shellSort(values, InsertionSort.getShellIncrement(values.length));
+        InsertionSort.shellSort(values, InsertionSort.getHibbardIncrement(values.length));
+        InsertionSort.shellSort(values, InsertionSort.getSedgewickIncrement(values.length));
+}
+</pre>
+
+<ul>
+<li>测试结果
+</li>
+</ul>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="left" /><col class="right" /><col class="right" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">算法名称</th><th scope="col" class="right">数组长度</th><th scope="col" class="right">时间. ms</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">直接插入排序</td><td class="right">10000</td><td class="right">47</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">二分查找排序</td><td class="right">10000</td><td class="right">48</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">希尔排序（希尔增量）</td><td class="right">10000</td><td class="right">5</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">希尔排序（Hibbard）</td><td class="right">10000</td><td class="right">2</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">希尔排序（Sedgewick）</td><td class="right">10000</td><td class="right">0</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">直接插入排序</td><td class="right">50000</td><td class="right">498</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">二分查找排序</td><td class="right">50000</td><td class="right">665</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">希尔排序（希尔增量）</td><td class="right">50000</td><td class="right">11</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">希尔排序（Hibbard）</td><td class="right">50000</td><td class="right">2</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">希尔排序（Sedgewick）</td><td class="right">50000</td><td class="right">1</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">直接插入排序</td><td class="right">100000</td><td class="right">1879</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">二分查找排序</td><td class="right">100000</td><td class="right">5580</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">希尔排序（希尔增量）</td><td class="right">100000</td><td class="right">20</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">希尔排序（Hibbard）</td><td class="right">100000</td><td class="right">5</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">希尔排序（Sedgewick）</td><td class="right">100000</td><td class="right">3</td></tr>
+</tbody>
+</table>
+
+
+<ul>
+<li>总结
+</li>
+</ul>
+
+<p>通过上面的对比，可发现在几种插入排序算法中，希尔排序的性能及稳定性都是最优的。且希尔排序性能不会由于排序元素的增强而导致性能急速下降。而希尔排序中又以Sedgewick序列表现最优。<br/>
+直接插入排序与二分查找排序表现都不是很理想，随着排序元素的增长，算法性能也在快速下降。
+
+</p>
+<hr/>
+
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+<p class="footnote"><sup><a class="footnum" name="fn-.1" href="#fnr-.1">1</a></sup> <a href="http://zh.wikipedia.org/wiki/插入排序">http://zh.wikipedia.org/wiki/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F</a>
+</p>
+
+
+<p class="footnote"><sup><a class="footnum" name="fn-.2" href="#fnr-.2">2</a></sup> <a href="http://baike.baidu.com/view/1950627.htm">http://baike.baidu.com/view/1950627.htm</a>
+</p>
+
+
+<p class="footnote"><sup><a class="footnum" name="fn-.3" href="#fnr-.3">3</a></sup> <a href="http://zh.wikipedia.org/wiki/希尔排序">http://zh.wikipedia.org/wiki/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F</a>
+</p>
+
+
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2014-10-13T12:34+0800</p>
+<p class="author">Author: bill.huang</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.3f with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>

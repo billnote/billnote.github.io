@@ -66,6 +66,15 @@ digraph brain {
   algorithms[color=gray37,style=filled]
   "data-structure"[color=gray37,style=filled]
 
+  sort[color=gray32,style=filled]
+  插入排序[color=gray32,style=filled,URL="",target="_blank"]
+
+  sort->插入排序[color=brown1,style=bold,label="熟练",fontsize=10]
+
+  algorithms->sort[color=brown1,style=bold,label="熟练",fontsize=10]
+
+
+
   basic->algorithms[color=grey10,label="熟悉",fontsize=10]
   basic->"data-structure"[color=brown1,style=bold,label="熟练",fontsize=10]
 
