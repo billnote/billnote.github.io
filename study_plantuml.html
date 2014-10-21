@@ -3,12 +3,12 @@
                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>sitemap</title>
+<title>plantuml 学习笔记</title>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-<meta name="title" content="sitemap"/>
+<meta name="title" content="plantuml 学习笔记"/>
 <meta name="generator" content="Org-mode"/>
 <meta name="generated" content="2014-10-21T16:19+0800"/>
-<meta name="author" content="bill.huang"/>
+<meta name="author" content="BillyHuang@sina.cn"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
 <style type="text/css">
@@ -60,6 +60,7 @@
                                  font-weight:bold; }
   /*]]>*/-->
 </style>
+<link rel="stylesheet" type="text/css" href="./resources/style/style.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -109,47 +110,137 @@ for the JavaScript code in this tag.
 
 </head>
 <body>
+<div id="org-div-home-and-up" style="text-align:right;font-size:70%;white-space:nowrap;">
+ <a accesskey="h" href="./index.html"> UP </a>
+ |
+ <a accesskey="H" href="./index.html"> HOME </a>
+</div>
 
 <div id="preamble">
 
 </div>
 
 <div id="content">
-<h1 class="title">sitemap</h1>
+<h1 class="title">plantuml 学习笔记</h1>
 
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
 <ul>
-<li><a href="knowledge.html">Bill's Knowledge</a>
+<li><a href="#sec-1">1 PlantUML简介</a></li>
+<li><a href="#sec-2">2 Sequence diagram</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> PlantUML简介</h2>
+<div class="outline-text-2" id="text-1">
+
+<p>PlantUML是一个开源的用以高效构建UML图的工具。他可以嵌入多种编辑器及IDE中使用，具体支持哪些请戳<a href="http://www.plantuml.com/running.html">这里</a>.<br/>
+<b>UML可以构建以下模型图</b>
+</p><ul>
+<li>Sequence diagram  时序图
 </li>
-<li>algorithms
-<ul>
-<li><a href="algorithms/sort_RadixSort.html">基数排序</a>
+<li>Usecase diagram  用例图
 </li>
-<li><a href="algorithms/sort_HeapSort.html">堆排序</a>
+<li>Class diagram  类图
 </li>
-<li><a href="algorithms/sort_MergeSort.html">归并排序</a>
+<li>Activity diagram  活动图
 </li>
-<li><a href="algorithms/sort_QuickSort.html">快速排序</a>
+<li>Component diagram  组件图
 </li>
-<li><a href="algorithms/sort_InsertionSort.html">插入排序</a>
+<li>State diagram  状态图
 </li>
-<li><a href="algorithms/sort_SelectionSort.html">选择排序</a>
+<li>Object diagram  对象图
 </li>
 </ul>
 
-</li>
-<li><a href="study_dot.html">dot language 学习笔记</a>
-</li>
-<li><a href="study_plantuml.html">plantuml 学习笔记</a>
-</li>
-<li><a href="index.html">索引</a>
-</li>
-</ul>
 
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Sequence diagram</h2>
+<div class="outline-text-2" id="text-2">
+
+<p>一种UML行为图。它通过描述对象之间发送消息的时间顺序显示多个对象之间的动态协作。它可以表示用例的行为顺序，当执行一个用例行为时，时序图中的每条消息对应了一个类操作或状态机中引起转换的触发事件。<sup><a class="footref" name="fnr-.1" href="#fn-.1">1</a></sup>
+至于时序图的作用及各种模型图的含义，本文篇幅有限不做详细介绍。想了解更多就点击<a href="http://www.ibm.com/developerworks/cn/rational/rationaledge/content/feb05/bell/3101.html">这里</a>.
+</p>
+
+
+
+<pre class="src src-plantuml">'&#36825;&#26159;&#19968;&#20010;&#27880;&#37322;&#65292;plantuml&#27880;&#37322;&#20197;&#21333;&#24341;&#21495;&#24320;&#22836;
+/'&#36825;&#20063;&#26159;&#19968;&#20010;&#27880;&#37322;'/
+title Example Sequence Diagram1
+'&#23450;&#20041;&#20102;&#19968;&#20010;&#23545;&#35937;
+activate SDK
+activate AdServer
+'SDK&#21521;AdServer&#21457;&#36865;&#20102;&#19968;&#20010;&#28040;&#24687;
+SDK -&gt; AdServer : Send request init.htm
+AdServer --&gt; SDK : Return response init template
+'AdServer&#29983;&#21629;&#32447;&#32467;&#26463;
+deactivate AdServer
+'SDK&#21521;&#33258;&#36523;&#21457;&#36865;&#20102;&#19968;&#20010;&#28040;&#24687;
+SDK -&gt; SDK : Parsing init template
+deactivate SDK
+</pre>
+
+
+<p>
+<img src="./resources/img/sequence1.png"  alt="./resources/img/sequence1.png" />
+</p>
+<p>
+在Plantuml中可以使用不同的模型图描述不同的对象。
+</p>
+
+
+<pre class="src src-plantuml">title Example Squence Diagram2
+actor User1
+boundary SDK
+control AdServer
+entity Ad
+database BJDB
+User1 -&gt; SDK :activite
+SDK -&gt; AdServer : Send request ad.htm
+AdServer -&gt; Ad : Selected Ad
+AdServer -&gt; BJDB : Load data
+BJDB --&gt; AdServer : Return ad data
+AdServer --&gt; SDK : Return ad template
+SDK --&gt; User1 : Return ad template
+deactivate User1
+deactivate SDK
+deactivate AdServer
+deactivate Ad
+deactivate BJDB
+</pre>
+
+
+<p>
+<img src="./resources/img/sequence2.png"  alt="./resources/img/sequence2.png" />
+</p>
+<p>
+-未完待续-
+
+</p>
+<hr/>
+
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+<p class="footnote"><sup><a class="footnum" name="fn-.1" href="#fnr-.1">1</a></sup> <a href="http://www.ibm.com/developerworks/cn/rational/rationaledge/content/feb05/bell/3101.html">http://www.ibm.com/developerworks/cn/rational/rationaledge/content/feb05/bell/3101.html</a>
+</p></div>
+</div>
+
+</div>
+</div>
 </div>
 
 <div id="postamble">
 <p class="date">Date: 2014-10-21T16:19+0800</p>
-<p class="author">Author: bill.huang</p>
+<p class="author">Author: BillyHuang@sina.cn</p>
 <p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.3f with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24</p>
 <a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
 
