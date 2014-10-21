@@ -1,3 +1,5 @@
 #+TITLE: 选择排序
 #+STYLE: <link rel="stylesheet" type="text/css" href="../resources/style/style.css" />
 #+LINK_HOME: ../index.html
+#+FILETAGS: :算法 :排序
+#+AUTHOR: BillyHuang@sina.cn

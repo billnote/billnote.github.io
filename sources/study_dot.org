@@ -1,6 +1,8 @@
 #+TITLE: dot language 学习笔记
 #+STYLE: <link rel="stylesheet" type="text/css" href="./resources/style/style.css" />
 #+LINK_HOME: ./index.html
+#+FILETAGS: :dot language :Graphviz :org-mode
+#+AUTHOR: Billyhuang@sina.cn
 
 * dot 语言简介
 DOT语言是一种文本图形描述语言。文件扩展名通常为.gv或.dot 。它可以导出的格式有：GIF、PNG、SVG、PDF及PostScript。

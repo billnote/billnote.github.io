@@ -1,6 +1,7 @@
 #+TITLE: Bill's Knowledge
 #+STYLE: <link rel="stylesheet" type="text/css" href="./resources/style/style.css" />
 #+LINK_HOME: ./index.html
+#+AUTHOR: BillyHuang@sina.cn
 
 * 前言
 最近突然产生一个想法：把自己了解的所有知识，包括工作的专业知识和业余了解的一些东西;生成一个思维导图。以了解自己究竟都掌握了哪些东西，掌握到了何种程度。
@@ -52,6 +53,7 @@ digraph brain {
   elisp[color=cadetblue1,style=filled]
   go[color=cadetblue1,style=filled]
   dot[color=cadetblue1,style=filled,URL="../../study_dot.html",target="_blank"]
+  plantuml[color=cadetblue1,style=filled,URL="../../study_plantuml.html",target="_blank"]
 
   language->java[color=brown1,style=bold,label="熟练",fontsize=10]
   language->CSharp[color=brown1,stytle=bold,label="熟练",fontsize=10]
@@ -62,18 +64,27 @@ digraph brain {
   language->elisp[color=grey20,label="了解",fontsize=10]
   language->go[color=grey20,style=dotted,label="略懂",fontsize=10]
   language->dot[color=grey10,label="熟悉",fontsize=10]
+  language->plantuml[color=grey10,label="熟悉",fontsize=10]
 
   algorithms[color=gray37,style=filled]
   "data-structure"[color=gray37,style=filled]
 
   sort[color=gray32,style=filled]
   插入排序[color=gray32,style=filled,URL="../../algorithms/sort_InsertionSort.html",target="_blank"]
+  堆排序[color=gray32,style=filled,URL="../../algorithms/sort_HeapSort.html",target="_blank"]
+  选择排序[color=gray32,style=filled,URL="../../algorithms/sort_SelectionSort.html",target="_blank"]
+  合并排序[color=gray32,style=filled,URL="../../algorithms/sort_MergeSort.html",target="_blank"]
+  快速排序[color=gray32,style=filled,URL="../../algorithms/sort_QuickSort.html",target="_blank"]
+  基数排序[color=gray32,style=filled,URL="../../algorithms/sort_RadixSort.html",target="_blank"]
 
   sort->插入排序[color=brown1,style=bold,label="熟练",fontsize=10]
+  sort->堆排序[color=brown1,style=bold,label="熟练",fontsize=10]
+  sort->选择排序[color=brown1,style=bold,label="熟练",fontsize=10]
+  sort->合并排序[color=brown1,style=bold,label="熟练",fontsize=10]
+  sort->快速排序[color=brown1,style=bold,label="熟练",fontsize=10]
+  sort->基数排序[color=brown1,style=bold,label="熟练",fontsize=10]
 
   algorithms->sort[color=brown1,style=bold,label="熟练",fontsize=10]
-
-
 
   basic->algorithms[color=grey10,label="熟悉",fontsize=10]
   basic->"data-structure"[color=brown1,style=bold,label="熟练",fontsize=10]

@@ -1,6 +1,16 @@
-#+TITLE: 索引
+#+TITLE: 笔记列表
 #+STYLE: <link rel="stylesheet" type="text/css" href="./resources/style/style.css" />
+#+AUTHOR: BillyHuang@sina.cn
 
-文章那么少为啥要索引，其实我也不知道。
-
-#+INCLUDE: sitemap.org
+ + [[./knowledge.org][脑子里都有些啥]]
+ + *算法*
+   + 排序算法
+     + [[./algorithms/sort_InsertionSort.org][插入排序]]
+     + [[./algorithms/sort_HeapSort.org][堆排序]]
+     + [[./algorithms/sort_SelectionSort.org][选择排序]]
+     + [[./algorithms/sort_MergeSort.org][合并排序]]
+     + [[./algorithms/sort_QuickSort.org][快速排序]]
+     + [[./algorithms/sort_RadixSort.org][基数排序]]
+ + *org-mode*
+   + [[./study_dot.org][org-mode使用Graphviz制图]]
+   + [[./study_plantuml.org][org-mode使用plantuml画UML模型图]]
