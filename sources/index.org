@@ -8,7 +8,7 @@
      + [[./algorithms/sort_InsertionSort.org][插入排序]]
      + [[./algorithms/sort_HeapSort.org][堆排序]]
      + [[./algorithms/sort_SelectionSort.org][选择排序]]
-     + [[./algorithms/sort_MergeSort.org][合并排序]]
+     + [[./algorithms/sort_MergeSort.org][归并排序]]
      + [[./algorithms/sort_QuickSort.org][快速排序]]
      + [[./algorithms/sort_RadixSort.org][基数排序]]
  + *org-mode*
