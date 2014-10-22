@@ -62,7 +62,7 @@ digraph mergeSort{
     struct15->struct19
 
     struct20 [shape=record,label="<f0>5|<f1>9|<f2>13|<f3>18"]
-    struct21 [shape=record,label="<f0>5|<f1>9|<f2>13|<f3>18"]
+    struct21 [shape=record,label="<f0>0|<f1>6|<f2>11|<f3>30"]
 
     struct16->struct20
     struct17->struct20
