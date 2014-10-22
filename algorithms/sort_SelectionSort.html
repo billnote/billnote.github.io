@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="title" content="选择排序"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2014-10-22T14:02+0800"/>
+<meta name="generated" content="2014-10-22T17:06+0800"/>
 <meta name="author" content="BillyHuang@sina.cn"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -123,10 +123,121 @@ for the JavaScript code in this tag.
 <div id="content">
 <h1 class="title">选择排序</h1>
 
+<p><b>选择排序(Selection sort)</b>: 首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。<sup><a class="footref" name="fnr-.1" href="#fn-.1">1</a></sup><br/>
+选择排序算法思想比较直观明了，应该是非常容易理解的。<br/>
+图例： <img src="../resources/img/Selection-sort-animation.gif"  alt="../resources/img/Selection-sort-animation.gif" />
+</p>
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 算法演示图</a></li>
+<li><a href="#sec-2">2 复杂度</a></li>
+<li><a href="#sec-3">3 Java实现</a></li>
+<li><a href="#sec-4">4 性能测试</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 算法演示图</h2>
+<div class="outline-text-2" id="text-1">
+
+
+
+<p>
+<img src="../resources/img/insertExp-srouce.png"  alt="../resources/img/insertExp-srouce.png" />
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 复杂度</h2>
+<div class="outline-text-2" id="text-2">
+
+<p>选择排序的交换操作介于0和(n-1)次之间。选择排序的比较操作为n(n-1)/2次之间。选择排序的赋值操作介于0和3(n-1)次之间。<sup><a class="footref" name="fnr-.1.2" href="#fn-.1">1</a></sup>
+</p></div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Java实现</h2>
+<div class="outline-text-2" id="text-3">
+
+
+
+
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">int</span>[] <span style="color: #b58900;">selectionSort</span>(<span style="color: #268bd2;">int</span>[] <span style="color: #6c71c4;">source</span>)
+{
+        <span style="color: #859900;">for</span> (<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">i</span> = 0; i &lt; source.length; i++)
+        {
+                <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">idx</span> = i;
+                <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">min</span> = source[i];
+                <span style="color: #859900;">for</span> (<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">j</span> = i; j &lt; source.length; j++)
+                {
+                        <span style="color: #859900;">if</span> (min &gt; source[j])
+                        {
+                                min = source[j];
+                                idx = j;
+                        }
+                }
+                source[idx] = source[i];
+                source[i] = min;
+        }
+
+        <span style="color: #859900;">return</span> source;
+}
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 性能测试</h2>
+<div class="outline-text-2" id="text-4">
+
+<p>本人PC上做的性能测试，仅简单对比一下几种插入排序算法的性能表现，可能不是非常严谨与客观，结果仅作参考吧。
+</p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="right" /><col class="right" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="right">数组长度</th><th scope="col" class="right">耗时 .ms</th></tr>
+</thead>
+<tbody>
+<tr><td class="right">10000</td><td class="right">45</td></tr>
+</tbody>
+<tbody>
+<tr><td class="right">100000</td><td class="right">2625</td></tr>
+</tbody>
+<tbody>
+<tr><td class="right">500000</td><td class="right">65990</td></tr>
+</tbody>
+</table>
+
+
+<p>
+从上述结果可以看出，快速排序虽然容易理解和实现，但是性能非常差，随着数据量的上升，排序算法的性能也急剧的下降。在可选择的情况下，不建议使用选择排序算法。
+</p>
+
+<hr/>
+
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+<p class="footnote"><sup><a class="footnum" name="fn-.1" href="#fnr-.1">1</a></sup> <a href="http://zh.wikipedia.org/wiki/选择排序">http://zh.wikipedia.org/wiki/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F</a>
+</p></div>
+</div>
+
+</div>
+</div>
 </div>
 
 <div id="postamble">
-<p class="date">Date: 2014-10-22T14:02+0800</p>
+<p class="date">Date: 2014-10-22T17:06+0800</p>
 <p class="author">Author: BillyHuang@sina.cn</p>
 <p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.3f with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24</p>
 <a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>

@@ -3,3 +3,93 @@
 #+LINK_HOME: ../index.html
 #+FILETAGS: :algorithms:sort:
 #+AUTHOR: BillyHuang@sina.cn
+
+*选择排序(Selection sort)*: 首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。[fn:1]\\
+选择排序算法思想比较直观明了，应该是非常容易理解的。\\
+图例： file:../resources/img/Selection-sort-animation.gif
+
+* 算法演示图
+#+begin_src dot :file ../resources/img/insertExp-srouce.png :cmdline -Kdot -Tpng :exports results
+digraph source {
+   {
+      node[shape=plaintext]
+      step0->step1->step2->step3->step4->step5->step6->step7
+   }
+
+   {rank=same; step0, struct1}
+   {rank=same; step1, struct2}
+   {rank=same; step2, struct3}
+   {rank=same; step3, struct4}
+   {rank=same; step4, struct5}
+   {rank=same; step5, struct6}
+   {rank=same; step6, struct7}
+   {rank=same; step7, struct8}
+
+   struct1 [shape=record,label="<f0>13|<f1>18|<f2>5|<f3>9|<f4>6|<f5>0|<f6>11|<f7>30"]
+   struct2 [shape=record,label="<f0>30|<f1>18|<f2>5|<f3>9|<f4>6|<f5>0|<f6>11|<f7>13"]
+   struct2:f0->struct2:f7[dir=both,color=red,style=dotted]
+
+   struct3 [shape=record,label="<f0>30|<f1>18|<f2>5|<f3>9|<f4>6|<f5>0|<f6>11|<f7>13"]
+   struct3:f1->struct3:f1[dir=both,color=red,style=dotted]
+
+   struct4 [shape=record,label="<f0>30|<f1>18|<f2>13|<f3>9|<f4>6|<f5>0|<f6>11|<f7>5"]
+   struct4:f2->struct4:f7[dir=both,color=red,style=dotted]
+
+   struct5 [shape=record,label="<f0>30|<f1>18|<f2>13|<f3>11|<f4>6|<f5>0|<f6>9|<f7>5"]
+   struct5:f3->struct5:f6[dir=both,color=red,style=dotted]
+
+   struct6 [shape=record,label="<f0>30|<f1>18|<f2>13|<f3>11|<f4>9|<f5>0|<f6>6|<f7>5"]
+   struct6:f4->struct6:f6[dir=both,color=red,style=dotted]
+
+   struct7 [shape=record,label="<f0>30|<f1>18|<f2>13|<f3>11|<f4>9|<f5>6|<f6>0|<f7>5"]
+   struct7:f5->struct7:f6[dir=both,color=red,style=dotted]
+
+   struct8 [shape=record,label="<f0>30|<f1>18|<f2>13|<f3>11|<f4>9|<f5>6|<f6>5|<f7>0"]
+   struct8:f6->struct8:f7[dir=both,color=red,style=dotted]
+}
+#+end_src
+
+* 复杂度
+选择排序的交换操作介于0和(n-1)次之间。选择排序的比较操作为n(n-1)/2次之间。选择排序的赋值操作介于0和3(n-1)次之间。[fn:1]
+* Java实现
+#+BEGIN_SRC java
+        public static int[] selectionSort(int[] source)
+        {
+                for (int i = 0; i < source.length; i++)
+                {
+                        int idx = i;
+                        int min = source[i];
+                        for (int j = i; j < source.length; j++)
+                        {
+                                if (min > source[j])
+                                {
+                                        min = source[j];
+                                        idx = j;
+                                }
+                        }
+                        source[idx] = source[i];
+                        source[i] = min;
+                }
+
+                return source;
+        }
+#+END_SRC
+
+* 性能测试
+本人PC上做的性能测试，仅简单对比一下几种插入排序算法的性能表现，可能不是非常严谨与客观，结果仅作参考吧。
+| 数组长度 | 耗时 .ms |
+|----------+----------|
+|    10000 |       45 |
+|----------+----------|
+|   100000 |     2625 |
+|----------+----------|
+|   500000 |    65990 |
+|----------+----------|
+|          |          |
+
+从上述结果可以看出，快速排序虽然容易理解和实现，但是性能非常差，随着数据量的上升，排序算法的性能也急剧的下降。在可选择的情况下，不建议使用选择排序算法。
+
+------
+* Footnotes
+
+[fn:1] http://zh.wikipedia.org/wiki/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F
