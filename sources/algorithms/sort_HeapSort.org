@@ -1,5 +1,239 @@
 #+TITLE: 堆排序
 #+STYLE: <link rel="stylesheet" type="text/css" href="../resources/style/style.css" />
 #+LINK_HOME: ../index.html
-#+FILETAGS: :算法 :排序
+#+FILETAGS: :algorithms:sort:
 #+AUTHOR: BillyHuang@sina.cn
+
+*堆排序（Heapsort）* 是指利[[http://zh.wikipedia.org/wiki/%E5%A0%86_%28%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%29][堆]]这种数据结构所设计的一种排序算法。\\堆积是一个近似完全二叉树的结构，并同时满足堆积的性质：即子结点的键值或索引总是小于（或者大于）它的父节点。[fn:1]\\
+图例： file:../resources/img/Sorting-heapsort-anim.gif
+
+* 算法描述
+  + 最大堆调整（Max_Heapify）：将堆的末端子节点作调整，使得子节点永远小于父节点
+  + 创建最大堆（Build_Max_Heap）：将堆所有数据重新排序
+  + 堆排序（HeapSort）：移除位在第一个数据的根节点，并做最大堆调整的递归运算
+* 算法实例图
+待排序数组：
+#+begin_src dot :file ../resources/img/heapExp-source.png :cmdline -Kdot -Tpng :exports results
+digraph exp1 {
+   struct1 [shape=record,label="<f0>13|<f1>18|<f2>5|<f3>9|<f4>6|<f5>0|<f6>11|<f7>30"]
+}
+#+end_src
+
+#+begin_src dot :file ../resources/img/heapExp-step1.png :cmdline -Kdot -Tpng :exports results
+digraph headSort {
+  subgraph "cluster g1" {
+    rankdir=TB
+    {
+     node[shape=plaintext]
+     "top"->"level1"->"level2"->"level3"->"result"
+    }
+    {rank=same; "top"; "30"}
+    {rank=same; "level1"; "18"; "9"}
+    {rank=same; "level2"; "13"; "11"; "6"; "5"}
+    {rank=same; "level3"; "0"}
+    {rank=same; "result"; struct1}
+    "30"->"18" [arrowhead=none]
+    "30"->"9" [arrowhead=none]
+    "18"->"13" [arrowhead=none]
+    "18"->"11" [arrowhead=none]
+    "9"->"6" [arrowhead=none]
+    "9"->"5" [arrowhead=none]
+    "13"->"0" [arrowhead=none]
+    struct1 [shape=record,label="<f0>30|<f1>18|<f2>9|<f3>13|<f4>11|<f5>6|<f6>5|<f7>0"]
+    label="Step1: 将待排序数组转换成堆结构"
+  }
+}
+#+end_src
+#+begin_src dot :file ../resources/img/heapExp-step2.png :cmdline -Kdot -Tpng :exports results
+digraph headSort {
+  subgraph "cluster g1" {
+    rankdir=TB
+    {
+     node[shape=plaintext]
+     "top"->"level1"->"level2"->"level3"->"result"
+    }
+    {rank=same; "top"; "0"}
+    {rank=same; "level1"; "18"; "9"}
+    {rank=same; "level2"; "13"; "11"; "6"; "5"}
+    {rank=same; "level3"; "30"}
+    {rank=same; "result"; struct1, struct2}
+    "0" [color=red,style=filled]
+    "30" [color=red,style=filled]
+    "0"->"18" [arrowhead=none]
+    "0"->"9" [arrowhead=none]
+    "18"->"13" [arrowhead=none]
+    "18"->"11" [arrowhead=none]
+    "9"->"6" [arrowhead=none]
+    "9"->"5" [arrowhead=none]
+    "13"->"30" [arrowhead=none,style=dotted]
+    struct1 [shape=record,label="<f0>0|<f1>18|<f2>9|<f3>13|<f4>11|<f5>6|<f6>5"]
+    struct2 [shape=record,label="<f0>30"]
+    struct1->struct2 [arrowhead=none,style=dotted]
+    label="Step2: 交换首末节点"
+  }
+}
+#+end_src
+
+#+begin_src dot :file ../resources/img/heapExp-step3.png :cmdline -Kdot -Tpng :exports results
+digraph headSort {
+  subgraph "cluster g1" {
+    rankdir=TB
+    {
+     node[shape=plaintext]
+     "top"->"level1"->"level2"->"level3"->"result"
+    }
+    {rank=same; "top"; "18"}
+    {rank=same; "level1"; "13"; "9"}
+    {rank=same; "level2"; "0"; "11"; "6"; "5"}
+    {rank=same; "level3"; "30"}
+    {rank=same; "result"; struct1,struct2}
+    "30"[color=yellow,style=filled]
+    "18"->"13" [arrowhead=none]
+    "18"->"9" [arrowhead=none]
+    "13"->"0" [arrowhead=none]
+    "13"->"11" [arrowhead=none]
+    "9"->"6" [arrowhead=none]
+    "9"->"5" [arrowhead=none]
+    "0"->"30" [arrowhead=none,style=dotted]
+    struct1 [shape=record,label="<f0>18|<f1>13|<f2>9|<f3>0|<f4>11|<f5>6|<f6>5"]
+    struct2 [shape=record,label="<f0>30"]
+    struct1->struct2 [arrowhead=none,style=dotted]
+    label="Step3: 将剩下元素调整为堆"
+  }
+}
+#+end_src
+重复Step2,Step3直到排序完成。\\
+
+#+begin_src dot :file ../resources/img/heapExp-end.png :cmdline -Kdot -Tpng :exports results
+digraph headSort {
+  subgraph "cluster g1" {
+    rankdir=TB
+    {
+     node[shape=plaintext]
+     "top"->"level1"->"level2"->"level3"->"result"
+    }
+    {rank=same; "top"; "0"}
+    {rank=same; "level1"; "5"; "6"}
+    {rank=same; "level2"; "9"; "11"; "13"; "18"}
+    {rank=same; "level3"; "30"}
+    {rank=same; "result"; struct1}
+    "30"[color=yellow,style=filled]
+    "18"[color=yellow,style=filled]
+    "13"[color=yellow,style=filled]
+    "11"[color=yellow,style=filled]
+    "9"[color=yellow,style=filled]
+    "6"[color=yellow,style=filled]
+    "5"[color=yellow,style=filled]
+    "0"[color=yellow,style=filled]
+    "0"->"5" [arrowhead=none]
+    "0"->"6" [arrowhead=none]
+    "5"->"9" [arrowhead=none]
+    "5"->"11" [arrowhead=none]
+    "6"->"13" [arrowhead=none]
+    "6"->"18" [arrowhead=none]
+    "18"->"30" [arrowhead=none]
+    struct1 [shape=record,label="<f0>0|<f1>5|<f2>6|<f3>9|<f4>11|<f5>13|<f6>19|<f7>30"]
+    label="end: 排序完成"
+  }
+}
+#+end_src
+* 复杂度
+*平均时间复杂度*:O(nlongn); *空间复杂度*:O(1)。
+
+* Java实现
+#+BEGIN_SRC java
+        public static int[] heapSort(int[] data)
+        {
+                // 将待排序数组，转换为最大堆
+                convertToHeap(data, data.length);
+                for (int i = data.length - 1; i > 0; i--)
+                {
+                        int temp = data[0];
+                        data[0] = data[i];
+                        data[i] = temp;
+                        // 最大堆index0数据发生变化，以此从index0开始重新构建最大堆
+                        makeMaxHeapify(data, i , 0);
+                }
+
+                return data;
+        }
+
+        public static int[] convertToHeap(int[] source, int length)
+        {
+                int startIdx = getParentIdx(length - 1);
+
+                for (int i = startIdx; i >= 0; i--)
+                {
+                        makeMaxHeapify(source, length, i);
+                }
+
+                return source;
+        }
+
+        public static void makeMaxHeapify(int[] data, int length, int idx)
+        {
+                int leftChildIdx = getLeftChildIdx(idx);
+                int rightChildIdx = getRightChildIdx(idx);
+
+                int largestIdx = idx;
+                if (leftChildIdx < length && data[leftChildIdx] > data[idx])
+                {
+                        largestIdx = leftChildIdx;
+                }
+
+                if (rightChildIdx < length && data[rightChildIdx] > data[largestIdx])
+                {
+                        largestIdx = rightChildIdx;
+                }
+
+                // 父节点发生变化需要调整其子节点，已满足最大堆要求。
+                if(largestIdx != idx)
+                {
+                        // 性能低于通过临时参数直接交换值
+                        /*data[idx] ^= data[largestIdx];
+                        data[largestIdx] ^= data[idx];
+                        data[idx] ^= data[largestIdx];*/
+
+                        int temp = data[idx];
+                        data[idx] = data[largestIdx];
+                        data[largestIdx] = temp;
+                        makeMaxHeapify(data, length, largestIdx);
+                }
+        }
+
+        public static int getLeftChildIdx(int parentIdx)
+        {
+                return (parentIdx<<1) + 1;
+        }
+
+        public static int getRightChildIdx(int parentIdx)
+        {
+                return (parentIdx<<1) + 2;
+        }
+
+        public static int getParentIdx(int childIdx)
+        {
+                return (childIdx - 1) >> 1;
+        }
+#+END_SRC
+
+* 性能测试
+本人PC上做的性能测试，仅简单对比一下几种插入排序算法的性能表现，可能不是非常严谨与客观，结果仅作参考吧。
+| 数组长度 | 耗时 .ms |
+|----------+----------|
+|    10000 |       11 |
+|----------+----------|
+|   100000 |       23 |
+|----------+----------|
+|   500000 |      106 |
+|----------+----------|
+|  1000000 |      225 |
+|----------+----------|
+|          |          |
+
+从上述测试结果上，HeapSort的性能和稳定性还是非常不错的。之后结合上其它排序算法做一个比较。
+
+-------
+* Footnotes
+
+[fn:1] http://zh.wikipedia.org/wiki/%E5%A0%86%E6%8E%92%E5%BA%8F

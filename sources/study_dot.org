@@ -1,7 +1,7 @@
 #+TITLE: dot language 学习笔记
 #+STYLE: <link rel="stylesheet" type="text/css" href="./resources/style/style.css" />
 #+LINK_HOME: ./index.html
-#+FILETAGS: :dot language :Graphviz :org-mode
+#+FILETAGS: :dot language:Graphviz:org-mode:
 #+AUTHOR: Billyhuang@sina.cn
 
 * dot 语言简介
@@ -195,7 +195,7 @@ digraph demo_graph {
   rankdir=TB
 
   {rank=same; "level1" "a-level1" "b-level1" "c-level1"}
-  {rank=smae; "level2" "d-level2" "e-level2"}
+  {rank=same; "level2" "d-level2" "e-level2"}
   {rank=same; "level3" "f-level3" "g-level3" "h-level3" "i-level3" "j-level3"}
   {rank=same; "level4" "k-level4"}
   "level1"->"level2"->"level3"->"level4"

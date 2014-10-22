@@ -1,7 +1,7 @@
 #+TITLE: plantuml 学习笔记
 #+STYLE: <link rel="stylesheet" type="text/css" href="./resources/style/style.css" />
 #+LINK_HOME: ./index.html
-#+FILETAGS: :plantuml :uml :org-mode
+#+FILETAGS: :plantuml:uml:org-mode:
 #+AUTHOR: BillyHuang@sina.cn
 
 * PlantUML简介

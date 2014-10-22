@@ -1,7 +1,7 @@
 #+TITLE: 插入排序
 #+STYLE: <link rel="stylesheet" type="text/css" href="../resources/style/style.css" />
 #+LINK_HOME: ../index.html
-#+FILETAGS: :算法 :排序
+#+FILETAGS: :algorithms:sort:
 #+AUTHOR: BillyHuang@sina.cn
 
 *插入排序* ：通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。插入排序在实现上，通常采用in-place排序（即只需用到O(1)的额外空间的排序），因而在从后向前扫描过程中，需要反复把已排序元素逐步向后挪位，为最新元素提供插入空间。\\
@@ -236,22 +236,56 @@
 #+BEGIN_SRC java
         public void sortPerformanceTest(int n)
         {
-                int count = n;
+                int count = 1000000;
                 int[] values = new int[count];
+                int[] sourceValues = new int[count];
 
                 Random random = new Random();
 
                 for (int i = 0; i < count; i++)
                 {
-                        values[i] = random.nextInt();
+                        sourceValues[i] = random.nextInt(10000);
                 }
 
+                int[] shellIncrement = InsertionSort.getShellIncrement(count);
+                int[] hibbardIncrement = InsertionSort.getHibbardIncrement(count);
+                int[] sedgewickIncrement = InsertionSort.getSedgewickIncrement(count);
 
+                long start = 0, end = 0;
+                System.out.println("Start  " + count);
+                System.out.println("-------------------------------------------------");
+
+                System.arraycopy(sourceValues, 0, values, 0, count);
+                start = System.currentTimeMillis();
                 InsertionSort.straightInsertionSort(values);
+                end = System.currentTimeMillis();
+                System.out.println("StraightInsertionSort:\t" + (end - start));
+
+                System.arraycopy(sourceValues, 0, values, 0, count);
+                start = System.currentTimeMillis();
                 InsertionSort.binaryInsertionSort(values);
-                InsertionSort.shellSort(values, InsertionSort.getShellIncrement(values.length));
-                InsertionSort.shellSort(values, InsertionSort.getHibbardIncrement(values.length));
-                InsertionSort.shellSort(values, InsertionSort.getSedgewickIncrement(values.length));
+                end = System.currentTimeMillis();
+                System.out.println("BinaryInsertionSort:\t" + (end - start));
+
+                System.arraycopy(sourceValues, 0, values, 0, count);
+                start = System.currentTimeMillis();
+                InsertionSort.shellSort(values, shellIncrement);
+                end = System.currentTimeMillis();
+                System.out.println("ShellSort ShellIncrement:\t" + (end - start));
+
+                System.arraycopy(sourceValues, 0, values, 0, count);
+                start = System.currentTimeMillis();
+                InsertionSort.shellSort(values, hibbardIncrement);
+                end = System.currentTimeMillis();
+                System.out.println("ShellSort HibbardIncrement:\t" + (end - start));
+
+                System.arraycopy(sourceValues, 0, values, 0, count);
+                start = System.currentTimeMillis();
+                InsertionSort.shellSort(values, sedgewickIncrement);
+                end = System.currentTimeMillis();
+                System.out.println("ShellSort SedgewickIncrement:\t" + (end - start));
+
+                System.out.println("-------------------------------------------------");
         }
 #+END_SRC
  + 测试结果

@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="title" content="dot language 学习笔记"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2014-10-21T18:05+0800"/>
+<meta name="generated" content="2014-10-22T14:02+0800"/>
 <meta name="author" content="Billyhuang@sina.cn"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -183,15 +183,15 @@ for the JavaScript code in this tag.
 
 
 <pre class="src src-dot">digraph shapes {
-  <span style="color: #00ff00;">"Box"</span>[shape=box]
-  <span style="color: #00ff00;">"Polygon"</span>[shape=polygon,sides=7] /* &#23450;&#20041;&#20102;&#19968;&#20010;7&#36793;&#34892;&#65292;sides&#23646;&#24615;&#23450;&#20041;&#22810;&#36793;&#24418;&#36793;&#30340;&#25968;&#37327; */
-  <span style="color: #00ff00;">"Ellipse"</span>[shape=ellipse]
-  <span style="color: #00ff00;">"Circle"</span>[shape=circle]
-  <span style="color: #00ff00;">"Point"</span>[shape=point]
-  <span style="color: #00ff00;">"triangle"</span>[shape=triangle]
-  <span style="color: #00ff00;">"invtriangle"</span>[shape=invtriangle]
-  <span style="color: #00ff00;">"plaintext"</span>[shape=plaintext]
-  <span style="color: #00ff00;">"diamond"</span>[shape=diamond]
+  <span style="color: #2aa198;">"Box"</span>[shape=box]
+  <span style="color: #2aa198;">"Polygon"</span>[shape=polygon,sides=7] /* &#23450;&#20041;&#20102;&#19968;&#20010;7&#36793;&#34892;&#65292;sides&#23646;&#24615;&#23450;&#20041;&#22810;&#36793;&#24418;&#36793;&#30340;&#25968;&#37327; */
+  <span style="color: #2aa198;">"Ellipse"</span>[shape=ellipse]
+  <span style="color: #2aa198;">"Circle"</span>[shape=circle]
+  <span style="color: #2aa198;">"Point"</span>[shape=point]
+  <span style="color: #2aa198;">"triangle"</span>[shape=triangle]
+  <span style="color: #2aa198;">"invtriangle"</span>[shape=invtriangle]
+  <span style="color: #2aa198;">"plaintext"</span>[shape=plaintext]
+  <span style="color: #2aa198;">"diamond"</span>[shape=diamond]
 }
 </pre>
 
@@ -218,9 +218,9 @@ for the JavaScript code in this tag.
 
 
 <pre class="src src-dot">digraph lines {
-  <span style="color: #00ff00;">"Undirected1"</span>-&gt;<span style="color: #00ff00;">"Undirected2"</span>[arrowhead=none]
-  <span style="color: #00ff00;">"Undirected1"</span>-&gt;<span style="color: #00ff00;">"Directed1"</span>
-  <span style="color: #00ff00;">"Directed1"</span>-&gt;<span style="color: #00ff00;">"Directed2"</span>[dir=both]
+  <span style="color: #2aa198;">"Undirected1"</span>-&gt;<span style="color: #2aa198;">"Undirected2"</span>[arrowhead=none]
+  <span style="color: #2aa198;">"Undirected1"</span>-&gt;<span style="color: #2aa198;">"Directed1"</span>
+  <span style="color: #2aa198;">"Directed1"</span>-&gt;<span style="color: #2aa198;">"Directed2"</span>[dir=both]
 }
 </pre>
 
@@ -238,11 +238,11 @@ for the JavaScript code in this tag.
 
 <pre class="src src-dot">digraph lines2 {
   rankdir=LR
-  <span style="color: #00ff00;">"solid"</span>-&gt;<span style="color: #00ff00;">"dashed"</span>[style=solid]
-  <span style="color: #00ff00;">"dashed"</span>-&gt;<span style="color: #00ff00;">"dotted"</span>[style=dashed]
-  <span style="color: #00ff00;">"dotted"</span>-&gt;<span style="color: #00ff00;">"bold"</span>[style=dotted]
-  <span style="color: #00ff00;">"bold"</span>-&gt;<span style="color: #00ff00;">"invis"</span>[style=bold]
-  <span style="color: #00ff00;">"invis"</span>-&gt;<span style="color: #00ff00;">"solid"</span>[style=invis]
+  <span style="color: #2aa198;">"solid"</span>-&gt;<span style="color: #2aa198;">"dashed"</span>[style=solid]
+  <span style="color: #2aa198;">"dashed"</span>-&gt;<span style="color: #2aa198;">"dotted"</span>[style=dashed]
+  <span style="color: #2aa198;">"dotted"</span>-&gt;<span style="color: #2aa198;">"bold"</span>[style=dotted]
+  <span style="color: #2aa198;">"bold"</span>-&gt;<span style="color: #2aa198;">"invis"</span>[style=bold]
+  <span style="color: #2aa198;">"invis"</span>-&gt;<span style="color: #2aa198;">"solid"</span>[style=invis]
 }
 </pre>
 
@@ -269,16 +269,16 @@ for the JavaScript code in this tag.
 <pre class="src src-dot">digraph arrow {
   rankdir=LR
 
-  <span style="color: #00ff00;">"box"</span>-&gt;<span style="color: #00ff00;">"crow"</span>[arrowhead=box]
-  <span style="color: #00ff00;">"crow"</span>-&gt;<span style="color: #00ff00;">"curve"</span>[arrowhead=crow]
-  <span style="color: #00ff00;">"curve"</span>-&gt;<span style="color: #00ff00;">"diamond"</span>[arrowhead=curve]
-  <span style="color: #00ff00;">"diamond"</span>-&gt;<span style="color: #00ff00;">"dot"</span>[arrowhead=diamond]
-  <span style="color: #00ff00;">"dot"</span>-&gt;<span style="color: #00ff00;">"inv"</span>[arrowhead=dot]
-  <span style="color: #00ff00;">"inv"</span>-&gt;<span style="color: #00ff00;">"none"</span>[arrowhead=inv]
-  <span style="color: #00ff00;">"none"</span>-&gt;<span style="color: #00ff00;">"normal"</span>[arrowhead=none]
-  <span style="color: #00ff00;">"normal"</span>-&gt;<span style="color: #00ff00;">"tee"</span>[arrowhead=normal]
-  <span style="color: #00ff00;">"tee"</span>-&gt;<span style="color: #00ff00;">"vee"</span>[arrowhead=tee]
-  <span style="color: #00ff00;">"vee"</span>-&gt;<span style="color: #00ff00;">"box"</span>[arrowhead=vee]
+  <span style="color: #2aa198;">"box"</span>-&gt;<span style="color: #2aa198;">"crow"</span>[arrowhead=box]
+  <span style="color: #2aa198;">"crow"</span>-&gt;<span style="color: #2aa198;">"curve"</span>[arrowhead=crow]
+  <span style="color: #2aa198;">"curve"</span>-&gt;<span style="color: #2aa198;">"diamond"</span>[arrowhead=curve]
+  <span style="color: #2aa198;">"diamond"</span>-&gt;<span style="color: #2aa198;">"dot"</span>[arrowhead=diamond]
+  <span style="color: #2aa198;">"dot"</span>-&gt;<span style="color: #2aa198;">"inv"</span>[arrowhead=dot]
+  <span style="color: #2aa198;">"inv"</span>-&gt;<span style="color: #2aa198;">"none"</span>[arrowhead=inv]
+  <span style="color: #2aa198;">"none"</span>-&gt;<span style="color: #2aa198;">"normal"</span>[arrowhead=none]
+  <span style="color: #2aa198;">"normal"</span>-&gt;<span style="color: #2aa198;">"tee"</span>[arrowhead=normal]
+  <span style="color: #2aa198;">"tee"</span>-&gt;<span style="color: #2aa198;">"vee"</span>[arrowhead=tee]
+  <span style="color: #2aa198;">"vee"</span>-&gt;<span style="color: #2aa198;">"box"</span>[arrowhead=vee]
 
   #&#26469;&#20010;&#39640;&#32423;&#30340;&#29992;&#27861;
   a-&gt;b[arrowhead=lcrowortee]
@@ -356,9 +356,9 @@ for the JavaScript code in this tag.
 
 <pre class="src src-dot">digraph demo_node {
    rankdir=LR
-   <span style="color: #00ff00;">"default_node"</span>
-   <span style="color: #00ff00;">"node"</span>[shape=box,color=antiquewhite,style=filled,label=<span style="color: #00ff00;">"node attrs"</span>,fontcolor=brown,fontsize=10,URL=<span style="color: #00ff00;">"http://www.baidu.com"</span>,target=<span style="color: #00ff00;">"_brank"</span>]
-   <span style="color: #00ff00;">"default_node"</span>-&gt;<span style="color: #00ff00;">"node"</span>
+   <span style="color: #2aa198;">"default_node"</span>
+   <span style="color: #2aa198;">"node"</span>[shape=box,color=antiquewhite,style=filled,label=<span style="color: #2aa198;">"node attrs"</span>,fontcolor=brown,fontsize=10,URL=<span style="color: #2aa198;">"http://www.baidu.com"</span>,target=<span style="color: #2aa198;">"_brank"</span>]
+   <span style="color: #2aa198;">"default_node"</span>-&gt;<span style="color: #2aa198;">"node"</span>
 }
 </pre>
 
@@ -436,7 +436,7 @@ for the JavaScript code in this tag.
 
 <pre class="src src-dot">digraph demo_edge {
   rankdir=LR
-  a-&gt;b[label=<span style="color: #00ff00;">"Yes"</span>,labelfontcolor=blue]
+  a-&gt;b[label=<span style="color: #2aa198;">"Yes"</span>,labelfontcolor=blue]
   edge[arrowhead=box,arrowsize=1.5,color=red,dir=both,style=dotted,weight=10]
   b-&gt;c
 }
@@ -518,19 +518,19 @@ for the JavaScript code in this tag.
   bgcolor=beige
   fontcolor=gray10
   fontsize=12
-  label=<span style="color: #00ff00;">"this is demo"</span>
+  label=<span style="color: #2aa198;">"this is demo"</span>
   rankdir=TB
 
-  {rank=same; <span style="color: #00ff00;">"level1"</span> <span style="color: #00ff00;">"a-level1"</span> <span style="color: #00ff00;">"b-level1"</span> <span style="color: #00ff00;">"c-level1"</span>}
-  {rank=smae; <span style="color: #00ff00;">"level2"</span> <span style="color: #00ff00;">"d-level2"</span> <span style="color: #00ff00;">"e-level2"</span>}
-  {rank=same; <span style="color: #00ff00;">"level3"</span> <span style="color: #00ff00;">"f-level3"</span> <span style="color: #00ff00;">"g-level3"</span> <span style="color: #00ff00;">"h-level3"</span> <span style="color: #00ff00;">"i-level3"</span> <span style="color: #00ff00;">"j-level3"</span>}
-  {rank=same; <span style="color: #00ff00;">"level4"</span> <span style="color: #00ff00;">"k-level4"</span>}
-  <span style="color: #00ff00;">"level1"</span>-&gt;<span style="color: #00ff00;">"level2"</span>-&gt;<span style="color: #00ff00;">"level3"</span>-&gt;<span style="color: #00ff00;">"level4"</span>
-  <span style="color: #00ff00;">"a-level1"</span>-&gt;<span style="color: #00ff00;">"d-level2"</span>
-  <span style="color: #00ff00;">"e-level2"</span>-&gt;{<span style="color: #00ff00;">"h-level3"</span>, <span style="color: #00ff00;">"k-level4"</span>}
-  <span style="color: #00ff00;">"b-level1"</span>-&gt;{<span style="color: #00ff00;">"e-level2"</span>, <span style="color: #00ff00;">"f-level3"</span>, <span style="color: #00ff00;">"i-level3"</span>, <span style="color: #00ff00;">"k-level4"</span>}
-  <span style="color: #00ff00;">"c-level1"</span>-&gt;{<span style="color: #00ff00;">"d-level2"</span>, <span style="color: #00ff00;">"g-level3"</span>, <span style="color: #00ff00;">"h-level3"</span>}
-  <span style="color: #00ff00;">"j-level3"</span>-&gt;{<span style="color: #00ff00;">"f-level3"</span>, <span style="color: #00ff00;">"k-level4"</span>}
+  {rank=same; <span style="color: #2aa198;">"level1"</span> <span style="color: #2aa198;">"a-level1"</span> <span style="color: #2aa198;">"b-level1"</span> <span style="color: #2aa198;">"c-level1"</span>}
+  {rank=same; <span style="color: #2aa198;">"level2"</span> <span style="color: #2aa198;">"d-level2"</span> <span style="color: #2aa198;">"e-level2"</span>}
+  {rank=same; <span style="color: #2aa198;">"level3"</span> <span style="color: #2aa198;">"f-level3"</span> <span style="color: #2aa198;">"g-level3"</span> <span style="color: #2aa198;">"h-level3"</span> <span style="color: #2aa198;">"i-level3"</span> <span style="color: #2aa198;">"j-level3"</span>}
+  {rank=same; <span style="color: #2aa198;">"level4"</span> <span style="color: #2aa198;">"k-level4"</span>}
+  <span style="color: #2aa198;">"level1"</span>-&gt;<span style="color: #2aa198;">"level2"</span>-&gt;<span style="color: #2aa198;">"level3"</span>-&gt;<span style="color: #2aa198;">"level4"</span>
+  <span style="color: #2aa198;">"a-level1"</span>-&gt;<span style="color: #2aa198;">"d-level2"</span>
+  <span style="color: #2aa198;">"e-level2"</span>-&gt;{<span style="color: #2aa198;">"h-level3"</span>, <span style="color: #2aa198;">"k-level4"</span>}
+  <span style="color: #2aa198;">"b-level1"</span>-&gt;{<span style="color: #2aa198;">"e-level2"</span>, <span style="color: #2aa198;">"f-level3"</span>, <span style="color: #2aa198;">"i-level3"</span>, <span style="color: #2aa198;">"k-level4"</span>}
+  <span style="color: #2aa198;">"c-level1"</span>-&gt;{<span style="color: #2aa198;">"d-level2"</span>, <span style="color: #2aa198;">"g-level3"</span>, <span style="color: #2aa198;">"h-level3"</span>}
+  <span style="color: #2aa198;">"j-level3"</span>-&gt;{<span style="color: #2aa198;">"f-level3"</span>, <span style="color: #2aa198;">"k-level4"</span>}
 }
 </pre>
 
@@ -563,40 +563,40 @@ for the JavaScript code in this tag.
   bgcolor=beige
   fontcolor=gray10
   fontsize=12
-  label=<span style="color: #00ff00;">"this is demo"</span>
+  label=<span style="color: #2aa198;">"this is demo"</span>
   rankdir=TB
 
-  /* &#29305;&#21035;&#27880;&#24847;: &#23376;&#22270;&#21629;&#21517;&#24517;&#39035;&#20197;<span style="color: #00ff00;">"cluster"</span>&#20026;&#21069;&#32512; */
-  subgraph <span style="color: #00ff00;">"cluster_g1"</span> {
-    label=<span style="color: #00ff00;">"g1"</span>
+  /* &#29305;&#21035;&#27880;&#24847;: &#23376;&#22270;&#21629;&#21517;&#24517;&#39035;&#20197;<span style="color: #2aa198;">"cluster"</span>&#20026;&#21069;&#32512; */
+  subgraph <span style="color: #2aa198;">"cluster_g1"</span> {
+    label=<span style="color: #2aa198;">"g1"</span>
     bgcolor=cadetblue
-    <span style="color: #00ff00;">"level1"</span>-&gt;<span style="color: #00ff00;">"level2"</span>-&gt;<span style="color: #00ff00;">"level3"</span>-&gt;<span style="color: #00ff00;">"level4"</span>
+    <span style="color: #2aa198;">"level1"</span>-&gt;<span style="color: #2aa198;">"level2"</span>-&gt;<span style="color: #2aa198;">"level3"</span>-&gt;<span style="color: #2aa198;">"level4"</span>
   }
 
-  subgraph <span style="color: #00ff00;">"cluster_g2"</span> {
-    label=<span style="color: #00ff00;">"g2"</span>
+  subgraph <span style="color: #2aa198;">"cluster_g2"</span> {
+    label=<span style="color: #2aa198;">"g2"</span>
     bgcolor=cornsilk
-    <span style="color: #00ff00;">"level2"</span>
-    <span style="color: #00ff00;">"d-level2"</span>
-    <span style="color: #00ff00;">"e-level2"</span>
+    <span style="color: #2aa198;">"level2"</span>
+    <span style="color: #2aa198;">"d-level2"</span>
+    <span style="color: #2aa198;">"e-level2"</span>
   }
 
-  subgraph <span style="color: #00ff00;">"cluster_g3"</span> {
-    label=<span style="color: #00ff00;">"g3"</span>
+  subgraph <span style="color: #2aa198;">"cluster_g3"</span> {
+    label=<span style="color: #2aa198;">"g3"</span>
     bgcolor=cornsilk
-    <span style="color: #00ff00;">"level3"</span>
-    <span style="color: #00ff00;">"f-level3"</span>
-    <span style="color: #00ff00;">"g-level3"</span>
-    <span style="color: #00ff00;">"h-level3"</span>
-    <span style="color: #00ff00;">"i-level3"</span>
-    <span style="color: #00ff00;">"j-level3"</span>
+    <span style="color: #2aa198;">"level3"</span>
+    <span style="color: #2aa198;">"f-level3"</span>
+    <span style="color: #2aa198;">"g-level3"</span>
+    <span style="color: #2aa198;">"h-level3"</span>
+    <span style="color: #2aa198;">"i-level3"</span>
+    <span style="color: #2aa198;">"j-level3"</span>
   }
 
-  <span style="color: #00ff00;">"a-level1"</span>-&gt;<span style="color: #00ff00;">"d-level2"</span>
-  <span style="color: #00ff00;">"e-level2"</span>-&gt;{<span style="color: #00ff00;">"h-level3"</span>, <span style="color: #00ff00;">"k-level4"</span>}
-  <span style="color: #00ff00;">"b-level1"</span>-&gt;{<span style="color: #00ff00;">"e-level2"</span>, <span style="color: #00ff00;">"f-level3"</span>, <span style="color: #00ff00;">"i-level3"</span>, <span style="color: #00ff00;">"k-level4"</span>}
-  <span style="color: #00ff00;">"c-level1"</span>-&gt;{<span style="color: #00ff00;">"d-level2"</span>, <span style="color: #00ff00;">"g-level3"</span>, <span style="color: #00ff00;">"h-level3"</span>}
-  <span style="color: #00ff00;">"j-level3"</span>-&gt;{<span style="color: #00ff00;">"f-level3"</span>, <span style="color: #00ff00;">"k-level4"</span>}
+  <span style="color: #2aa198;">"a-level1"</span>-&gt;<span style="color: #2aa198;">"d-level2"</span>
+  <span style="color: #2aa198;">"e-level2"</span>-&gt;{<span style="color: #2aa198;">"h-level3"</span>, <span style="color: #2aa198;">"k-level4"</span>}
+  <span style="color: #2aa198;">"b-level1"</span>-&gt;{<span style="color: #2aa198;">"e-level2"</span>, <span style="color: #2aa198;">"f-level3"</span>, <span style="color: #2aa198;">"i-level3"</span>, <span style="color: #2aa198;">"k-level4"</span>}
+  <span style="color: #2aa198;">"c-level1"</span>-&gt;{<span style="color: #2aa198;">"d-level2"</span>, <span style="color: #2aa198;">"g-level3"</span>, <span style="color: #2aa198;">"h-level3"</span>}
+  <span style="color: #2aa198;">"j-level3"</span>-&gt;{<span style="color: #2aa198;">"f-level3"</span>, <span style="color: #2aa198;">"k-level4"</span>}
 }
 </pre>
 
@@ -624,17 +624,17 @@ for the JavaScript code in this tag.
 
 <pre class="src src-dot">digraph html {
   abc [shape=none, margin=0, label=&lt;
-  &lt;TABLE BORDER=<span style="color: #00ff00;">"0"</span> CELLBORDER=<span style="color: #00ff00;">"1"</span> CELLSPACING=<span style="color: #00ff00;">"0"</span> CELLPADDING=<span style="color: #00ff00;">"4"</span>&gt;
-  &lt;TR&gt;&lt;TD ROWSPAN=<span style="color: #00ff00;">"3"</span>&gt;&lt;FONT COLOR=<span style="color: #00ff00;">"red"</span>&gt;hello&lt;/FONT&gt;&lt;BR/&gt;world&lt;/TD&gt;
-  &lt;TD COLSPAN=<span style="color: #00ff00;">"3"</span>&gt;b&lt;/TD&gt;
-  &lt;TD ROWSPAN=<span style="color: #00ff00;">"3"</span> BGCOLOR=<span style="color: #00ff00;">"lightgrey"</span>&gt;g&lt;/TD&gt;
-  &lt;TD ROWSPAN=<span style="color: #00ff00;">"3"</span>&gt;h&lt;/TD&gt;
+  &lt;TABLE BORDER=<span style="color: #2aa198;">"0"</span> CELLBORDER=<span style="color: #2aa198;">"1"</span> CELLSPACING=<span style="color: #2aa198;">"0"</span> CELLPADDING=<span style="color: #2aa198;">"4"</span>&gt;
+  &lt;TR&gt;&lt;TD ROWSPAN=<span style="color: #2aa198;">"3"</span>&gt;&lt;FONT COLOR=<span style="color: #2aa198;">"red"</span>&gt;hello&lt;/FONT&gt;&lt;BR/&gt;world&lt;/TD&gt;
+  &lt;TD COLSPAN=<span style="color: #2aa198;">"3"</span>&gt;b&lt;/TD&gt;
+  &lt;TD ROWSPAN=<span style="color: #2aa198;">"3"</span> BGCOLOR=<span style="color: #2aa198;">"lightgrey"</span>&gt;g&lt;/TD&gt;
+  &lt;TD ROWSPAN=<span style="color: #2aa198;">"3"</span>&gt;h&lt;/TD&gt;
   &lt;/TR&gt;
   &lt;TR&gt;&lt;TD&gt;c&lt;/TD&gt;
-  &lt;TD PORT=<span style="color: #00ff00;">"here"</span>&gt;d&lt;/TD&gt;
+  &lt;TD PORT=<span style="color: #2aa198;">"here"</span>&gt;d&lt;/TD&gt;
   &lt;TD&gt;e&lt;/TD&gt;
   &lt;/TR&gt;
-  &lt;TR&gt;&lt;TD COLSPAN=<span style="color: #00ff00;">"3"</span>&gt;f&lt;/TD&gt;
+  &lt;TR&gt;&lt;TD COLSPAN=<span style="color: #2aa198;">"3"</span>&gt;f&lt;/TD&gt;
   &lt;/TR&gt;
   &lt;/TABLE&gt;&gt;];
  }
@@ -657,9 +657,9 @@ for the JavaScript code in this tag.
 
 <pre class="src src-dot">digraph structs {
   node [shape=record];
-  struct1 [shape=record,label=<span style="color: #00ff00;">"&lt;f0&gt; left|&lt;f1&gt; middle|&lt;f2&gt; right"</span>];
-  struct2 [shape=record,label=<span style="color: #00ff00;">"&lt;f0&gt; one|&lt;f1&gt; two"</span>];
-  struct3 [shape=record,label=<span style="color: #00ff00;">"hello\nworld |{ b |{c|&lt;here&gt; d|e}| f}| g | h"</span>];
+  struct1 [shape=record,label=<span style="color: #2aa198;">"&lt;f0&gt; left|&lt;f1&gt; middle|&lt;f2&gt; right"</span>];
+  struct2 [shape=record,label=<span style="color: #2aa198;">"&lt;f0&gt; one|&lt;f1&gt; two"</span>];
+  struct3 [shape=record,label=<span style="color: #2aa198;">"hello\nworld |{ b |{c|&lt;here&gt; d|e}| f}| g | h"</span>];
   struct1:f1 -&gt; struct2:f0;
   struct1:f2 -&gt; struct3:here;
 }
@@ -695,7 +695,7 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="postamble">
-<p class="date">Date: 2014-10-21T18:05+0800</p>
+<p class="date">Date: 2014-10-22T14:02+0800</p>
 <p class="author">Author: Billyhuang@sina.cn</p>
 <p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.3f with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24</p>
 <a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
