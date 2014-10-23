@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="title" content="快速排序"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2014-10-22T14:02+0800"/>
+<meta name="generated" content="2014-10-23T17:23+0800"/>
 <meta name="author" content="BillyHuang@sina.cn"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -123,10 +123,167 @@ for the JavaScript code in this tag.
 <div id="content">
 <h1 class="title">快速排序</h1>
 
+<p><b>快速排序 （quick sort）</b> 是一种相对高效稳定的排序算法。算法主要思想是，从待排序集合中选择一个“基准数”，将队列分成大于基准数和小于等于基准数的两个子集合。对得到的两个集合继续执行上诉操作，直到排序完成。基准数的选择会影响到排序算法的性能。<br/>
+快速排序也是采用了分治思想的一种排序算法。<br/>
+图例：<img src="../resources/img/Sorting-quicksort-anim.gif"  alt="../resources/img/Sorting-quicksort-anim.gif" />
+</p>
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 算法描述</a></li>
+<li><a href="#sec-2">2 算法演示图</a></li>
+<li><a href="#sec-3">3 复杂度</a></li>
+<li><a href="#sec-4">4 Java实现</a></li>
+<li><a href="#sec-5">5 性能测试</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 算法描述</h2>
+<div class="outline-text-2" id="text-1">
+
+<ol>
+<li>从数列中挑出一个元素，称为 "基准"（pivot），
+</li>
+<li>重新排序数列，所有元素比基准值小的摆放在基准前面，所有元素比基准值大的摆在基准的后面（相同的数可以到任一边）。在这个分区退出之后，该基准就处于数列的中间位置。这个称为分区（partition）操作。
+</li>
+<li>递归地（recursive）把小于基准值元素的子数列和大于基准值元素的子数列排序。<sup><a class="footref" name="fnr-.1" href="#fn-.1">1</a></sup>
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 算法演示图</h2>
+<div class="outline-text-2" id="text-2">
+
+
+
+<p>
+<img src="../resources/img/quicksort-exp.png"  alt="../resources/img/quicksort-exp.png" />
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 复杂度</h2>
+<div class="outline-text-2" id="text-3">
+
+<p>在平均状况下，排序 n 个项目要Ο(n log n)次比较。在最坏状况下则需要Ο(n2)次比较，但这种状况并不常见。事实上，快速排序通常明显比其他Ο(n log n) 算法更快.<sup><a class="footref" name="fnr-.1.2" href="#fn-.1">1</a></sup>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Java实现</h2>
+<div class="outline-text-2" id="text-4">
+
+
+
+
+<pre class="src src-java"><span style="color: #859900;">private</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">Random</span> <span style="color: #6c71c4;">random</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">Random</span>();
+
+<span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">quickSort</span>(<span style="color: #268bd2;">int</span>[] <span style="color: #6c71c4;">data</span>)
+{
+        partition(data, 0, data.length - 1);
+}
+
+<span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">partition</span>(<span style="color: #268bd2;">int</span>[] <span style="color: #6c71c4;">data</span>, <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">begin</span>, <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">end</span>)
+{
+        <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">idx</span> = random.nextInt(end - begin) + begin;
+
+        <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">pivotValue</span> = data[idx];
+        <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">storeIndex</span> = begin;
+
+        <span style="color: #859900;">for</span> (<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">i</span> = begin; i &lt; end; i++)
+        {
+                <span style="color: #859900;">if</span> (data[i] &lt; pivotValue)
+                {
+                        swap(data, i, storeIndex++);
+                }
+        }
+
+        swap(data, end, storeIndex);
+
+        <span style="color: #859900;">if</span>(storeIndex - begin &gt; 1)
+        {
+                partition(data, begin, storeIndex - 1);
+        }
+
+        <span style="color: #859900;">if</span>(end - storeIndex &gt; 1)
+        {
+                partition(data, storeIndex + 1, end);
+        }
+}
+
+<span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">swap</span>(<span style="color: #268bd2;">int</span>[] <span style="color: #6c71c4;">data</span>, <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">i</span>, <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">j</span>)
+{
+        <span style="color: #859900;">if</span>( i == j) <span style="color: #859900;">return</span>;
+
+        <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">tmp</span> = data[i];
+        data[i] =  data[j];
+        data[j] = tmp;
+}
+</pre>
+
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> 性能测试</h2>
+<div class="outline-text-2" id="text-5">
+
+<p>本人PC上做的性能测试，仅简单测试了一下快速排序的性能，可能不是非常严谨与客观，结果仅作参考吧。
+</p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="right" /><col class="right" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="right">数组长度</th><th scope="col" class="right">耗时 .ms</th></tr>
+</thead>
+<tbody>
+<tr><td class="right">10000</td><td class="right">14</td></tr>
+</tbody>
+<tbody>
+<tr><td class="right">100000</td><td class="right">66</td></tr>
+</tbody>
+<tbody>
+<tr><td class="right">500000</td><td class="right">68</td></tr>
+</tbody>
+<tbody>
+<tr><td class="right">1000000</td><td class="right">135</td></tr>
+</tbody>
+</table>
+
+
+<p>
+从上述测试结果上，QuickSort的性能和稳定性还是特别理想的，不愧它的名字啊。之后会结合上其它排序算法做一个比较。
+</p>
+
+
+<hr/>
+
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+<p class="footnote"><sup><a class="footnum" name="fn-.1" href="#fnr-.1">1</a></sup> <a href="http://zh.wikipedia.org/wiki/快速排序">http://zh.wikipedia.org/wiki/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F</a>
+</p></div>
+</div>
+
+</div>
+</div>
 </div>
 
 <div id="postamble">
-<p class="date">Date: 2014-10-22T14:02+0800</p>
+<p class="date">Date: 2014-10-23T17:23+0800</p>
 <p class="author">Author: BillyHuang@sina.cn</p>
 <p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.3f with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24</p>
 <a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
