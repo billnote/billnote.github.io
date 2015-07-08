@@ -1913,6 +1913,7 @@
     border: 1px solid #CCC;
     max-width: 50%;
     overflow: auto;
+    z-index: 1000;
   }
 } /* END OF @media screen */
 
