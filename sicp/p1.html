@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>第一章： 构造过程抽象 解题集</title>
+<!-- 2015-07-08 三 17:53 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="BillyHuang@sina.cn" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="../resources/style/style.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+            config: ["MMLorHTML.js"], jax: ["input/TeX"],
+        //  jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "left",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">第一章： 构造过程抽象 解题集</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. 练习 1.1</a></li>
+<li><a href="#sec-2">2. 练习 1.2</a></li>
+<li><a href="#sec-3">3. 练习 1.3</a></li>
+<li><a href="#sec-4">4. 练习 1.4</a></li>
+<li><a href="#sec-5">5. 练习 1.5</a></li>
+<li><a href="#sec-6">6. 练习 1.6</a></li>
+<li><a href="#sec-7">7. 练习 1.7</a></li>
+<li><a href="#sec-8">8. 练习 1.8</a></li>
+<li><a href="#sec-9">9. 练习 1.9</a></li>
+<li><a href="#sec-10">10. 练习 1.10</a></li>
+<li><a href="#sec-11">11. 练习 1.11</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 练习 1.1</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+
+<pre class="src src-scheme">10
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer: 10</span>
+
+(+ 5 3 4)
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer: 12</span>
+
+(- 9 1)
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer: 8</span>
+
+(/ 6 2)
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer: 3</span>
+
+(+ (* 2 4) (- 4 6))
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer: 6</span>
+
+(<span style="color: #859900;">define</span> <span style="color: #b58900;">a</span> 3)
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer: a</span>
+
+(<span style="color: #859900;">define</span> <span style="color: #b58900;">b</span> (+ a 1))
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer: b</span>
+
+(+ a b (* a b))
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer: 19</span>
+
+(= a b)
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer: #f</span>
+
+(<span style="color: #859900;">if</span> (<span style="color: #859900;">and</span> (&gt; b a) (&lt; b (* a b)))
+    b
+    a)
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer: 4</span>
+
+(<span style="color: #859900;">cond</span> ((= a 4) 6)
+      ((= b 4) (+ 6 7 a))
+      (<span style="color: #859900;">else</span> 25))
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer: 16</span>
+
+(+ 2 (<span style="color: #859900;">if</span> (&gt; b a) b a))
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer: 6</span>
+
+(* (<span style="color: #859900;">cond</span> ((&gt; a b) a)
+         ((&lt; a b) b)
+         (<span style="color: #859900;">else</span> -1))
+   (+ a 1))
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer: 16</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 练习 1.2</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+$$\frac{5+4+(2-(3-(6+\frac{4}{5})))}{3*(6-2)*(2-7)}$$
+</p>
+<div class="org-src-container">
+
+<pre class="src src-scheme"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer:</span>
+(\ (+ 5 4 (- 2 (- 3 (+ 6 (\ 4 5))))) (* 3 (- 6 2) (- 7 2)))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 练习 1.3</h2>
+<div class="outline-text-2" id="text-3">
+<div class="org-src-container">
+
+<pre class="src src-scheme">(<span style="color: #859900;">define</span> (<span style="color: #b58900;">summax</span> a b c)
+  (<span style="color: #859900;">cond</span> ((&gt; a b)
+         (<span style="color: #859900;">cond</span> ((&gt; b c) (+ a b))
+               (<span style="color: #859900;">else</span> (+ a c))))
+        (<span style="color: #859900;">else</span> (<span style="color: #859900;">cond</span> ((&gt; a c) (+ b a))
+                    (<span style="color: #859900;">else</span> (+ b c))))))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 练习 1.4</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+略
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> 练习 1.5</h2>
+<div class="outline-text-2" id="text-5">
+<div class="org-src-container">
+
+<pre class="src src-scheme">(<span style="color: #859900;">define</span> (<span style="color: #b58900;">p</span>) (p))
+(<span style="color: #859900;">define</span> (<span style="color: #b58900;">test</span> x y)
+  (<span style="color: #859900;">if</span> (= x 0)
+      0
+      y))
+
+&#65288;test 0 (p)&#65289;
+
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer:</span>
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#27491;&#21017;&#24207;&#27714;&#20540;&#36820;&#22238;0;</span>
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#24212;&#29992;&#24207;&#27714;&#20540;&#20250;&#20986;&#29616;&#26080;&#38480;&#36882;&#24402;&#35843;&#29992;&#12290;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> 练习 1.6</h2>
+<div class="outline-text-2" id="text-6">
+<div class="org-src-container">
+
+<pre class="src src-scheme">(<span style="color: #859900;">define</span> (<span style="color: #b58900;">new-if</span> predicate then-clause else-clause)
+  (<span style="color: #859900;">cond</span> (predicate then-clause)
+        (<span style="color: #859900;">else</span> else-clause)))
+
+(<span style="color: #859900;">define</span> (<span style="color: #b58900;">new-sqrt-iter</span> guess x)
+  (new-if (good-enough? guess x)
+          guess
+          (new-sqrt-iter (improve guess x)
+                         x)))
+
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer:</span>
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#20250;&#20986;&#29616;&#26080;&#38480;&#36882;&#24402;&#35843;&#29992;&#12290;</span>
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#21407;&#22240;&#26159;&#65306;&#25353;&#29031;&#24212;&#29992;&#24207;&#27714;&#20540;&#65292;&#27599;&#20010;&#21442;&#25968;&#37117;&#20250;&#20808;&#36827;&#34892;&#27714;&#20540;&#12290;&#25152;&#20197;&#19981;&#31649;&#26159;true&#65292;&#36824;&#26159;false else-clause&#37117;&#20250;&#34987;&#25191;&#34892;&#12290;&#36827;&#32780;&#23548;&#33268;&#26080;&#38480;&#36882;&#24402;&#12290;</span>
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#32780;if&#20026;&#29305;&#27530;&#30340;&#36807;&#31243;then-clause&#21644;else-clause&#21482;&#20250;&#25191;&#34892;&#19968;&#20010;&#12290;</span>
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#39564;&#35777;&#30340;&#34920;&#36798;&#24335;&#65306;</span>
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">(new-if #t (list 0 (display "true")) (display "false"))</span>
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#36820;&#22238;&#32467;&#26524;&#20026;&#65306;</span>
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">(new-if): truefalse(0 #&lt;void&gt;)</span>
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">(if): true(0 #&lt;void&gt;)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> 练习 1.7</h2>
+<div class="outline-text-2" id="text-7">
+<div class="org-src-container">
+
+<pre class="src src-scheme"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer</span>
+(<span style="color: #859900;">define</span> (<span style="color: #b58900;">new-good-enough?</span> new-guess old-guess)
+  (&lt; (abs (- new-guess old-guess)) 0.00000001))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> 练习 1.8</h2>
+<div class="outline-text-2" id="text-8">
+<div class="org-src-container">
+
+<pre class="src src-scheme"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer:</span>
+(<span style="color: #859900;">define</span> (<span style="color: #b58900;">cube-iter</span> guess x)
+  (<span style="color: #859900;">if</span> (cube-good-enough? guess x)
+      guess
+      (cube-iter (improve-cube guess x) x)))
+
+(<span style="color: #859900;">define</span> (<span style="color: #b58900;">improve-cube</span> guess x)
+  (/ (+ (/ x (square guess)) (* 2 guess)) 3))
+
+(<span style="color: #859900;">define</span> (<span style="color: #b58900;">cube-good-enough?</span> guess x)
+  (&lt; (abs (- (* guess guess guess) x)) 0.0001))
+
+(<span style="color: #859900;">define</span> (<span style="color: #b58900;">cube</span> x)
+  (cube-iter 1.0 x))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-9" class="outline-2">
+<h2 id="sec-9"><span class="section-number-2">9</span> 练习 1.9</h2>
+<div class="outline-text-2" id="text-9">
+<div class="org-src-container">
+
+<pre class="src src-scheme"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer:</span>
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#26041;&#27861;&#19968;&#20026;&#32447;&#24615;&#36882;&#24402;&#35745;&#31639;&#36807;&#31243;&#65292;&#23637;&#24320;&#24335;&#22914;&#19979;&#65306;</span>
+&#65288;+ 4 5&#65289;
+(inc (+ 3 5))
+(inc (inc (+ 2 5)))
+(inc (inc (inc (+ 1 5))))
+(inc (inc (inc (inc (+ 0 5)))))
+(inc (inc (inc (inc 5))))
+(inc (inc (inc 6)))
+(inc (inc 7))
+(inc 8)
+9
+
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#26041;&#27861;&#20108;&#20026;&#36882;&#24402;&#36845;&#20195;&#35745;&#31639;&#36807;&#31243;&#65292;&#23637;&#24320;&#24335;&#22914;&#19979;&#65306;</span>
+&#65288;+ 4 5&#65289;
+&#65288;+ 3 6&#65289;
+&#65288;+ 2 7&#65289;
+&#65288;+ 1 8&#65289;
+&#65288;+ 0 9&#65289;
+9
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-10" class="outline-2">
+<h2 id="sec-10"><span class="section-number-2">10</span> 练习 1.10</h2>
+<div class="outline-text-2" id="text-10">
+<div class="org-src-container">
+
+<pre class="src src-scheme">(<span style="color: #859900;">define</span> (<span style="color: #b58900;">A</span> x y)
+  (<span style="color: #859900;">cond</span> ((= y 0) 0)
+        ((= x 0) (* 2 y))
+        ((= y 1) 2)
+        (<span style="color: #859900;">else</span> (A (- x 1)
+                 (A (- y 1))))))
+
+(A 1 10)
+(A 2 4)
+(A 3 3)
+(<span style="color: #859900;">define</span> (<span style="color: #b58900;">f</span> n) (A 0 n))
+(<span style="color: #859900;">define</span> (<span style="color: #b58900;">g</span> n) (A 1 n))
+(<span style="color: #859900;">define</span> (<span style="color: #b58900;">h</span> n) (A 2 n))
+(<span style="color: #859900;">define</span> (<span style="color: #b58900;">k</span> n) (* 5 n n))
+</pre>
+</div>
+<ul class="org-ul">
+<li>answer:
+<ul class="org-ul">
+<li>2<sup>10</sup>
+</li>
+<li>2<sup>16</sup>
+</li>
+<li>2<sup>16</sup>
+</li>
+<li>f(n)=2n
+</li>
+<li>g(n)=2<sup>n</sup>
+</li>
+<li>h(n)=2<sup>2n</sup>
+</li>
+<li>k(n)=5n<sup>2</sup>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-11" class="outline-2">
+<h2 id="sec-11"><span class="section-number-2">11</span> 练习 1.11</h2>
+<div class="outline-text-2" id="text-11">
+<div class="org-src-container">
+
+<pre class="src src-scheme"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer:</span>
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#36882;&#24402;&#35745;&#31639;&#36807;&#31243;&#23454;&#29616;</span>
+(<span style="color: #859900;">define</span> (<span style="color: #b58900;">f</span> n)
+  (<span style="color: #859900;">cond</span> ((&lt; n 3) n)
+        (<span style="color: #859900;">else</span> (+ (f (- n 1))
+                 (* 2 (f (- n 2)))
+                 (* 3 (f (- n 3)))))))
+
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#36845;&#20195;&#35745;&#31639;&#36807;&#31243;&#23454;&#29616;</span>
+(<span style="color: #859900;">define</span> (<span style="color: #b58900;">f-iter</span> n)
+  (<span style="color: #859900;">define</span> (<span style="color: #b58900;">iter</span> a b c count)
+    (<span style="color: #859900;">cond</span> ((= count 0) a)
+          (<span style="color: #859900;">else</span> (iter b c (+ (* 3 a) (* 2 b) c) (- count 1)))))
+  (iter 0 1 2 n))
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: BillyHuang@sina.cn</p>
+<p class="date">Created: 2015-07-08 三 17:53</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

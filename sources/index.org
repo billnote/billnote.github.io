@@ -1,5 +1,5 @@
 #+TITLE: 笔记列表
-#+STYLE: <link rel="stylesheet" type="text/css" href="./resources/style/style.css" />
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./resources/style/style.css" />
 #+AUTHOR: BillyHuang@sina.cn
 
  + [[./knowledge.org][脑子里都有些啥]]
@@ -14,3 +14,5 @@
  + *org-mode*
    + [[./study_dot.org][org-mode使用Graphviz制图]]
    + [[./study_plantuml.org][org-mode使用plantuml画UML模型图]]
+ + *SICP*
+   + [[./sicp/p1.org][第一章习题集]]

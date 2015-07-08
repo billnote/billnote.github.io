@@ -1,63 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>选择排序</title>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-<meta name="title" content="选择排序"/>
-<meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2014-10-23T17:23+0800"/>
-<meta name="author" content="BillyHuang@sina.cn"/>
-<meta name="description" content=""/>
-<meta name="keywords" content=""/>
+<!-- 2015-07-08 三 18:01 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="BillyHuang@sina.cn" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  html { font-family: Times, serif; font-size: 12pt; }
   .title  { text-align: center; }
-  .todo   { color: red; }
+  .todo   { font-family: monospace; color: red; }
   .done   { color: green; }
-  .tag    { background-color: #add8e6; font-weight:normal }
-  .target { }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
-  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
-  .center {margin-left:auto; margin-right:auto; text-align:center;}
-  p.verse { margin-left: 3% }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
   pre {
-        border: 1pt solid #AEBDCC;
-        background-color: #F3F5F7;
-        padding: 5pt;
-        font-family: courier, monospace;
-        font-size: 90%;
-        overflow:auto;
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
   }
-  table { border-collapse: collapse; }
-  td, th { vertical-align: top;  }
-  th.right  { text-align:center;  }
-  th.left   { text-align:center;   }
-  th.center { text-align:center; }
-  td.right  { text-align:right;  }
-  td.left   { text-align:left;   }
-  td.center { text-align:center; }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
   dt { font-weight: bold; }
-  div.figure { padding: 0.5em; }
-  div.figure p { text-align: center; }
-  div.inlinetask {
-    padding:10px;
-    border:2px solid gray;
-    margin:10px;
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
     background: #ffffcc;
   }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
   textarea { overflow-x: auto; }
-  .linenr { font-size:smaller }
-  .code-highlighted {background-color:#ffff00;}
-  .org-info-js_info-navigation { border-style:none; }
-  #org-info-js_console-label { font-size:10px; font-weight:bold;
-                               white-space:nowrap; }
-  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
-                                 font-weight:bold; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="../resources/style/style.css" />
@@ -107,75 +135,58 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-
 </head>
 <body>
-<div id="org-div-home-and-up" style="text-align:right;font-size:70%;white-space:nowrap;">
- <a accesskey="h" href="../index.html"> UP </a>
- |
- <a accesskey="H" href="../index.html"> HOME </a>
-</div>
-
-<div id="preamble">
-
-</div>
-
 <div id="content">
 <h1 class="title">选择排序</h1>
-
-<p><b>选择排序(Selection sort)</b>: 首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。<sup><a class="footref" name="fnr-.1" href="#fn-.1">1</a></sup><br/>
-选择排序算法思想比较直观明了，应该是非常容易理解的。<br/>
-图例： <img src="../resources/img/Selection-sort-animation.gif"  alt="../resources/img/Selection-sort-animation.gif" />
-</p>
-
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1 算法演示图</a></li>
-<li><a href="#sec-2">2 复杂度</a></li>
-<li><a href="#sec-3">3 Java实现</a></li>
-<li><a href="#sec-4">4 性能测试</a></li>
+<li><a href="#sec-1">1. 算法演示图</a></li>
+<li><a href="#sec-2">2. 复杂度</a></li>
+<li><a href="#sec-3">3. Java实现</a></li>
+<li><a href="#sec-4">4. 性能测试</a></li>
 </ul>
 </div>
 </div>
+<p>
+<b>选择排序(Selection sort)</b>: 首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup><br  />
+选择排序算法思想比较直观明了，应该是非常容易理解的。<br  />
+图例： <img src="../resources/img/Selection-sort-animation.gif" alt="Selection-sort-animation.gif" />
+</p>
 
-<div id="outline-container-1" class="outline-2">
+<div id="outline-container-sec-1" class="outline-2">
 <h2 id="sec-1"><span class="section-number-2">1</span> 算法演示图</h2>
 <div class="outline-text-2" id="text-1">
 
-
-
-<p>
-<img src="../resources/img/insertExp-srouce.png"  alt="../resources/img/insertExp-srouce.png" />
+<div class="figure">
+<p><img src="../resources/img/insertExp-srouce.png" alt="insertExp-srouce.png" />
 </p>
 </div>
-
+</div>
 </div>
 
-<div id="outline-container-2" class="outline-2">
+<div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2"><span class="section-number-2">2</span> 复杂度</h2>
 <div class="outline-text-2" id="text-2">
-
-<p>选择排序的交换操作介于0和(n-1)次之间。选择排序的比较操作为n(n-1)/2次之间。选择排序的赋值操作介于0和3(n-1)次之间。<sup><a class="footref" name="fnr-.1.2" href="#fn-.1">1</a></sup>
-</p></div>
-
+<p>
+选择排序的交换操作介于0和(n-1)次之间。选择排序的比较操作为n(n-1)/2次之间。选择排序的赋值操作介于0和3(n-1)次之间。<sup><a id="fnr.1.100" name="fnr.1.100" class="footref" href="#fn.1">1</a></sup>
+</p>
 </div>
-
-<div id="outline-container-3" class="outline-2">
+</div>
+<div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3"><span class="section-number-2">3</span> Java实现</h2>
 <div class="outline-text-2" id="text-3">
-
-
-
+<div class="org-src-container">
 
 <pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">int</span>[] <span style="color: #b58900;">selectionSort</span>(<span style="color: #268bd2;">int</span>[] <span style="color: #6c71c4;">source</span>)
 {
-        <span style="color: #859900;">for</span> (<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">i</span> = 0; i &lt; source.length; i++)
+        <span style="color: #859900;">for</span> (<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">i</span> = 0; i &lt; source.<span style="color: #268bd2;">length</span>; i++)
         {
                 <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">idx</span> = i;
                 <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">min</span> = source[i];
-                <span style="color: #859900;">for</span> (<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">j</span> = i; j &lt; source.length; j++)
+                <span style="color: #859900;">for</span> (<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">j</span> = i; j &lt; source.<span style="color: #268bd2;">length</span>; j++)
                 {
                         <span style="color: #859900;">if</span> (min &gt; source[j])
                         {
@@ -190,58 +201,79 @@ for the JavaScript code in this tag.
         <span style="color: #859900;">return</span> source;
 }
 </pre>
-
-
+</div>
+</div>
 </div>
 
-</div>
-
-<div id="outline-container-4" class="outline-2">
+<div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4"><span class="section-number-2">4</span> 性能测试</h2>
 <div class="outline-text-2" id="text-4">
+<p>
+本人PC上做的性能测试，仅简单测试了一下选择排序的性能，可能不是非常严谨与客观，结果仅作参考吧。
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
-<p>本人PC上做的性能测试，仅简单测试了一下选择排序的性能，可能不是非常严谨与客观，结果仅作参考吧。
-</p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-<colgroup><col class="right" /><col class="right" />
+
+<colgroup>
+<col  class="right" />
+
+<col  class="right" />
 </colgroup>
 <thead>
-<tr><th scope="col" class="right">数组长度</th><th scope="col" class="right">耗时 .ms</th></tr>
+<tr>
+<th scope="col" class="right">数组长度</th>
+<th scope="col" class="right">耗时 .ms</th>
+</tr>
 </thead>
 <tbody>
-<tr><td class="right">10000</td><td class="right">45</td></tr>
+<tr>
+<td class="right">10000</td>
+<td class="right">45</td>
+</tr>
 </tbody>
 <tbody>
-<tr><td class="right">100000</td><td class="right">2625</td></tr>
+<tr>
+<td class="right">100000</td>
+<td class="right">2625</td>
+</tr>
 </tbody>
 <tbody>
-<tr><td class="right">500000</td><td class="right">65990</td></tr>
+<tr>
+<td class="right">500000</td>
+<td class="right">65990</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="right">&#xa0;</td>
+<td class="right">&#xa0;</td>
+</tr>
 </tbody>
 </table>
-
 
 <p>
 从上述结果可以看出，快速排序虽然容易理解和实现，但是性能非常差，随着数据量的上升，排序算法的性能也急剧的下降。在可选择的情况下，不建议使用选择排序算法。
 </p>
 
-<hr/>
-
+<hr  />
+</div>
+</div>
 <div id="footnotes">
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
-<p class="footnote"><sup><a class="footnum" name="fn-.1" href="#fnr-.1">1</a></sup> <a href="http://zh.wikipedia.org/wiki/选择排序">http://zh.wikipedia.org/wiki/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F</a>
+
+<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
+<a href="http://zh.wikipedia.org/wiki/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F">http://zh.wikipedia.org/wiki/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F</a>
 </p></div>
-</div>
+
 
 </div>
-</div>
-</div>
-
-<div id="postamble">
-<p class="date">Date: 2014-10-23T17:23+0800</p>
+</div></div>
+<div id="postamble" class="status">
 <p class="author">Author: BillyHuang@sina.cn</p>
-<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.3f with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24</p>
-<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
-
+<p class="date">Created: 2015-07-08 三 18:01</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>

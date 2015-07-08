@@ -1,0 +1,208 @@
+#+TITLE: 第一章： 构造过程抽象 解题集
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../resources/style/style.css" />
+#+LINK_HOME: ../index.html
+#+FILETAGS: :SICP:SCHEME:
+#+OPTIONS: tex:t
+#+HTML_MATHJAX: align:"left" mathml:t path:"https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+#+AUTHOR: BillyHuang@sina.cn
+
+* 练习 1.1
+#+BEGIN_SRC scheme
+10
+;; answer: 10
+
+(+ 5 3 4)
+;; answer: 12
+
+(- 9 1)
+;; answer: 8
+
+(/ 6 2)
+;; answer: 3
+
+(+ (* 2 4) (- 4 6))
+;; answer: 6
+
+(define a 3)
+;; answer: a
+
+(define b (+ a 1))
+;; answer: b
+
+(+ a b (* a b))
+;; answer: 19
+
+(= a b)
+;; answer: #f
+
+(if (and (> b a) (< b (* a b)))
+    b
+    a)
+;; answer: 4
+
+(cond ((= a 4) 6)
+      ((= b 4) (+ 6 7 a))
+      (else 25))
+;; answer: 16
+
+(+ 2 (if (> b a) b a))
+;; answer: 6
+
+(* (cond ((> a b) a)
+         ((< a b) b)
+         (else -1))
+   (+ a 1))
+;; answer: 16
+#+END_SRC
+
+* 练习 1.2
+$$\frac{5+4+(2-(3-(6+\frac{4}{5})))}{3*(6-2)*(2-7)}$$
+#+BEGIN_SRC scheme
+;; answer:
+(\ (+ 5 4 (- 2 (- 3 (+ 6 (\ 4 5))))) (* 3 (- 6 2) (- 7 2)))
+#+END_SRC
+
+* 练习 1.3
+#+BEGIN_SRC scheme
+(define (summax a b c)
+  (cond ((> a b)
+         (cond ((> b c) (+ a b))
+               (else (+ a c))))
+        (else (cond ((> a c) (+ b a))
+                    (else (+ b c))))))
+#+END_SRC
+
+* 练习 1.4
+略
+
+* 练习 1.5
+#+BEGIN_SRC scheme
+(define (p) (p))
+(define (test x y)
+  (if (= x 0)
+      0
+      y))
+
+（test 0 (p)）
+
+;; answer:
+;; 正则序求值返回0;
+;; 应用序求值会出现无限递归调用。
+
+#+END_SRC
+
+* 练习 1.6
+#+BEGIN_SRC scheme
+(define (new-if predicate then-clause else-clause)
+  (cond (predicate then-clause)
+        (else else-clause)))
+
+(define (new-sqrt-iter guess x)
+  (new-if (good-enough? guess x)
+          guess
+          (new-sqrt-iter (improve guess x)
+                         x)))
+
+;; answer:
+;; 会出现无限递归调用。
+;; 原因是：按照应用序求值，每个参数都会先进行求值。所以不管是true，还是false else-clause都会被执行。进而导致无限递归。
+;; 而if为特殊的过程then-clause和else-clause只会执行一个。
+;; 验证的表达式：
+;; (new-if #t (list 0 (display "true")) (display "false"))
+;; 返回结果为：
+;; (new-if): truefalse(0 #<void>)
+;; (if): true(0 #<void>)
+#+END_SRC
+
+* 练习 1.7
+#+BEGIN_SRC scheme
+;; answer
+(define (new-good-enough? new-guess old-guess)
+  (< (abs (- new-guess old-guess)) 0.00000001))
+#+END_SRC
+
+* 练习 1.8
+#+BEGIN_SRC scheme
+;; answer:
+(define (cube-iter guess x)
+  (if (cube-good-enough? guess x)
+      guess
+      (cube-iter (improve-cube guess x) x)))
+
+(define (improve-cube guess x)
+  (/ (+ (/ x (square guess)) (* 2 guess)) 3))
+
+(define (cube-good-enough? guess x)
+  (< (abs (- (* guess guess guess) x)) 0.0001))
+
+(define (cube x)
+  (cube-iter 1.0 x))
+#+END_SRC
+
+* 练习 1.9
+#+BEGIN_SRC scheme
+;; answer:
+;; 方法一为线性递归计算过程，展开式如下：
+（+ 4 5）
+(inc (+ 3 5))
+(inc (inc (+ 2 5)))
+(inc (inc (inc (+ 1 5))))
+(inc (inc (inc (inc (+ 0 5)))))
+(inc (inc (inc (inc 5))))
+(inc (inc (inc 6)))
+(inc (inc 7))
+(inc 8)
+9
+
+;; 方法二为递归迭代计算过程，展开式如下：
+（+ 4 5）
+（+ 3 6）
+（+ 2 7）
+（+ 1 8）
+（+ 0 9）
+9
+#+END_SRC
+
+* 练习 1.10
+#+BEGIN_SRC scheme
+(define (A x y)
+  (cond ((= y 0) 0)
+        ((= x 0) (* 2 y))
+        ((= y 1) 2)
+        (else (A (- x 1)
+                 (A (- y 1))))))
+
+(A 1 10)
+(A 2 4)
+(A 3 3)
+(define (f n) (A 0 n))
+(define (g n) (A 1 n))
+(define (h n) (A 2 n))
+(define (k n) (* 5 n n))
+#+END_SRC
++ answer:
+  - 2^10
+  - 2^16
+  - 2^16
+  - f(n)=2n
+  - g(n)=2^n
+  - h(n)=2^2n
+  - k(n)=5n^2
+
+* 练习 1.11
+#+BEGIN_SRC scheme
+;; answer:
+;; 递归计算过程实现
+(define (f n)
+  (cond ((< n 3) n)
+        (else (+ (f (- n 1))
+                 (* 2 (f (- n 2)))
+                 (* 3 (f (- n 3)))))))
+
+;; 迭代计算过程实现
+(define (f-iter n)
+  (define (iter a b c count)
+    (cond ((= count 0) a)
+          (else (iter b c (+ (* 3 a) (* 2 b) c) (- count 1)))))
+  (iter 0 1 2 n))
+#+END_SRC

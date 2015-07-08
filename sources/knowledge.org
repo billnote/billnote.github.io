@@ -1,5 +1,5 @@
 #+TITLE: Bill's Knowledge
-#+STYLE: <link rel="stylesheet" type="text/css" href="./resources/style/style.css" />
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./resources/style/style.css" />
 #+LINK_HOME: ./index.html
 #+AUTHOR: BillyHuang@sina.cn
 

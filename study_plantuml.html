@@ -1,63 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>plantuml 学习笔记</title>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-<meta name="title" content="plantuml 学习笔记"/>
-<meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2014-10-22T14:02+0800"/>
-<meta name="author" content="BillyHuang@sina.cn"/>
-<meta name="description" content=""/>
-<meta name="keywords" content=""/>
+<!-- 2015-07-08 三 16:14 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="BillyHuang@sina.cn" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  html { font-family: Times, serif; font-size: 12pt; }
   .title  { text-align: center; }
-  .todo   { color: red; }
+  .todo   { font-family: monospace; color: red; }
   .done   { color: green; }
-  .tag    { background-color: #add8e6; font-weight:normal }
-  .target { }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
-  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
-  .center {margin-left:auto; margin-right:auto; text-align:center;}
-  p.verse { margin-left: 3% }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
   pre {
-        border: 1pt solid #AEBDCC;
-        background-color: #F3F5F7;
-        padding: 5pt;
-        font-family: courier, monospace;
-        font-size: 90%;
-        overflow:auto;
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
   }
-  table { border-collapse: collapse; }
-  td, th { vertical-align: top;  }
-  th.right  { text-align:center;  }
-  th.left   { text-align:center;   }
-  th.center { text-align:center; }
-  td.right  { text-align:right;  }
-  td.left   { text-align:left;   }
-  td.center { text-align:center; }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
   dt { font-weight: bold; }
-  div.figure { padding: 0.5em; }
-  div.figure p { text-align: center; }
-  div.inlinetask {
-    padding:10px;
-    border:2px solid gray;
-    margin:10px;
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
     background: #ffffcc;
   }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
   textarea { overflow-x: auto; }
-  .linenr { font-size:smaller }
-  .code-highlighted {background-color:#ffff00;}
-  .org-info-js_info-navigation { border-style:none; }
-  #org-info-js_console-label { font-size:10px; font-weight:bold;
-                               white-space:nowrap; }
-  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
-                                 font-weight:bold; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="./resources/style/style.css" />
@@ -107,40 +135,28 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-
 </head>
 <body>
-<div id="org-div-home-and-up" style="text-align:right;font-size:70%;white-space:nowrap;">
- <a accesskey="h" href="./index.html"> UP </a>
- |
- <a accesskey="H" href="./index.html"> HOME </a>
-</div>
-
-<div id="preamble">
-
-</div>
-
 <div id="content">
 <h1 class="title">plantuml 学习笔记</h1>
-
-
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1 PlantUML简介</a></li>
-<li><a href="#sec-2">2 Sequence diagram</a></li>
+<li><a href="#sec-1">1. PlantUML简介</a></li>
+<li><a href="#sec-2">2. Sequence diagram</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-1" class="outline-2">
+<div id="outline-container-sec-1" class="outline-2">
 <h2 id="sec-1"><span class="section-number-2">1</span> PlantUML简介</h2>
 <div class="outline-text-2" id="text-1">
-
-<p>PlantUML是一个开源的用以高效构建UML图的工具。他可以嵌入多种编辑器及IDE中使用，具体支持哪些请戳<a href="http://www.plantuml.com/running.html">这里</a>.<br/>
+<p>
+PlantUML是一个开源的用以高效构建UML图的工具。他可以嵌入多种编辑器及IDE中使用，具体支持哪些请戳<a href="http://www.plantuml.com/running.html">这里</a>.<br  />
 <b>UML可以构建以下模型图</b>
-</p><ul>
+</p>
+<ul class="org-ul">
 <li>Sequence diagram  时序图
 </li>
 <li>Usecase diagram  用例图
@@ -156,46 +172,46 @@ for the JavaScript code in this tag.
 <li>Object diagram  对象图
 </li>
 </ul>
-
-
+</div>
 </div>
 
-</div>
-
-<div id="outline-container-2" class="outline-2">
+<div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2"><span class="section-number-2">2</span> Sequence diagram</h2>
 <div class="outline-text-2" id="text-2">
-
-<p>一种UML行为图。它通过描述对象之间发送消息的时间顺序显示多个对象之间的动态协作。它可以表示用例的行为顺序，当执行一个用例行为时，时序图中的每条消息对应了一个类操作或状态机中引起转换的触发事件。<sup><a class="footref" name="fnr-.1" href="#fn-.1">1</a></sup>
+<p>
+一种UML行为图。它通过描述对象之间发送消息的时间顺序显示多个对象之间的动态协作。它可以表示用例的行为顺序，当执行一个用例行为时，时序图中的每条消息对应了一个类操作或状态机中引起转换的触发事件。<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup>
 至于时序图的作用及各种模型图的含义，本文篇幅有限不做详细介绍。想了解更多就点击<a href="http://www.ibm.com/developerworks/cn/rational/rationaledge/content/feb05/bell/3101.html">这里</a>.
 </p>
 
+<div class="org-src-container">
 
-
-<pre class="src src-plantuml">'&#36825;&#26159;&#19968;&#20010;&#27880;&#37322;&#65292;plantuml&#27880;&#37322;&#20197;&#21333;&#24341;&#21495;&#24320;&#22836;
-/'&#36825;&#20063;&#26159;&#19968;&#20010;&#27880;&#37322;'/
+<pre class="src src-plantuml">'这是一个注释，plantuml注释以单引号开头
+/'这也是一个注释'/
 title Example Sequence Diagram1
-'&#23450;&#20041;&#20102;&#19968;&#20010;&#23545;&#35937;
+'定义了一个对象
 activate SDK
 activate AdServer
-'SDK&#21521;AdServer&#21457;&#36865;&#20102;&#19968;&#20010;&#28040;&#24687;
+'SDK向AdServer发送了一个消息
 SDK -&gt; AdServer : Send request init.htm
 AdServer --&gt; SDK : Return response init template
-'AdServer&#29983;&#21629;&#32447;&#32467;&#26463;
+'AdServer生命线结束
 deactivate AdServer
-'SDK&#21521;&#33258;&#36523;&#21457;&#36865;&#20102;&#19968;&#20010;&#28040;&#24687;
+'SDK向自身发送了一个消息
 SDK -&gt; SDK : Parsing init template
 deactivate SDK
 </pre>
+</div>
 
 
-<p>
-<img src="./resources/img/sequence1.png"  alt="./resources/img/sequence1.png" />
+<div class="figure">
+<p><img src="./resources/img/sequence1.png" alt="sequence1.png" />
 </p>
+</div>
+
 <p>
 在Plantuml中可以使用不同的模型图描述不同的对象。
 </p>
-
+<div class="org-src-container">
 
 <pre class="src src-plantuml">title Example Squence Diagram2
 actor User1
@@ -216,34 +232,36 @@ deactivate AdServer
 deactivate Ad
 deactivate BJDB
 </pre>
+</div>
 
 
-<p>
-<img src="./resources/img/sequence2.png"  alt="./resources/img/sequence2.png" />
+<div class="figure">
+<p><img src="./resources/img/sequence2.png" alt="sequence2.png" />
 </p>
+</div>
+
 <p>
 -未完待续-
-
 </p>
-<hr/>
-
+<hr  />
+</div>
+</div>
 <div id="footnotes">
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
-<p class="footnote"><sup><a class="footnum" name="fn-.1" href="#fnr-.1">1</a></sup> <a href="http://www.ibm.com/developerworks/cn/rational/rationaledge/content/feb05/bell/3101.html">http://www.ibm.com/developerworks/cn/rational/rationaledge/content/feb05/bell/3101.html</a>
+
+<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
+<a href="http://www.ibm.com/developerworks/cn/rational/rationaledge/content/feb05/bell/3101.html">http://www.ibm.com/developerworks/cn/rational/rationaledge/content/feb05/bell/3101.html</a>
 </p></div>
-</div>
+
 
 </div>
-</div>
-</div>
-
-<div id="postamble">
-<p class="date">Date: 2014-10-22T14:02+0800</p>
+</div></div>
+<div id="postamble" class="status">
 <p class="author">Author: BillyHuang@sina.cn</p>
-<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.3f with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24</p>
-<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
-
+<p class="date">Created: 2015-07-08 三 16:14</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>
