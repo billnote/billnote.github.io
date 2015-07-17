@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>第一章： 构造过程抽象 解题集</title>
-<!-- 2015-07-08 三 17:53 -->
+<!-- 2015-07-17 五 11:25 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="BillyHuang@sina.cn" />
@@ -196,6 +196,21 @@ for the JavaScript code in this tag.
 <li><a href="#sec-9">9. 练习 1.9</a></li>
 <li><a href="#sec-10">10. 练习 1.10</a></li>
 <li><a href="#sec-11">11. 练习 1.11</a></li>
+<li><a href="#sec-12">12. 练习 1.12</a></li>
+<li><a href="#sec-13">13. 练习 1.13</a></li>
+<li><a href="#sec-14">14. 练习 1.14</a></li>
+<li><a href="#sec-15">15. 练习 1.15</a></li>
+<li><a href="#sec-16">16. 练习 1.16</a></li>
+<li><a href="#sec-17">17. 练习 1.17 &amp; 1.18</a></li>
+<li><a href="#sec-18">18. 练习 1.19</a></li>
+<li><a href="#sec-19">19. 练习 1.20</a></li>
+<li><a href="#sec-20">20. 练习 1.21</a></li>
+<li><a href="#sec-21">21. 练习 1.22</a></li>
+<li><a href="#sec-22">22. 练习 1.23</a></li>
+<li><a href="#sec-23">23. 练习 1.24</a></li>
+<li><a href="#sec-24">24. 练习 1.25</a></li>
+<li><a href="#sec-25">25. 练习 1.26</a></li>
+<li><a href="#sec-26">26. 练习 1.27</a></li>
 </ul>
 </div>
 </div>
@@ -479,10 +494,350 @@ $$\frac{5+4+(2-(3-(6+\frac{4}{5})))}{3*(6-2)*(2-7)}$$
 </div>
 </div>
 </div>
+
+<div id="outline-container-sec-12" class="outline-2">
+<h2 id="sec-12"><span class="section-number-2">12</span> 练习 1.12</h2>
+<div class="outline-text-2" id="text-12">
+<div class="org-src-container">
+
+<pre class="src src-scheme"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer:</span>
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#36882;&#24402;&#35745;&#31639;&#36807;&#31243;&#23454;&#29616;</span>
+(<span style="color: #859900;">define</span> (<span style="color: #b58900;">pascal</span> row col)
+  (<span style="color: #859900;">cond</span> ((&gt; col row) (error <span style="color: #2aa198;">"illegal col value!"</span>))
+        ((<span style="color: #859900;">or</span> (= col 0) (= row col)) 1)
+        (<span style="color: #859900;">else</span> (+ (pascal (- row 1) (- col 1))
+                 (pascal (- row 1) col)))))
+
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#36845;&#20195;&#35745;&#31639;&#36807;&#31243;&#23454;&#29616;</span>
+(<span style="color: #859900;">define</span> (<span style="color: #b58900;">pascal-iter</span> row col)
+  (<span style="color: #859900;">define</span> (<span style="color: #b58900;">factorial-iter</span> value counter n)
+    (<span style="color: #859900;">cond</span> ((= counter n) value)
+          (<span style="color: #859900;">else</span> (factorial-iter (* value (+ counter 1))
+                                (+ counter 1)
+                                n))))
+  (<span style="color: #859900;">cond</span> ((&gt; col row)
+         (error <span style="color: #2aa198;">"illegal col value!"</span>))
+        ((<span style="color: #859900;">or</span> (= col 0) (= row col)) 1)
+        (<span style="color: #859900;">else</span>
+         (/ (factorial-iter 1 1 row)
+            (* (factorial-iter 1 1 col)
+               (factorial-iter 1 1 (- row col)))))))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-13" class="outline-2">
+<h2 id="sec-13"><span class="section-number-2">13</span> 练习 1.13</h2>
+<div class="outline-text-2" id="text-13">
+<p>
+略
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-14" class="outline-2">
+<h2 id="sec-14"><span class="section-number-2">14</span> 练习 1.14</h2>
+<div class="outline-text-2" id="text-14">
+
+<div class="figure">
+<p><img src="../resources/svg/1.14.svg" alt="1.14.svg" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-15" class="outline-2">
+<h2 id="sec-15"><span class="section-number-2">15</span> 练习 1.15</h2>
+<div class="outline-text-2" id="text-15">
+<p>
+\(sinx=3sin\frac{x}{3}-4sin^3\frac{x}{3}\)
+</p>
+<div class="org-src-container">
+
+<pre class="src src-scheme">(<span style="color: #859900;">define</span> (<span style="color: #b58900;">cube</span> x) (* x x x))
+
+(<span style="color: #859900;">define</span> (<span style="color: #b58900;">p</span> x) (- (* 3 x) (* 4 (cube x))))
+
+(<span style="color: #859900;">define</span> (<span style="color: #b58900;">sine</span> angle)
+  (<span style="color: #859900;">if</span> (&lt; (abs angle) 0.1)
+      angle
+      (p (sine (/ angle 3.0)))))
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer:</span>
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">a)</span>
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">(sine 12.15)</span>
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">(p (sine 4.5))</span>
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">(p (p (sine 1.5)))</span>
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">(p (p (p (sine 0.5))))</span>
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">(p (p (p (p (sine 0.166666)))))</span>
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">(p (p (p (p (p (p (sine 0.0555555)))))))</span>
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">p&#34987;&#25191;&#34892;&#20102;6&#27425;&#65307;</span>
+
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">b)</span>
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#920;(n)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-16" class="outline-2">
+<h2 id="sec-16"><span class="section-number-2">16</span> 练习 1.16</h2>
+<div class="outline-text-2" id="text-16">
+<div class="org-src-container">
+
+<pre class="src src-scheme"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer:</span>
+(<span style="color: #859900;">define</span> (<span style="color: #b58900;">fast-expt-iter</span> b n)
+  (<span style="color: #859900;">cond</span> ((= n 0) 1)
+        ((even? n)
+         (fast-expt-iter (square b) (/ n 2)))
+        (<span style="color: #859900;">else</span> (* b (fast-expt-iter b (- n 1))))))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-17" class="outline-2">
+<h2 id="sec-17"><span class="section-number-2">17</span> 练习 1.17 &amp; 1.18</h2>
+<div class="outline-text-2" id="text-17">
+<div class="org-src-container">
+
+<pre class="src src-scheme">(<span style="color: #859900;">define</span> (<span style="color: #b58900;">double</span> a)
+  (+ a a))
+
+(<span style="color: #859900;">define</span> (<span style="color: #b58900;">halve</span> a)
+  (/ a 2))
+
+(<span style="color: #859900;">define</span> (<span style="color: #b58900;">fast-*</span> a b)
+  (<span style="color: #859900;">cond</span> ((<span style="color: #859900;">or</span> (= b 0) (= a 0)) 0)
+        ((even? b)
+         (fast-* (double a) (halve b)))
+        (<span style="color: #859900;">else</span> (+ a (fast-* a (- b 1))))))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-18" class="outline-2">
+<h2 id="sec-18"><span class="section-number-2">18</span> 练习 1.19</h2>
+<div class="outline-text-2" id="text-18">
+<p>
+Fib矩阵公式：
+$$\begin{pmatrix}fib(n)\\fib(n+1)\end{pmatrix}=\begin{pmatrix}0&1\\1&1\end{pmatrix}^n\begin{pmatrix}0\\1\end{pmatrix}$$
+变换说明：
+$$\begin{pmatrix}p&q\\q&p+q\end{pmatrix}\begin{pmatrix}a\\b\end{pmatrix}=\begin{pmatrix}ap+bq\\aq+bp+bq\end{pmatrix}=>\begin{cases}a&\leftarrow\ bq+ap+aq, \\ b&\leftarrow\ bp+aq. \end{cases}$$
+</p>
+<ul class="org-ul">
+<li><b>answer:</b>
+<ul class="org-ul">
+<li>证明：
+</li>
+</ul>
+</li>
+</ul>
+<p>
+$$\begin{pmatrix}p&q\\q&p+q\end{pmatrix}\begin{pmatrix}p&q\\q&p+q\end{pmatrix}=\begin{pmatrix}p^2+q^2&2pq+q^2\\2pq+q^2&p^2+2q^2+2pq\end{pmatrix}$$
+所以：p'=p<sup>2</sup>+q<sup>2</sup>; q'=2ab+b<sup>2</sup>,证毕。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-scheme">(<span style="color: #859900;">define</span> (<span style="color: #b58900;">fib</span> n)
+  (fib-iter 1 0 0 1 n))
+
+(<span style="color: #859900;">define</span> (<span style="color: #b58900;">fib-iter</span> a b p q count)
+  (<span style="color: #859900;">cond</span> ((= 0 count) b)
+        ((even? count)
+         (fib-iter a
+                   b
+                   (+ (square p) (square q))
+                   (+ (* 2 p q) (square q))
+                   (/ count 2)))
+        (<span style="color: #859900;">else</span> (fib-iter (+ (* b q) (* a q) (* a p))
+                        (+ (* b p) (* a q))
+                        p
+                        q
+                        (- count 1)))))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-19" class="outline-2">
+<h2 id="sec-19"><span class="section-number-2">19</span> 练习 1.20</h2>
+<div class="outline-text-2" id="text-19">
+<div class="org-src-container">
+
+<pre class="src src-scheme"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#27491;&#21017;&#24207;</span>
+(gcd 206 40)
+(gcd 40 (remainder 206 40))
+(gcd (remainder 206 40) (remainder 40 (remainder 206 40)))
+(gcd (remainder 40 (remainder 206 40)) (remiander (remainder 206 40) (remainder 40 (remainder 206 40))))
+(gcd (remiander (remainder 206 40) (remainder 40 (remainder 206 40))) ((remainder 40 (remainder 206 40)) (remiander (remainder 206 40) (remainder 40 (remainder 206 40)))))
+
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#24212;&#29992;&#24207;</span>
+(gcd 206 40)
+(gcd 40 (remainder 206 40))
+(gcd 40 6)
+(gcd 6 (remainder 40 6))
+(gcd 6 4)
+(gcd 4 (remainder 6 4))
+(gcd 4 2)
+(gcd 2 (remainder 4 2))
+(gcd 2 0)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-20" class="outline-2">
+<h2 id="sec-20"><span class="section-number-2">20</span> 练习 1.21</h2>
+<div class="outline-text-2" id="text-20">
+<div class="org-src-container">
+
+<pre class="src src-scheme">(<span style="color: #859900;">define</span> (<span style="color: #b58900;">smallest-divisor</span> n)
+  (<span style="color: #859900;">define</span> (<span style="color: #b58900;">find-divisor</span> n test-divisor)
+    (<span style="color: #859900;">cond</span> ((&gt; (square test-divisor) n) n)
+          ((divides? test-divisor n) test-divisor)
+          (<span style="color: #859900;">else</span> (find-divisor n (+ test-divisor 1)))))
+  (<span style="color: #859900;">define</span> (<span style="color: #b58900;">divides?</span> a b)
+    (= (remainder b a) 0))
+  (find-divisor n 2))
+
+(smallest-divisor 199)
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">199</span>
+(smallest-divisor 1999)
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">1999</span>
+(smallest-divisor 19999)
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">7</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-21" class="outline-2">
+<h2 id="sec-21"><span class="section-number-2">21</span> 练习 1.22</h2>
+<div class="outline-text-2" id="text-21">
+<div class="org-src-container">
+
+<pre class="src src-scheme">(<span style="color: #859900;">define</span> (<span style="color: #b58900;">time-prime-test</span> n)
+  (start-prime-time n (real-time-clock)))
+
+(<span style="color: #859900;">define</span> (<span style="color: #b58900;">start-prime-time</span> n start-time)
+  (<span style="color: #859900;">cond</span> ((prime? n)
+         (newline) (display n) (report-prime (- (real-time-clock) start-time)))))
+
+(<span style="color: #859900;">define</span> (<span style="color: #b58900;">report-prime</span> elapsed-time)
+  (display <span style="color: #2aa198;">" *** "</span>)
+  (display elapsed-time))
+
+(<span style="color: #859900;">define</span> (<span style="color: #b58900;">search-for-primes</span> min max)
+  (<span style="color: #859900;">define</span> (<span style="color: #b58900;">iter</span> n min max)
+    (<span style="color: #859900;">cond</span> ((<span style="color: #859900;">or</span> (&lt; n min) (&gt; n max)) n (newline) (display <span style="color: #2aa198;">"end."</span>))
+          ((even? n) (iter (+ n 1) min max))
+          (<span style="color: #859900;">else</span> (time-prime-test n) (iter (+ n 2) min max))))
+  (iter min min max))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-22" class="outline-2">
+<h2 id="sec-22"><span class="section-number-2">22</span> 练习 1.23</h2>
+<div class="outline-text-2" id="text-22">
+<div class="org-src-container">
+
+<pre class="src src-scheme">(<span style="color: #859900;">define</span> (<span style="color: #b58900;">smallest-divisor</span> n)
+  (<span style="color: #859900;">define</span> (<span style="color: #b58900;">find-divisor</span> n test-divisor)
+    (<span style="color: #859900;">cond</span> ((&gt; (square test-divisor) n) n)
+          ((divides? test-divisor n) test-divisor)
+          (<span style="color: #859900;">else</span> (find-divisor n (+ 1 test-divisor)))))
+  (<span style="color: #859900;">define</span> (<span style="color: #b58900;">divides?</span> a b)
+    (= (remainder b a) 0))
+  (<span style="color: #859900;">define</span> (<span style="color: #b58900;">next</span> n)
+    (<span style="color: #859900;">cond</span> ((even? n) (+ n 1))
+          (<span style="color: #859900;">else</span> (+ n 2))))
+  (find-divisor n 2))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-23" class="outline-2">
+<h2 id="sec-23"><span class="section-number-2">23</span> 练习 1.24</h2>
+<div class="outline-text-2" id="text-23">
+<div class="org-src-container">
+
+<pre class="src src-scheme">(<span style="color: #859900;">define</span> (<span style="color: #b58900;">expmod</span> base exp m)
+  (<span style="color: #859900;">cond</span> ((= exp 0) 1)
+        ((even? exp)
+         (remainder (square (expmod base (/ exp 2)))
+                    m))
+        (<span style="color: #859900;">else</span> (remainder (* base (expmod base (- exp 1) m))
+                         m))))
+
+(<span style="color: #859900;">define</span> (<span style="color: #b58900;">fermat-test</span> n)
+  (<span style="color: #859900;">define</span> (<span style="color: #b58900;">try-it</span> a)
+    (= (expmod a n n) a))
+  (try-it (+ 1 (random (- n 1)))))
+
+(<span style="color: #859900;">define</span> (<span style="color: #b58900;">fast-prime?</span> n times)
+  (<span style="color: #859900;">cond</span> ((= times 0) true)
+        ((fermat-test n) (fast-prime? n (- times 1)))
+        (<span style="color: #859900;">else</span> false)))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-24" class="outline-2">
+<h2 id="sec-24"><span class="section-number-2">24</span> 练习 1.25</h2>
+<div class="outline-text-2" id="text-24">
+<div class="org-src-container">
+
+<pre class="src src-scheme">(<span style="color: #859900;">define</span> (<span style="color: #b58900;">expmod-bad</span> base exp m)
+  (remainder (fast-expt base exp) m))
+
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">Alyssa &#30340; expmod-bad &#20989;&#25968;&#20174;&#29702;&#35770;&#19978;&#35828;&#27809;&#26377;&#20219;&#20309;&#38382;&#39064;&#65292;&#26159;&#21487;&#34892;&#30340;&#12290;&#20294;&#26159;&#22312;&#23454;&#38469;&#24212;&#29992;&#20013;&#26377;&#33268;&#21629;&#30340;&#32570;&#38519;&#12290;</span>
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#24403;&#35745;&#31639;&#19968;&#20010;&#24456;&#22823;&#30340;&#32032;&#25968;&#26159;&#65292;&#38656;&#35201;&#35745;&#31639;&#19968;&#20010;&#38750;&#24120;&#22823;&#30340;&#20056;&#24130;&#12290;&#32780;&#36825;&#20250;&#23548;&#33268;&#35745;&#31639;&#36895;&#24230;&#38750;&#24120;&#24930;&#65292;&#32780;&#19988;&#21487;&#33021;&#20250;&#23548;&#33268;&#28322;&#20986;&#12290;</span>
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">expmod &#20989;&#25968;&#65292;&#36890;&#36807;&#27599;&#27425;&#23545;&#20056;&#24130;&#36827;&#34892; remainder &#25805;&#20316;&#65292;&#20174;&#32780;&#23558;&#20056;&#24130;&#38480;&#21046;&#22312;&#19968;&#20010;&#24456;&#23567;&#30340;&#33539;&#22260;&#20869;&#65288;&#19981;&#36229;&#36807;&#21442;&#25968; m &#65289;&#65292;&#36825;&#26679;&#21487;&#20197;&#26368;&#22823;&#38480;&#24230;&#22320;&#36991;&#20813;&#28322;&#20986;&#65292;&#32780;&#19988;&#35745;&#31639;&#36895;&#24230;&#24555;&#24471;&#22810;&#12290;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-25" class="outline-2">
+<h2 id="sec-25"><span class="section-number-2">25</span> 练习 1.26</h2>
+<div class="outline-text-2" id="text-25">
+<p>
++answer： 使用乘法而未使用 square 函数，使得 expmod 函数原来的线性递归变成了两个分支的树形递归，计算量是原来expmod复杂度的平方，即Θ(logn)的平方，即Θ(n)。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-26" class="outline-2">
+<h2 id="sec-26"><span class="section-number-2">26</span> 练习 1.27</h2>
+<div class="outline-text-2" id="text-26">
+<div class="org-src-container">
+
+<pre class="src src-scheme">(<span style="color: #859900;">define</span> (<span style="color: #b58900;">carmichael-test</span> n)
+  (<span style="color: #859900;">define</span> (<span style="color: #b58900;">test</span> a n)
+    (<span style="color: #859900;">cond</span> ((= a n) true)
+          ((= (expmod a n n) a)
+           (test (+ a 1) n))
+          (<span style="color: #859900;">else</span> false)))
+  (test 1 n))
+
+(carmichael-test 561)
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">#t</span>
+(carmichael-test 1105)
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">#t</span>
+</pre>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: BillyHuang@sina.cn</p>
-<p class="date">Created: 2015-07-08 三 17:53</p>
+<p class="date">Created: 2015-07-17 五 11:25</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

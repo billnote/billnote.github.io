@@ -206,3 +206,264 @@ $$\frac{5+4+(2-(3-(6+\frac{4}{5})))}{3*(6-2)*(2-7)}$$
           (else (iter b c (+ (* 3 a) (* 2 b) c) (- count 1)))))
   (iter 0 1 2 n))
 #+END_SRC
+
+* 练习 1.12
+#+BEGIN_SRC scheme
+;; answer:
+;; 递归计算过程实现
+(define (pascal row col)
+  (cond ((> col row) (error "illegal col value!"))
+        ((or (= col 0) (= row col)) 1)
+        (else (+ (pascal (- row 1) (- col 1))
+                 (pascal (- row 1) col)))))
+
+;; 迭代计算过程实现
+(define (pascal-iter row col)
+  (define (factorial-iter value counter n)
+    (cond ((= counter n) value)
+          (else (factorial-iter (* value (+ counter 1))
+                                (+ counter 1)
+                                n))))
+  (cond ((> col row)
+         (error "illegal col value!"))
+        ((or (= col 0) (= row col)) 1)
+        (else
+         (/ (factorial-iter 1 1 row)
+            (* (factorial-iter 1 1 col)
+               (factorial-iter 1 1 (- row col)))))))
+#+END_SRC
+
+* 练习 1.13
+略
+
+* 练习 1.14
+#+BEGIN_SRC dot :file ../resources/svg/1.14.svg :cmdline -Kdot -Tsvg :exports results
+digraph svg {
+  "(count-change 11)"->"(cc 11 5)"
+  "(cc 11 5)"->{"(cc 11 4)", "(cc -39 5)"}
+  "(cc 11 4)"->{"(cc 11 3)", "(cc -14 4)"}
+  "(cc 11 3)"->{"(cc 11 2)", "(cc 1 3)"}
+  "(cc 11 2)"->{"(cc 11 1)", "(cc 6 2)"}
+  "cc-4-2.1"[label="(cc -4 2)"]
+  "(cc 1 3)"->{"(cc 1 2)", "cc-4-2.1"}
+  "(cc 11 1)"->{"(cc 11 0)", "(cc 10 1)"}
+  "cc5-1.1"[label="(cc 5 1)"]
+  "cc6-1.1"[label="(cc 6 1)"]
+  "(cc 6 2)"->{"cc6-1.1", "cc5-1.1"}
+  "cc-4-2.2"[label="(cc -4 2)"]
+  "(cc 1 2)"->{"(cc 1 1)", "cc-4-2.2"}
+  "(cc 10 1)"->{"(cc 10 0)", "(cc 9 1)"}
+  "cc5-1.2"[label="(cc 5 1)"]
+  "cc6-1.1"->{"(cc 6 0)", "cc5-1.2"}
+  "cc5-1.1"->{"(cc 5 0)", "(cc 4 1)"}
+  "(cc 1 1)"->{"(cc 1 0)", "(cc 0 1)"}
+  "(cc 9 1)"->{"(cc 9 0)", "(cc 8 1)"}
+  "(cc 8 1)"->"7 6 ..."
+  "(cc 4 1)"->"3 2 ..."
+  "cc5-1.2"->"5 4 ..."
+}
+#+END_SRC
+
+* 练习 1.15
+$sinx=3sin\frac{x}{3}-4sin^3\frac{x}{3}$
+#+BEGIN_SRC scheme
+(define (cube x) (* x x x))
+
+(define (p x) (- (* 3 x) (* 4 (cube x))))
+
+(define (sine angle)
+  (if (< (abs angle) 0.1)
+      angle
+      (p (sine (/ angle 3.0)))))
+;; answer:
+;; a)
+;; (sine 12.15)
+;; (p (sine 4.5))
+;; (p (p (sine 1.5)))
+;; (p (p (p (sine 0.5))))
+;; (p (p (p (p (sine 0.166666)))))
+;; (p (p (p (p (p (p (sine 0.0555555)))))))
+;; p被执行了6次；
+
+;; b)
+;; Θ(n)
+#+END_SRC
+
+* 练习 1.16
+#+BEGIN_SRC scheme
+;; answer:
+(define (fast-expt-iter b n)
+  (cond ((= n 0) 1)
+        ((even? n)
+         (fast-expt-iter (square b) (/ n 2)))
+        (else (* b (fast-expt-iter b (- n 1))))))
+#+END_SRC
+
+* 练习 1.17 & 1.18
+#+BEGIN_SRC scheme
+(define (double a)
+  (+ a a))
+
+(define (halve a)
+  (/ a 2))
+
+(define (fast-* a b)
+  (cond ((or (= b 0) (= a 0)) 0)
+        ((even? b)
+         (fast-* (double a) (halve b)))
+        (else (+ a (fast-* a (- b 1))))))
+#+END_SRC
+
+* 练习 1.19
+Fib矩阵公式：
+$$\begin{pmatrix}fib(n)\\fib(n+1)\end{pmatrix}=\begin{pmatrix}0&1\\1&1\end{pmatrix}^n\begin{pmatrix}0\\1\end{pmatrix}$$
+变换说明：
+$$\begin{pmatrix}p&q\\q&p+q\end{pmatrix}\begin{pmatrix}a\\b\end{pmatrix}=\begin{pmatrix}ap+bq\\aq+bp+bq\end{pmatrix}=>\begin{cases}a&\leftarrow\ bq+ap+aq, \\ b&\leftarrow\ bp+aq. \end{cases}$$
++ *answer:*
+ + 证明：
+$$\begin{pmatrix}p&q\\q&p+q\end{pmatrix}\begin{pmatrix}p&q\\q&p+q\end{pmatrix}=\begin{pmatrix}p^2+q^2&2pq+q^2\\2pq+q^2&p^2+2q^2+2pq\end{pmatrix}$$
+所以：p'=p^2+q^2; q'=2ab+b^2,证毕。
+#+BEGIN_SRC scheme
+(define (fib n)
+  (fib-iter 1 0 0 1 n))
+
+(define (fib-iter a b p q count)
+  (cond ((= 0 count) b)
+        ((even? count)
+         (fib-iter a
+                   b
+                   (+ (square p) (square q))
+                   (+ (* 2 p q) (square q))
+                   (/ count 2)))
+        (else (fib-iter (+ (* b q) (* a q) (* a p))
+                        (+ (* b p) (* a q))
+                        p
+                        q
+                        (- count 1)))))
+#+END_SRC
+
+* 练习 1.20
+#+BEGIN_SRC scheme
+;; 正则序
+(gcd 206 40)
+(gcd 40 (remainder 206 40))
+(gcd (remainder 206 40) (remainder 40 (remainder 206 40)))
+(gcd (remainder 40 (remainder 206 40)) (remiander (remainder 206 40) (remainder 40 (remainder 206 40))))
+(gcd (remiander (remainder 206 40) (remainder 40 (remainder 206 40))) ((remainder 40 (remainder 206 40)) (remiander (remainder 206 40) (remainder 40 (remainder 206 40)))))
+
+;; 应用序
+(gcd 206 40)
+(gcd 40 (remainder 206 40))
+(gcd 40 6)
+(gcd 6 (remainder 40 6))
+(gcd 6 4)
+(gcd 4 (remainder 6 4))
+(gcd 4 2)
+(gcd 2 (remainder 4 2))
+(gcd 2 0)
+#+END_SRC
+
+* 练习 1.21
+#+BEGIN_SRC scheme
+(define (smallest-divisor n)
+  (define (find-divisor n test-divisor)
+    (cond ((> (square test-divisor) n) n)
+          ((divides? test-divisor n) test-divisor)
+          (else (find-divisor n (+ test-divisor 1)))))
+  (define (divides? a b)
+    (= (remainder b a) 0))
+  (find-divisor n 2))
+
+(smallest-divisor 199)
+;; 199
+(smallest-divisor 1999)
+;; 1999
+(smallest-divisor 19999)
+;; 7
+#+END_SRC
+
+* 练习 1.22
+#+BEGIN_SRC scheme
+(define (time-prime-test n)
+  (start-prime-time n (real-time-clock)))
+
+(define (start-prime-time n start-time)
+  (cond ((prime? n)
+         (newline) (display n) (report-prime (- (real-time-clock) start-time)))))
+
+(define (report-prime elapsed-time)
+  (display " *** ")
+  (display elapsed-time))
+
+(define (search-for-primes min max)
+  (define (iter n min max)
+    (cond ((or (< n min) (> n max)) n (newline) (display "end."))
+          ((even? n) (iter (+ n 1) min max))
+          (else (time-prime-test n) (iter (+ n 2) min max))))
+  (iter min min max))
+#+END_SRC
+
+* 练习 1.23
+#+BEGIN_SRC scheme
+(define (smallest-divisor n)
+  (define (find-divisor n test-divisor)
+    (cond ((> (square test-divisor) n) n)
+          ((divides? test-divisor n) test-divisor)
+          (else (find-divisor n (+ 1 test-divisor)))))
+  (define (divides? a b)
+    (= (remainder b a) 0))
+  (define (next n)
+    (cond ((even? n) (+ n 1))
+          (else (+ n 2))))
+  (find-divisor n 2))
+#+END_SRC
+
+* 练习 1.24
+#+BEGIN_SRC scheme
+(define (expmod base exp m)
+  (cond ((= exp 0) 1)
+        ((even? exp)
+         (remainder (square (expmod base (/ exp 2)))
+                    m))
+        (else (remainder (* base (expmod base (- exp 1) m))
+                         m))))
+
+(define (fermat-test n)
+  (define (try-it a)
+    (= (expmod a n n) a))
+  (try-it (+ 1 (random (- n 1)))))
+
+(define (fast-prime? n times)
+  (cond ((= times 0) true)
+        ((fermat-test n) (fast-prime? n (- times 1)))
+        (else false)))
+#+END_SRC
+
+* 练习 1.25
+#+BEGIN_SRC scheme
+(define (expmod-bad base exp m)
+  (remainder (fast-expt base exp) m))
+
+;; Alyssa 的 expmod-bad 函数从理论上说没有任何问题，是可行的。但是在实际应用中有致命的缺陷。
+;; 当计算一个很大的素数是，需要计算一个非常大的乘幂。而这会导致计算速度非常慢，而且可能会导致溢出。
+;; expmod 函数，通过每次对乘幂进行 remainder 操作，从而将乘幂限制在一个很小的范围内（不超过参数 m ），这样可以最大限度地避免溢出，而且计算速度快得多。
+#+END_SRC
+
+* 练习 1.26
++answer： 使用乘法而未使用 square 函数，使得 expmod 函数原来的线性递归变成了两个分支的树形递归，计算量是原来expmod复杂度的平方，即Θ(logn)的平方，即Θ(n)。
+
+* 练习 1.27
+#+BEGIN_SRC scheme
+(define (carmichael-test n)
+  (define (test a n)
+    (cond ((= a n) true)
+          ((= (expmod a n n) a)
+           (test (+ a 1) n))
+          (else false)))
+  (test 1 n))
+
+(carmichael-test 561)
+;; #t
+(carmichael-test 1105)
+;; #t
+#+END_SRC
