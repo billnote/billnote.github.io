@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>堆排序</title>
-<!-- 2015-07-08 三 18:01 -->
+<!-- 2016-04-22 五 17:44 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="BillyHuang@sina.cn" />
@@ -160,9 +160,9 @@ for the JavaScript code in this tag.
 <h2 id="sec-1"><span class="section-number-2">1</span> 算法描述</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
-<li>最大堆调整（Max\<sub>Heapify）：将堆的末端子节点作调整，使得子节点永远小于父节点</sub>
+<li>最大堆调整（Max\_Heapify）：将堆的末端子节点作调整，使得子节点永远小于父节点
 </li>
-<li>创建最大堆（Build\<sub>Max\</sub><sub>Heap）：将堆所有数据重新排序</sub>
+<li>创建最大堆（Build\_Max\_Heap）：将堆所有数据重新排序
 </li>
 <li>堆排序（HeapSort）：移除位在第一个数据的根节点，并做最大堆调整的递归运算
 </li>
@@ -225,78 +225,78 @@ for the JavaScript code in this tag.
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">int</span>[] <span style="color: #b58900;">heapSort</span>(<span style="color: #268bd2;">int</span>[] <span style="color: #6c71c4;">data</span>)
+<pre class="src src-java"><span style="color: #b5bd68;">public</span> <span style="color: #b5bd68;">static</span> <span style="color: #81a2be;">int</span>[] <span style="color: #de935f;">heapSort</span>(<span style="color: #81a2be;">int</span>[] <span style="color: #f0c674;">data</span>)
 {
-        <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">&#23558;&#24453;&#25490;&#24207;&#25968;&#32452;&#65292;&#36716;&#25442;&#20026;&#26368;&#22823;&#22534;</span>
+        <span style="color: #969896; font-style: italic;">// </span><span style="color: #969896; font-style: italic;">&#23558;&#24453;&#25490;&#24207;&#25968;&#32452;&#65292;&#36716;&#25442;&#20026;&#26368;&#22823;&#22534;</span>
         convertToHeap(data, data.length);
-        <span style="color: #859900;">for</span> (<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">i</span> = data.length - 1; i &gt; 0; i--)
+        <span style="color: #b5bd68;">for</span> (<span style="color: #81a2be;">int</span> <span style="color: #f0c674;">i</span> = data.length - 1; i &gt; 0; i--)
         {
-                <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">temp</span> = data[0];
+                <span style="color: #81a2be;">int</span> <span style="color: #f0c674;">temp</span> = data[0];
                 data[0] = data[i];
                 data[i] = temp;
-                <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">&#26368;&#22823;&#22534;index0&#25968;&#25454;&#21457;&#29983;&#21464;&#21270;&#65292;&#20197;&#27492;&#20174;index0&#24320;&#22987;&#37325;&#26032;&#26500;&#24314;&#26368;&#22823;&#22534;</span>
+                <span style="color: #969896; font-style: italic;">// </span><span style="color: #969896; font-style: italic;">&#26368;&#22823;&#22534;index0&#25968;&#25454;&#21457;&#29983;&#21464;&#21270;&#65292;&#20197;&#27492;&#20174;index0&#24320;&#22987;&#37325;&#26032;&#26500;&#24314;&#26368;&#22823;&#22534;</span>
                 makeMaxHeapify(data, i , 0);
         }
 
-        <span style="color: #859900;">return</span> data;
+        <span style="color: #b5bd68;">return</span> data;
 }
 
-<span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">int</span>[] <span style="color: #b58900;">convertToHeap</span>(<span style="color: #268bd2;">int</span>[] <span style="color: #6c71c4;">source</span>, <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">length</span>)
+<span style="color: #b5bd68;">public</span> <span style="color: #b5bd68;">static</span> <span style="color: #81a2be;">int</span>[] <span style="color: #de935f;">convertToHeap</span>(<span style="color: #81a2be;">int</span>[] <span style="color: #f0c674;">source</span>, <span style="color: #81a2be;">int</span> <span style="color: #f0c674;">length</span>)
 {
-        <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">startIdx</span> = getParentIdx(length - 1);
+        <span style="color: #81a2be;">int</span> <span style="color: #f0c674;">startIdx</span> = getParentIdx(length - 1);
 
-        <span style="color: #859900;">for</span> (<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">i</span> = startIdx; i &gt;= 0; i--)
+        <span style="color: #b5bd68;">for</span> (<span style="color: #81a2be;">int</span> <span style="color: #f0c674;">i</span> = startIdx; i &gt;= 0; i--)
         {
                 makeMaxHeapify(source, length, i);
         }
 
-        <span style="color: #859900;">return</span> source;
+        <span style="color: #b5bd68;">return</span> source;
 }
 
-<span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">makeMaxHeapify</span>(<span style="color: #268bd2;">int</span>[] <span style="color: #6c71c4;">data</span>, <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">length</span>, <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">idx</span>)
+<span style="color: #b5bd68;">public</span> <span style="color: #b5bd68;">static</span> <span style="color: #81a2be;">void</span> <span style="color: #de935f;">makeMaxHeapify</span>(<span style="color: #81a2be;">int</span>[] <span style="color: #f0c674;">data</span>, <span style="color: #81a2be;">int</span> <span style="color: #f0c674;">length</span>, <span style="color: #81a2be;">int</span> <span style="color: #f0c674;">idx</span>)
 {
-        <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">leftChildIdx</span> = getLeftChildIdx(idx);
-        <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">rightChildIdx</span> = getRightChildIdx(idx);
+        <span style="color: #81a2be;">int</span> <span style="color: #f0c674;">leftChildIdx</span> = getLeftChildIdx(idx);
+        <span style="color: #81a2be;">int</span> <span style="color: #f0c674;">rightChildIdx</span> = getRightChildIdx(idx);
 
-        <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">largestIdx</span> = idx;
-        <span style="color: #859900;">if</span> (leftChildIdx &lt; <span style="color: #268bd2;">length</span> &amp;&amp; data[leftChildIdx] &gt; data[idx])
+        <span style="color: #81a2be;">int</span> <span style="color: #f0c674;">largestIdx</span> = idx;
+        <span style="color: #b5bd68;">if</span> (leftChildIdx &lt; <span style="color: #81a2be;">length</span> &amp;&amp; data[leftChildIdx] &gt; data[idx])
         {
                 largestIdx = leftChildIdx;
         }
 
-        <span style="color: #859900;">if</span> (rightChildIdx &lt; <span style="color: #268bd2;">length</span> &amp;&amp; data[rightChildIdx] &gt; data[largestIdx])
+        <span style="color: #b5bd68;">if</span> (rightChildIdx &lt; <span style="color: #81a2be;">length</span> &amp;&amp; data[rightChildIdx] &gt; data[largestIdx])
         {
                 largestIdx = rightChildIdx;
         }
 
-        <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">&#29238;&#33410;&#28857;&#21457;&#29983;&#21464;&#21270;&#38656;&#35201;&#35843;&#25972;&#20854;&#23376;&#33410;&#28857;&#65292;&#24050;&#28385;&#36275;&#26368;&#22823;&#22534;&#35201;&#27714;&#12290;</span>
-        <span style="color: #859900;">if</span>(largestIdx != idx)
+        <span style="color: #969896; font-style: italic;">// </span><span style="color: #969896; font-style: italic;">&#29238;&#33410;&#28857;&#21457;&#29983;&#21464;&#21270;&#38656;&#35201;&#35843;&#25972;&#20854;&#23376;&#33410;&#28857;&#65292;&#24050;&#28385;&#36275;&#26368;&#22823;&#22534;&#35201;&#27714;&#12290;</span>
+        <span style="color: #b5bd68;">if</span>(largestIdx != idx)
         {
-                <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">&#24615;&#33021;&#20302;&#20110;&#36890;&#36807;&#20020;&#26102;&#21442;&#25968;&#30452;&#25509;&#20132;&#25442;&#20540;</span>
-                <span style="color: #93a1a1; font-style: italic;">/*</span><span style="color: #93a1a1; font-style: italic;">data[idx] ^= data[largestIdx];</span>
-<span style="color: #93a1a1; font-style: italic;">                data[largestIdx] ^= data[idx];</span>
-<span style="color: #93a1a1; font-style: italic;">                data[idx] ^= data[largestIdx];*/</span>
+                <span style="color: #969896; font-style: italic;">// </span><span style="color: #969896; font-style: italic;">&#24615;&#33021;&#20302;&#20110;&#36890;&#36807;&#20020;&#26102;&#21442;&#25968;&#30452;&#25509;&#20132;&#25442;&#20540;</span>
+                <span style="color: #969896; font-style: italic;">/*</span><span style="color: #969896; font-style: italic;">data[idx] ^= data[largestIdx];</span>
+<span style="color: #969896; font-style: italic;">                data[largestIdx] ^= data[idx];</span>
+<span style="color: #969896; font-style: italic;">                data[idx] ^= data[largestIdx];*/</span>
 
-                <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">temp</span> = data[idx];
+                <span style="color: #81a2be;">int</span> <span style="color: #f0c674;">temp</span> = data[idx];
                 data[idx] = data[largestIdx];
                 data[largestIdx] = temp;
                 makeMaxHeapify(data, length, largestIdx);
         }
 }
 
-<span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">int</span> <span style="color: #b58900;">getLeftChildIdx</span>(<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">parentIdx</span>)
+<span style="color: #b5bd68;">public</span> <span style="color: #b5bd68;">static</span> <span style="color: #81a2be;">int</span> <span style="color: #de935f;">getLeftChildIdx</span>(<span style="color: #81a2be;">int</span> <span style="color: #f0c674;">parentIdx</span>)
 {
-        <span style="color: #859900;">return</span> (parentIdx&lt;&lt;1) + 1;
+        <span style="color: #b5bd68;">return</span> (parentIdx&lt;&lt;1) + 1;
 }
 
-<span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">int</span> <span style="color: #b58900;">getRightChildIdx</span>(<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">parentIdx</span>)
+<span style="color: #b5bd68;">public</span> <span style="color: #b5bd68;">static</span> <span style="color: #81a2be;">int</span> <span style="color: #de935f;">getRightChildIdx</span>(<span style="color: #81a2be;">int</span> <span style="color: #f0c674;">parentIdx</span>)
 {
-        <span style="color: #859900;">return</span> (parentIdx&lt;&lt;1) + 2;
+        <span style="color: #b5bd68;">return</span> (parentIdx&lt;&lt;1) + 2;
 }
 
-<span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">int</span> <span style="color: #b58900;">getParentIdx</span>(<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">childIdx</span>)
+<span style="color: #b5bd68;">public</span> <span style="color: #b5bd68;">static</span> <span style="color: #81a2be;">int</span> <span style="color: #de935f;">getParentIdx</span>(<span style="color: #81a2be;">int</span> <span style="color: #f0c674;">childIdx</span>)
 {
-        <span style="color: #859900;">return</span> (childIdx - 1) &gt;&gt; 1;
+        <span style="color: #b5bd68;">return</span> (childIdx - 1) &gt;&gt; 1;
 }
 </pre>
 </div>
@@ -375,9 +375,9 @@ for the JavaScript code in this tag.
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: BillyHuang@sina.cn</p>
-<p class="date">Created: 2015-07-08 三 18:01</p>
+<p class="date">Created: 2016-04-22 五 17:44</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="validation"></p>
 </div>
 </body>
 </html>

@@ -2,6 +2,7 @@
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./resources/style/style.css" />
 #+LINK_HOME: ./index.html
 #+FILETAGS: :dot language:Graphviz:org-mode:
+#+LATEX_CLASS: cn-article
 #+AUTHOR: Billyhuang@sina.cn
 
 * dot 语言简介

@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>归并排序</title>
-<!-- 2015-07-08 三 18:01 -->
+<!-- 2016-04-22 五 17:44 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="BillyHuang@sina.cn" />
@@ -200,15 +200,15 @@ for the JavaScript code in this tag.
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">int</span>[] <span style="color: #b58900;">mergeSort</span>(<span style="color: #268bd2;">int</span>[] <span style="color: #6c71c4;">arr</span>)
+<pre class="src src-java"><span style="color: #b5bd68;">public</span> <span style="color: #b5bd68;">static</span> <span style="color: #81a2be;">int</span>[] <span style="color: #de935f;">mergeSort</span>(<span style="color: #81a2be;">int</span>[] <span style="color: #f0c674;">arr</span>)
 {
-        <span style="color: #859900;">if</span> (arr.length == 1)
+        <span style="color: #b5bd68;">if</span> (arr.length == 1)
         {
-                <span style="color: #859900;">return</span> arr;
+                <span style="color: #b5bd68;">return</span> arr;
         }
-        <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">half</span> = arr.length / 2;
-        <span style="color: #268bd2;">int</span>[] <span style="color: #6c71c4;">arr1</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">int</span>[half];
-        <span style="color: #268bd2;">int</span>[] <span style="color: #6c71c4;">arr2</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">int</span>[arr.length - half];
+        <span style="color: #81a2be;">int</span> <span style="color: #f0c674;">half</span> = arr.length / 2;
+        <span style="color: #81a2be;">int</span>[] <span style="color: #f0c674;">arr1</span> = <span style="color: #b5bd68;">new</span> <span style="color: #81a2be;">int</span>[half];
+        <span style="color: #81a2be;">int</span>[] <span style="color: #f0c674;">arr2</span> = <span style="color: #b5bd68;">new</span> <span style="color: #81a2be;">int</span>[arr.length - half];
 
         System.arraycopy(arr, 0, arr1, 0, arr1.length);
         System.arraycopy(arr, half, arr2, 0, arr2.length);
@@ -216,43 +216,43 @@ for the JavaScript code in this tag.
         arr1 = mergeSort(arr1);
         arr2 = mergeSort(arr2);
 
-        <span style="color: #859900;">return</span> mergeSort(arr1, arr2);
+        <span style="color: #b5bd68;">return</span> mergeSort(arr1, arr2);
 }
 
-<span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">int</span>[] <span style="color: #b58900;">mergeSort</span>(<span style="color: #268bd2;">int</span>[] <span style="color: #6c71c4;">arr1</span>, <span style="color: #268bd2;">int</span>[] <span style="color: #6c71c4;">arr2</span>)
+<span style="color: #b5bd68;">public</span> <span style="color: #b5bd68;">static</span> <span style="color: #81a2be;">int</span>[] <span style="color: #de935f;">mergeSort</span>(<span style="color: #81a2be;">int</span>[] <span style="color: #f0c674;">arr1</span>, <span style="color: #81a2be;">int</span>[] <span style="color: #f0c674;">arr2</span>)
 {
-        <span style="color: #268bd2;">int</span>[] <span style="color: #6c71c4;">result</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">int</span>[arr1.length + arr2.length];
-        <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">i</span> = 0;
-        <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">j</span> = 0;
-        <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">k</span> = 0;
-        <span style="color: #859900;">while</span> (<span style="color: #268bd2;">true</span>)
+        <span style="color: #81a2be;">int</span>[] <span style="color: #f0c674;">result</span> = <span style="color: #b5bd68;">new</span> <span style="color: #81a2be;">int</span>[arr1.length + arr2.length];
+        <span style="color: #81a2be;">int</span> <span style="color: #f0c674;">i</span> = 0;
+        <span style="color: #81a2be;">int</span> <span style="color: #f0c674;">j</span> = 0;
+        <span style="color: #81a2be;">int</span> <span style="color: #f0c674;">k</span> = 0;
+        <span style="color: #b5bd68;">while</span> (<span style="color: #81a2be;">true</span>)
         {
-                <span style="color: #859900;">if</span> (arr1[i] &lt; arr2[j])
+                <span style="color: #b5bd68;">if</span> (arr1[i] &lt; arr2[j])
                 {
                         result[k++] = arr1[i];
-                        <span style="color: #859900;">if</span> (++i &gt; arr1.length - 1)
+                        <span style="color: #b5bd68;">if</span> (++i &gt; arr1.length - 1)
                         {
-                                <span style="color: #859900;">break</span>;
+                                <span style="color: #b5bd68;">break</span>;
                         }
                 }
-                <span style="color: #859900;">else</span>
+                <span style="color: #b5bd68;">else</span>
                 {
                         result[k++] = arr2[j];
-                        <span style="color: #859900;">if</span> (++j &gt; arr2.length - 1)
+                        <span style="color: #b5bd68;">if</span> (++j &gt; arr2.length - 1)
                         {
-                                <span style="color: #859900;">break</span>;
+                                <span style="color: #b5bd68;">break</span>;
                         }
                 }
         }
-        <span style="color: #859900;">for</span> (; i &lt; arr1.<span style="color: #268bd2;">length</span>; i++)
+        <span style="color: #b5bd68;">for</span> (; i &lt; arr1.<span style="color: #81a2be;">length</span>; i++)
         {
                 result[k++] = arr1[i];
         }
-        <span style="color: #859900;">for</span> (; j &lt; arr2.<span style="color: #268bd2;">length</span>; j++)
+        <span style="color: #b5bd68;">for</span> (; j &lt; arr2.<span style="color: #81a2be;">length</span>; j++)
         {
                 result[k++] = arr2[j];
         }
-        <span style="color: #859900;">return</span> result;
+        <span style="color: #b5bd68;">return</span> result;
 }
 </pre>
 </div>
@@ -330,9 +330,9 @@ for the JavaScript code in this tag.
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: BillyHuang@sina.cn</p>
-<p class="date">Created: 2015-07-08 三 18:01</p>
+<p class="date">Created: 2016-04-22 五 17:44</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="validation"></p>
 </div>
 </body>
 </html>

@@ -9,6 +9,7 @@
      + [[file:algorithms/sort_InsertionSort.org][插入排序]]
      + [[file:algorithms/sort_SelectionSort.org][选择排序]]
    + [[file:study_dot.org][dot language 学习笔记]]
+   + [[file:latex-test.org][latex-test]]
    + [[file:study_plantuml.org][plantuml 学习笔记]]
    + sicp
      + [[file:sicp/p1.org][第一章： 构造过程抽象 解题集]]

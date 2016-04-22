@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>dot language 学习笔记</title>
-<!-- 2015-07-08 三 18:01 -->
+<!-- 2016-04-22 五 17:44 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Billyhuang@sina.cn" />
@@ -191,15 +191,15 @@ DOT语言是一种文本图形描述语言。文件扩展名通常为.gv或.dot 
 <div class="org-src-container">
 
 <pre class="src src-dot">digraph shapes {
-  <span style="color: #2aa198;">"Box"</span>[shape=box]
-  <span style="color: #2aa198;">"Polygon"</span>[shape=polygon,sides=7] /* &#23450;&#20041;&#20102;&#19968;&#20010;7&#36793;&#34892;&#65292;sides&#23646;&#24615;&#23450;&#20041;&#22810;&#36793;&#24418;&#36793;&#30340;&#25968;&#37327; */
-  <span style="color: #2aa198;">"Ellipse"</span>[shape=ellipse]
-  <span style="color: #2aa198;">"Circle"</span>[shape=circle]
-  <span style="color: #2aa198;">"Point"</span>[shape=point]
-  <span style="color: #2aa198;">"triangle"</span>[shape=triangle]
-  <span style="color: #2aa198;">"invtriangle"</span>[shape=invtriangle]
-  <span style="color: #2aa198;">"plaintext"</span>[shape=plaintext]
-  <span style="color: #2aa198;">"diamond"</span>[shape=diamond]
+  <span style="color: #8abeb7;">"Box"</span>[shape=box]
+  <span style="color: #8abeb7;">"Polygon"</span>[shape=polygon,sides=7] /* &#23450;&#20041;&#20102;&#19968;&#20010;7&#36793;&#34892;&#65292;sides&#23646;&#24615;&#23450;&#20041;&#22810;&#36793;&#24418;&#36793;&#30340;&#25968;&#37327; */
+  <span style="color: #8abeb7;">"Ellipse"</span>[shape=ellipse]
+  <span style="color: #8abeb7;">"Circle"</span>[shape=circle]
+  <span style="color: #8abeb7;">"Point"</span>[shape=point]
+  <span style="color: #8abeb7;">"triangle"</span>[shape=triangle]
+  <span style="color: #8abeb7;">"invtriangle"</span>[shape=invtriangle]
+  <span style="color: #8abeb7;">"plaintext"</span>[shape=plaintext]
+  <span style="color: #8abeb7;">"diamond"</span>[shape=diamond]
 }
 </pre>
 </div>
@@ -225,9 +225,9 @@ DOT语言是一种文本图形描述语言。文件扩展名通常为.gv或.dot 
 <div class="org-src-container">
 
 <pre class="src src-dot">digraph lines {
-  <span style="color: #2aa198;">"Undirected1"</span>-&gt;<span style="color: #2aa198;">"Undirected2"</span>[arrowhead=none]
-  <span style="color: #2aa198;">"Undirected1"</span>-&gt;<span style="color: #2aa198;">"Directed1"</span>
-  <span style="color: #2aa198;">"Directed1"</span>-&gt;<span style="color: #2aa198;">"Directed2"</span>[dir=both]
+  <span style="color: #8abeb7;">"Undirected1"</span>-&gt;<span style="color: #8abeb7;">"Undirected2"</span>[arrowhead=none]
+  <span style="color: #8abeb7;">"Undirected1"</span>-&gt;<span style="color: #8abeb7;">"Directed1"</span>
+  <span style="color: #8abeb7;">"Directed1"</span>-&gt;<span style="color: #8abeb7;">"Directed2"</span>[dir=both]
 }
 </pre>
 </div>
@@ -246,11 +246,11 @@ DOT语言是一种文本图形描述语言。文件扩展名通常为.gv或.dot 
 
 <pre class="src src-dot">digraph lines2 {
   rankdir=LR
-  <span style="color: #2aa198;">"solid"</span>-&gt;<span style="color: #2aa198;">"dashed"</span>[style=solid]
-  <span style="color: #2aa198;">"dashed"</span>-&gt;<span style="color: #2aa198;">"dotted"</span>[style=dashed]
-  <span style="color: #2aa198;">"dotted"</span>-&gt;<span style="color: #2aa198;">"bold"</span>[style=dotted]
-  <span style="color: #2aa198;">"bold"</span>-&gt;<span style="color: #2aa198;">"invis"</span>[style=bold]
-  <span style="color: #2aa198;">"invis"</span>-&gt;<span style="color: #2aa198;">"solid"</span>[style=invis]
+  <span style="color: #8abeb7;">"solid"</span>-&gt;<span style="color: #8abeb7;">"dashed"</span>[style=solid]
+  <span style="color: #8abeb7;">"dashed"</span>-&gt;<span style="color: #8abeb7;">"dotted"</span>[style=dashed]
+  <span style="color: #8abeb7;">"dotted"</span>-&gt;<span style="color: #8abeb7;">"bold"</span>[style=dotted]
+  <span style="color: #8abeb7;">"bold"</span>-&gt;<span style="color: #8abeb7;">"invis"</span>[style=bold]
+  <span style="color: #8abeb7;">"invis"</span>-&gt;<span style="color: #8abeb7;">"solid"</span>[style=invis]
 }
 </pre>
 </div>
@@ -275,16 +275,16 @@ DOT语言是一种文本图形描述语言。文件扩展名通常为.gv或.dot 
 <pre class="src src-dot">digraph arrow {
   rankdir=LR
 
-  <span style="color: #2aa198;">"box"</span>-&gt;<span style="color: #2aa198;">"crow"</span>[arrowhead=box]
-  <span style="color: #2aa198;">"crow"</span>-&gt;<span style="color: #2aa198;">"curve"</span>[arrowhead=crow]
-  <span style="color: #2aa198;">"curve"</span>-&gt;<span style="color: #2aa198;">"diamond"</span>[arrowhead=curve]
-  <span style="color: #2aa198;">"diamond"</span>-&gt;<span style="color: #2aa198;">"dot"</span>[arrowhead=diamond]
-  <span style="color: #2aa198;">"dot"</span>-&gt;<span style="color: #2aa198;">"inv"</span>[arrowhead=dot]
-  <span style="color: #2aa198;">"inv"</span>-&gt;<span style="color: #2aa198;">"none"</span>[arrowhead=inv]
-  <span style="color: #2aa198;">"none"</span>-&gt;<span style="color: #2aa198;">"normal"</span>[arrowhead=none]
-  <span style="color: #2aa198;">"normal"</span>-&gt;<span style="color: #2aa198;">"tee"</span>[arrowhead=normal]
-  <span style="color: #2aa198;">"tee"</span>-&gt;<span style="color: #2aa198;">"vee"</span>[arrowhead=tee]
-  <span style="color: #2aa198;">"vee"</span>-&gt;<span style="color: #2aa198;">"box"</span>[arrowhead=vee]
+  <span style="color: #8abeb7;">"box"</span>-&gt;<span style="color: #8abeb7;">"crow"</span>[arrowhead=box]
+  <span style="color: #8abeb7;">"crow"</span>-&gt;<span style="color: #8abeb7;">"curve"</span>[arrowhead=crow]
+  <span style="color: #8abeb7;">"curve"</span>-&gt;<span style="color: #8abeb7;">"diamond"</span>[arrowhead=curve]
+  <span style="color: #8abeb7;">"diamond"</span>-&gt;<span style="color: #8abeb7;">"dot"</span>[arrowhead=diamond]
+  <span style="color: #8abeb7;">"dot"</span>-&gt;<span style="color: #8abeb7;">"inv"</span>[arrowhead=dot]
+  <span style="color: #8abeb7;">"inv"</span>-&gt;<span style="color: #8abeb7;">"none"</span>[arrowhead=inv]
+  <span style="color: #8abeb7;">"none"</span>-&gt;<span style="color: #8abeb7;">"normal"</span>[arrowhead=none]
+  <span style="color: #8abeb7;">"normal"</span>-&gt;<span style="color: #8abeb7;">"tee"</span>[arrowhead=normal]
+  <span style="color: #8abeb7;">"tee"</span>-&gt;<span style="color: #8abeb7;">"vee"</span>[arrowhead=tee]
+  <span style="color: #8abeb7;">"vee"</span>-&gt;<span style="color: #8abeb7;">"box"</span>[arrowhead=vee]
 
   #&#26469;&#20010;&#39640;&#32423;&#30340;&#29992;&#27861;
   a-&gt;b[arrowhead=lcrowortee]
@@ -416,9 +416,9 @@ DOT语言是一种文本图形描述语言。文件扩展名通常为.gv或.dot 
 
 <pre class="src src-dot">digraph demo_node {
    rankdir=LR
-   <span style="color: #2aa198;">"default_node"</span>
-   <span style="color: #2aa198;">"node"</span>[shape=box,color=antiquewhite,style=filled,label=<span style="color: #2aa198;">"node attrs"</span>,fontcolor=brown,fontsize=10,URL=<span style="color: #2aa198;">"http://www.baidu.com"</span>,target=<span style="color: #2aa198;">"_brank"</span>]
-   <span style="color: #2aa198;">"default_node"</span>-&gt;<span style="color: #2aa198;">"node"</span>
+   <span style="color: #8abeb7;">"default_node"</span>
+   <span style="color: #8abeb7;">"node"</span>[shape=box,color=antiquewhite,style=filled,label=<span style="color: #8abeb7;">"node attrs"</span>,fontcolor=brown,fontsize=10,URL=<span style="color: #8abeb7;">"http://www.baidu.com"</span>,target=<span style="color: #8abeb7;">"_brank"</span>]
+   <span style="color: #8abeb7;">"default_node"</span>-&gt;<span style="color: #8abeb7;">"node"</span>
 }
 </pre>
 </div>
@@ -569,7 +569,7 @@ DOT语言是一种文本图形描述语言。文件扩展名通常为.gv或.dot 
 
 <pre class="src src-dot">digraph demo_edge {
   rankdir=LR
-  a-&gt;b[label=<span style="color: #2aa198;">"Yes"</span>,labelfontcolor=blue]
+  a-&gt;b[label=<span style="color: #8abeb7;">"Yes"</span>,labelfontcolor=blue]
   edge[arrowhead=box,arrowsize=1.5,color=red,dir=both,style=dotted,weight=10]
   b-&gt;c
 }
@@ -724,19 +724,19 @@ DOT语言是一种文本图形描述语言。文件扩展名通常为.gv或.dot 
   bgcolor=beige
   fontcolor=gray10
   fontsize=12
-  label=<span style="color: #2aa198;">"this is demo"</span>
+  label=<span style="color: #8abeb7;">"this is demo"</span>
   rankdir=TB
 
-  {rank=same; <span style="color: #2aa198;">"level1"</span> <span style="color: #2aa198;">"a-level1"</span> <span style="color: #2aa198;">"b-level1"</span> <span style="color: #2aa198;">"c-level1"</span>}
-  {rank=same; <span style="color: #2aa198;">"level2"</span> <span style="color: #2aa198;">"d-level2"</span> <span style="color: #2aa198;">"e-level2"</span>}
-  {rank=same; <span style="color: #2aa198;">"level3"</span> <span style="color: #2aa198;">"f-level3"</span> <span style="color: #2aa198;">"g-level3"</span> <span style="color: #2aa198;">"h-level3"</span> <span style="color: #2aa198;">"i-level3"</span> <span style="color: #2aa198;">"j-level3"</span>}
-  {rank=same; <span style="color: #2aa198;">"level4"</span> <span style="color: #2aa198;">"k-level4"</span>}
-  <span style="color: #2aa198;">"level1"</span>-&gt;<span style="color: #2aa198;">"level2"</span>-&gt;<span style="color: #2aa198;">"level3"</span>-&gt;<span style="color: #2aa198;">"level4"</span>
-  <span style="color: #2aa198;">"a-level1"</span>-&gt;<span style="color: #2aa198;">"d-level2"</span>
-  <span style="color: #2aa198;">"e-level2"</span>-&gt;{<span style="color: #2aa198;">"h-level3"</span>, <span style="color: #2aa198;">"k-level4"</span>}
-  <span style="color: #2aa198;">"b-level1"</span>-&gt;{<span style="color: #2aa198;">"e-level2"</span>, <span style="color: #2aa198;">"f-level3"</span>, <span style="color: #2aa198;">"i-level3"</span>, <span style="color: #2aa198;">"k-level4"</span>}
-  <span style="color: #2aa198;">"c-level1"</span>-&gt;{<span style="color: #2aa198;">"d-level2"</span>, <span style="color: #2aa198;">"g-level3"</span>, <span style="color: #2aa198;">"h-level3"</span>}
-  <span style="color: #2aa198;">"j-level3"</span>-&gt;{<span style="color: #2aa198;">"f-level3"</span>, <span style="color: #2aa198;">"k-level4"</span>}
+  {rank=same; <span style="color: #8abeb7;">"level1"</span> <span style="color: #8abeb7;">"a-level1"</span> <span style="color: #8abeb7;">"b-level1"</span> <span style="color: #8abeb7;">"c-level1"</span>}
+  {rank=same; <span style="color: #8abeb7;">"level2"</span> <span style="color: #8abeb7;">"d-level2"</span> <span style="color: #8abeb7;">"e-level2"</span>}
+  {rank=same; <span style="color: #8abeb7;">"level3"</span> <span style="color: #8abeb7;">"f-level3"</span> <span style="color: #8abeb7;">"g-level3"</span> <span style="color: #8abeb7;">"h-level3"</span> <span style="color: #8abeb7;">"i-level3"</span> <span style="color: #8abeb7;">"j-level3"</span>}
+  {rank=same; <span style="color: #8abeb7;">"level4"</span> <span style="color: #8abeb7;">"k-level4"</span>}
+  <span style="color: #8abeb7;">"level1"</span>-&gt;<span style="color: #8abeb7;">"level2"</span>-&gt;<span style="color: #8abeb7;">"level3"</span>-&gt;<span style="color: #8abeb7;">"level4"</span>
+  <span style="color: #8abeb7;">"a-level1"</span>-&gt;<span style="color: #8abeb7;">"d-level2"</span>
+  <span style="color: #8abeb7;">"e-level2"</span>-&gt;{<span style="color: #8abeb7;">"h-level3"</span>, <span style="color: #8abeb7;">"k-level4"</span>}
+  <span style="color: #8abeb7;">"b-level1"</span>-&gt;{<span style="color: #8abeb7;">"e-level2"</span>, <span style="color: #8abeb7;">"f-level3"</span>, <span style="color: #8abeb7;">"i-level3"</span>, <span style="color: #8abeb7;">"k-level4"</span>}
+  <span style="color: #8abeb7;">"c-level1"</span>-&gt;{<span style="color: #8abeb7;">"d-level2"</span>, <span style="color: #8abeb7;">"g-level3"</span>, <span style="color: #8abeb7;">"h-level3"</span>}
+  <span style="color: #8abeb7;">"j-level3"</span>-&gt;{<span style="color: #8abeb7;">"f-level3"</span>, <span style="color: #8abeb7;">"k-level4"</span>}
 }
 </pre>
 </div>
@@ -769,40 +769,40 @@ dot支持将一组元素组合成一个子图，且一个图形可以包含一�
   bgcolor=beige
   fontcolor=gray10
   fontsize=12
-  label=<span style="color: #2aa198;">"this is demo"</span>
+  label=<span style="color: #8abeb7;">"this is demo"</span>
   rankdir=TB
 
-  /* &#29305;&#21035;&#27880;&#24847;: &#23376;&#22270;&#21629;&#21517;&#24517;&#39035;&#20197;<span style="color: #2aa198;">"cluster"</span>&#20026;&#21069;&#32512; */
-  subgraph <span style="color: #2aa198;">"cluster_g1"</span> {
-    label=<span style="color: #2aa198;">"g1"</span>
+  /* &#29305;&#21035;&#27880;&#24847;: &#23376;&#22270;&#21629;&#21517;&#24517;&#39035;&#20197;<span style="color: #8abeb7;">"cluster"</span>&#20026;&#21069;&#32512; */
+  subgraph <span style="color: #8abeb7;">"cluster_g1"</span> {
+    label=<span style="color: #8abeb7;">"g1"</span>
     bgcolor=cadetblue
-    <span style="color: #2aa198;">"level1"</span>-&gt;<span style="color: #2aa198;">"level2"</span>-&gt;<span style="color: #2aa198;">"level3"</span>-&gt;<span style="color: #2aa198;">"level4"</span>
+    <span style="color: #8abeb7;">"level1"</span>-&gt;<span style="color: #8abeb7;">"level2"</span>-&gt;<span style="color: #8abeb7;">"level3"</span>-&gt;<span style="color: #8abeb7;">"level4"</span>
   }
 
-  subgraph <span style="color: #2aa198;">"cluster_g2"</span> {
-    label=<span style="color: #2aa198;">"g2"</span>
+  subgraph <span style="color: #8abeb7;">"cluster_g2"</span> {
+    label=<span style="color: #8abeb7;">"g2"</span>
     bgcolor=cornsilk
-    <span style="color: #2aa198;">"level2"</span>
-    <span style="color: #2aa198;">"d-level2"</span>
-    <span style="color: #2aa198;">"e-level2"</span>
+    <span style="color: #8abeb7;">"level2"</span>
+    <span style="color: #8abeb7;">"d-level2"</span>
+    <span style="color: #8abeb7;">"e-level2"</span>
   }
 
-  subgraph <span style="color: #2aa198;">"cluster_g3"</span> {
-    label=<span style="color: #2aa198;">"g3"</span>
+  subgraph <span style="color: #8abeb7;">"cluster_g3"</span> {
+    label=<span style="color: #8abeb7;">"g3"</span>
     bgcolor=cornsilk
-    <span style="color: #2aa198;">"level3"</span>
-    <span style="color: #2aa198;">"f-level3"</span>
-    <span style="color: #2aa198;">"g-level3"</span>
-    <span style="color: #2aa198;">"h-level3"</span>
-    <span style="color: #2aa198;">"i-level3"</span>
-    <span style="color: #2aa198;">"j-level3"</span>
+    <span style="color: #8abeb7;">"level3"</span>
+    <span style="color: #8abeb7;">"f-level3"</span>
+    <span style="color: #8abeb7;">"g-level3"</span>
+    <span style="color: #8abeb7;">"h-level3"</span>
+    <span style="color: #8abeb7;">"i-level3"</span>
+    <span style="color: #8abeb7;">"j-level3"</span>
   }
 
-  <span style="color: #2aa198;">"a-level1"</span>-&gt;<span style="color: #2aa198;">"d-level2"</span>
-  <span style="color: #2aa198;">"e-level2"</span>-&gt;{<span style="color: #2aa198;">"h-level3"</span>, <span style="color: #2aa198;">"k-level4"</span>}
-  <span style="color: #2aa198;">"b-level1"</span>-&gt;{<span style="color: #2aa198;">"e-level2"</span>, <span style="color: #2aa198;">"f-level3"</span>, <span style="color: #2aa198;">"i-level3"</span>, <span style="color: #2aa198;">"k-level4"</span>}
-  <span style="color: #2aa198;">"c-level1"</span>-&gt;{<span style="color: #2aa198;">"d-level2"</span>, <span style="color: #2aa198;">"g-level3"</span>, <span style="color: #2aa198;">"h-level3"</span>}
-  <span style="color: #2aa198;">"j-level3"</span>-&gt;{<span style="color: #2aa198;">"f-level3"</span>, <span style="color: #2aa198;">"k-level4"</span>}
+  <span style="color: #8abeb7;">"a-level1"</span>-&gt;<span style="color: #8abeb7;">"d-level2"</span>
+  <span style="color: #8abeb7;">"e-level2"</span>-&gt;{<span style="color: #8abeb7;">"h-level3"</span>, <span style="color: #8abeb7;">"k-level4"</span>}
+  <span style="color: #8abeb7;">"b-level1"</span>-&gt;{<span style="color: #8abeb7;">"e-level2"</span>, <span style="color: #8abeb7;">"f-level3"</span>, <span style="color: #8abeb7;">"i-level3"</span>, <span style="color: #8abeb7;">"k-level4"</span>}
+  <span style="color: #8abeb7;">"c-level1"</span>-&gt;{<span style="color: #8abeb7;">"d-level2"</span>, <span style="color: #8abeb7;">"g-level3"</span>, <span style="color: #8abeb7;">"h-level3"</span>}
+  <span style="color: #8abeb7;">"j-level3"</span>-&gt;{<span style="color: #8abeb7;">"f-level3"</span>, <span style="color: #8abeb7;">"k-level4"</span>}
 }
 </pre>
 </div>
@@ -825,17 +825,17 @@ dot支持将一组元素组合成一个子图，且一个图形可以包含一�
 
 <pre class="src src-dot">digraph html {
   abc [shape=none, margin=0, label=&lt;
-  &lt;TABLE BORDER=<span style="color: #2aa198;">"0"</span> CELLBORDER=<span style="color: #2aa198;">"1"</span> CELLSPACING=<span style="color: #2aa198;">"0"</span> CELLPADDING=<span style="color: #2aa198;">"4"</span>&gt;
-  &lt;TR&gt;&lt;TD ROWSPAN=<span style="color: #2aa198;">"3"</span>&gt;&lt;FONT COLOR=<span style="color: #2aa198;">"red"</span>&gt;hello&lt;/FONT&gt;&lt;BR/&gt;world&lt;/TD&gt;
-  &lt;TD COLSPAN=<span style="color: #2aa198;">"3"</span>&gt;b&lt;/TD&gt;
-  &lt;TD ROWSPAN=<span style="color: #2aa198;">"3"</span> BGCOLOR=<span style="color: #2aa198;">"lightgrey"</span>&gt;g&lt;/TD&gt;
-  &lt;TD ROWSPAN=<span style="color: #2aa198;">"3"</span>&gt;h&lt;/TD&gt;
+  &lt;TABLE BORDER=<span style="color: #8abeb7;">"0"</span> CELLBORDER=<span style="color: #8abeb7;">"1"</span> CELLSPACING=<span style="color: #8abeb7;">"0"</span> CELLPADDING=<span style="color: #8abeb7;">"4"</span>&gt;
+  &lt;TR&gt;&lt;TD ROWSPAN=<span style="color: #8abeb7;">"3"</span>&gt;&lt;FONT COLOR=<span style="color: #8abeb7;">"red"</span>&gt;hello&lt;/FONT&gt;&lt;BR/&gt;world&lt;/TD&gt;
+  &lt;TD COLSPAN=<span style="color: #8abeb7;">"3"</span>&gt;b&lt;/TD&gt;
+  &lt;TD ROWSPAN=<span style="color: #8abeb7;">"3"</span> BGCOLOR=<span style="color: #8abeb7;">"lightgrey"</span>&gt;g&lt;/TD&gt;
+  &lt;TD ROWSPAN=<span style="color: #8abeb7;">"3"</span>&gt;h&lt;/TD&gt;
   &lt;/TR&gt;
   &lt;TR&gt;&lt;TD&gt;c&lt;/TD&gt;
-  &lt;TD PORT=<span style="color: #2aa198;">"here"</span>&gt;d&lt;/TD&gt;
+  &lt;TD PORT=<span style="color: #8abeb7;">"here"</span>&gt;d&lt;/TD&gt;
   &lt;TD&gt;e&lt;/TD&gt;
   &lt;/TR&gt;
-  &lt;TR&gt;&lt;TD COLSPAN=<span style="color: #2aa198;">"3"</span>&gt;f&lt;/TD&gt;
+  &lt;TR&gt;&lt;TD COLSPAN=<span style="color: #8abeb7;">"3"</span>&gt;f&lt;/TD&gt;
   &lt;/TR&gt;
   &lt;/TABLE&gt;&gt;];
  }
@@ -857,9 +857,9 @@ dot支持将一组元素组合成一个子图，且一个图形可以包含一�
 
 <pre class="src src-dot">digraph structs {
   node [shape=record];
-  struct1 [shape=record,label=<span style="color: #2aa198;">"&lt;f0&gt; left|&lt;f1&gt; middle|&lt;f2&gt; right"</span>];
-  struct2 [shape=record,label=<span style="color: #2aa198;">"&lt;f0&gt; one|&lt;f1&gt; two"</span>];
-  struct3 [shape=record,label=<span style="color: #2aa198;">"hello\nworld |{ b |{c|&lt;here&gt; d|e}| f}| g | h"</span>];
+  struct1 [shape=record,label=<span style="color: #8abeb7;">"&lt;f0&gt; left|&lt;f1&gt; middle|&lt;f2&gt; right"</span>];
+  struct2 [shape=record,label=<span style="color: #8abeb7;">"&lt;f0&gt; one|&lt;f1&gt; two"</span>];
+  struct3 [shape=record,label=<span style="color: #8abeb7;">"hello\nworld |{ b |{c|&lt;here&gt; d|e}| f}| g | h"</span>];
   struct1:f1 -&gt; struct2:f0;
   struct1:f2 -&gt; struct3:here;
 }
@@ -897,9 +897,9 @@ dot支持将一组元素组合成一个子图，且一个图形可以包含一�
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Billyhuang@sina.cn</p>
-<p class="date">Created: 2015-07-08 三 18:01</p>
+<p class="date">Created: 2016-04-22 五 17:44</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="validation"></p>
 </div>
 </body>
 </html>

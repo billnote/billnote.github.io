@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>第一章： 构造过程抽象 解题集</title>
-<!-- 2015-07-17 五 11:25 -->
+<!-- 2016-04-22 五 17:44 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="BillyHuang@sina.cn" />
@@ -221,50 +221,50 @@ for the JavaScript code in this tag.
 <div class="org-src-container">
 
 <pre class="src src-scheme">10
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer: 10</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">answer: 10</span>
 
 (+ 5 3 4)
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer: 12</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">answer: 12</span>
 
 (- 9 1)
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer: 8</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">answer: 8</span>
 
 (/ 6 2)
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer: 3</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">answer: 3</span>
 
 (+ (* 2 4) (- 4 6))
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer: 6</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">answer: 6</span>
 
-(<span style="color: #859900;">define</span> <span style="color: #b58900;">a</span> 3)
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer: a</span>
+(<span style="color: #b5bd68;">define</span> <span style="color: #de935f;">a</span> 3)
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">answer: a</span>
 
-(<span style="color: #859900;">define</span> <span style="color: #b58900;">b</span> (+ a 1))
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer: b</span>
+(<span style="color: #b5bd68;">define</span> <span style="color: #de935f;">b</span> (+ a 1))
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">answer: b</span>
 
 (+ a b (* a b))
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer: 19</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">answer: 19</span>
 
 (= a b)
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer: #f</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">answer: #f</span>
 
-(<span style="color: #859900;">if</span> (<span style="color: #859900;">and</span> (&gt; b a) (&lt; b (* a b)))
+(<span style="color: #b5bd68;">if</span> (<span style="color: #b5bd68;">and</span> (&gt; b a) (&lt; b (* a b)))
     b
     a)
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer: 4</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">answer: 4</span>
 
-(<span style="color: #859900;">cond</span> ((= a 4) 6)
+(<span style="color: #b5bd68;">cond</span> ((= a 4) 6)
       ((= b 4) (+ 6 7 a))
-      (<span style="color: #859900;">else</span> 25))
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer: 16</span>
+      (<span style="color: #b5bd68;">else</span> 25))
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">answer: 16</span>
 
-(+ 2 (<span style="color: #859900;">if</span> (&gt; b a) b a))
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer: 6</span>
+(+ 2 (<span style="color: #b5bd68;">if</span> (&gt; b a) b a))
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">answer: 6</span>
 
-(* (<span style="color: #859900;">cond</span> ((&gt; a b) a)
+(* (<span style="color: #b5bd68;">cond</span> ((&gt; a b) a)
          ((&lt; a b) b)
-         (<span style="color: #859900;">else</span> -1))
+         (<span style="color: #b5bd68;">else</span> -1))
    (+ a 1))
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer: 16</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">answer: 16</span>
 </pre>
 </div>
 </div>
@@ -278,7 +278,7 @@ $$\frac{5+4+(2-(3-(6+\frac{4}{5})))}{3*(6-2)*(2-7)}$$
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer:</span>
+<pre class="src src-scheme"><span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">answer:</span>
 (\ (+ 5 4 (- 2 (- 3 (+ 6 (\ 4 5))))) (* 3 (- 6 2) (- 7 2)))
 </pre>
 </div>
@@ -290,12 +290,12 @@ $$\frac{5+4+(2-(3-(6+\frac{4}{5})))}{3*(6-2)*(2-7)}$$
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define</span> (<span style="color: #b58900;">summax</span> a b c)
-  (<span style="color: #859900;">cond</span> ((&gt; a b)
-         (<span style="color: #859900;">cond</span> ((&gt; b c) (+ a b))
-               (<span style="color: #859900;">else</span> (+ a c))))
-        (<span style="color: #859900;">else</span> (<span style="color: #859900;">cond</span> ((&gt; a c) (+ b a))
-                    (<span style="color: #859900;">else</span> (+ b c))))))
+<pre class="src src-scheme">(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">summax</span> a b c)
+  (<span style="color: #b5bd68;">cond</span> ((&gt; a b)
+         (<span style="color: #b5bd68;">cond</span> ((&gt; b c) (+ a b))
+               (<span style="color: #b5bd68;">else</span> (+ a c))))
+        (<span style="color: #b5bd68;">else</span> (<span style="color: #b5bd68;">cond</span> ((&gt; a c) (+ b a))
+                    (<span style="color: #b5bd68;">else</span> (+ b c))))))
 </pre>
 </div>
 </div>
@@ -315,17 +315,17 @@ $$\frac{5+4+(2-(3-(6+\frac{4}{5})))}{3*(6-2)*(2-7)}$$
 <div class="outline-text-2" id="text-5">
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define</span> (<span style="color: #b58900;">p</span>) (p))
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">test</span> x y)
-  (<span style="color: #859900;">if</span> (= x 0)
+<pre class="src src-scheme">(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">p</span>) (p))
+(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">test</span> x y)
+  (<span style="color: #b5bd68;">if</span> (= x 0)
       0
       y))
 
 &#65288;test 0 (p)&#65289;
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer:</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#27491;&#21017;&#24207;&#27714;&#20540;&#36820;&#22238;0;</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#24212;&#29992;&#24207;&#27714;&#20540;&#20250;&#20986;&#29616;&#26080;&#38480;&#36882;&#24402;&#35843;&#29992;&#12290;</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">answer:</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">&#27491;&#21017;&#24207;&#27714;&#20540;&#36820;&#22238;0;</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">&#24212;&#29992;&#24207;&#27714;&#20540;&#20250;&#20986;&#29616;&#26080;&#38480;&#36882;&#24402;&#35843;&#29992;&#12290;</span>
 </pre>
 </div>
 </div>
@@ -336,25 +336,25 @@ $$\frac{5+4+(2-(3-(6+\frac{4}{5})))}{3*(6-2)*(2-7)}$$
 <div class="outline-text-2" id="text-6">
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define</span> (<span style="color: #b58900;">new-if</span> predicate then-clause else-clause)
-  (<span style="color: #859900;">cond</span> (predicate then-clause)
-        (<span style="color: #859900;">else</span> else-clause)))
+<pre class="src src-scheme">(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">new-if</span> predicate then-clause else-clause)
+  (<span style="color: #b5bd68;">cond</span> (predicate then-clause)
+        (<span style="color: #b5bd68;">else</span> else-clause)))
 
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">new-sqrt-iter</span> guess x)
+(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">new-sqrt-iter</span> guess x)
   (new-if (good-enough? guess x)
           guess
           (new-sqrt-iter (improve guess x)
                          x)))
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer:</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#20250;&#20986;&#29616;&#26080;&#38480;&#36882;&#24402;&#35843;&#29992;&#12290;</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#21407;&#22240;&#26159;&#65306;&#25353;&#29031;&#24212;&#29992;&#24207;&#27714;&#20540;&#65292;&#27599;&#20010;&#21442;&#25968;&#37117;&#20250;&#20808;&#36827;&#34892;&#27714;&#20540;&#12290;&#25152;&#20197;&#19981;&#31649;&#26159;true&#65292;&#36824;&#26159;false else-clause&#37117;&#20250;&#34987;&#25191;&#34892;&#12290;&#36827;&#32780;&#23548;&#33268;&#26080;&#38480;&#36882;&#24402;&#12290;</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#32780;if&#20026;&#29305;&#27530;&#30340;&#36807;&#31243;then-clause&#21644;else-clause&#21482;&#20250;&#25191;&#34892;&#19968;&#20010;&#12290;</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#39564;&#35777;&#30340;&#34920;&#36798;&#24335;&#65306;</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">(new-if #t (list 0 (display "true")) (display "false"))</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#36820;&#22238;&#32467;&#26524;&#20026;&#65306;</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">(new-if): truefalse(0 #&lt;void&gt;)</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">(if): true(0 #&lt;void&gt;)</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">answer:</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">&#20250;&#20986;&#29616;&#26080;&#38480;&#36882;&#24402;&#35843;&#29992;&#12290;</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">&#21407;&#22240;&#26159;&#65306;&#25353;&#29031;&#24212;&#29992;&#24207;&#27714;&#20540;&#65292;&#27599;&#20010;&#21442;&#25968;&#37117;&#20250;&#20808;&#36827;&#34892;&#27714;&#20540;&#12290;&#25152;&#20197;&#19981;&#31649;&#26159;true&#65292;&#36824;&#26159;false else-clause&#37117;&#20250;&#34987;&#25191;&#34892;&#12290;&#36827;&#32780;&#23548;&#33268;&#26080;&#38480;&#36882;&#24402;&#12290;</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">&#32780;if&#20026;&#29305;&#27530;&#30340;&#36807;&#31243;then-clause&#21644;else-clause&#21482;&#20250;&#25191;&#34892;&#19968;&#20010;&#12290;</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">&#39564;&#35777;&#30340;&#34920;&#36798;&#24335;&#65306;</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">(new-if #t (list 0 (display "true")) (display "false"))</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">&#36820;&#22238;&#32467;&#26524;&#20026;&#65306;</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">(new-if): truefalse(0 #&lt;void&gt;)</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">(if): true(0 #&lt;void&gt;)</span>
 </pre>
 </div>
 </div>
@@ -365,8 +365,8 @@ $$\frac{5+4+(2-(3-(6+\frac{4}{5})))}{3*(6-2)*(2-7)}$$
 <div class="outline-text-2" id="text-7">
 <div class="org-src-container">
 
-<pre class="src src-scheme"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer</span>
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">new-good-enough?</span> new-guess old-guess)
+<pre class="src src-scheme"><span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">answer</span>
+(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">new-good-enough?</span> new-guess old-guess)
   (&lt; (abs (- new-guess old-guess)) 0.00000001))
 </pre>
 </div>
@@ -378,19 +378,19 @@ $$\frac{5+4+(2-(3-(6+\frac{4}{5})))}{3*(6-2)*(2-7)}$$
 <div class="outline-text-2" id="text-8">
 <div class="org-src-container">
 
-<pre class="src src-scheme"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer:</span>
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">cube-iter</span> guess x)
-  (<span style="color: #859900;">if</span> (cube-good-enough? guess x)
+<pre class="src src-scheme"><span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">answer:</span>
+(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">cube-iter</span> guess x)
+  (<span style="color: #b5bd68;">if</span> (cube-good-enough? guess x)
       guess
       (cube-iter (improve-cube guess x) x)))
 
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">improve-cube</span> guess x)
+(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">improve-cube</span> guess x)
   (/ (+ (/ x (square guess)) (* 2 guess)) 3))
 
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">cube-good-enough?</span> guess x)
+(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">cube-good-enough?</span> guess x)
   (&lt; (abs (- (* guess guess guess) x)) 0.0001))
 
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">cube</span> x)
+(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">cube</span> x)
   (cube-iter 1.0 x))
 </pre>
 </div>
@@ -402,8 +402,8 @@ $$\frac{5+4+(2-(3-(6+\frac{4}{5})))}{3*(6-2)*(2-7)}$$
 <div class="outline-text-2" id="text-9">
 <div class="org-src-container">
 
-<pre class="src src-scheme"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer:</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#26041;&#27861;&#19968;&#20026;&#32447;&#24615;&#36882;&#24402;&#35745;&#31639;&#36807;&#31243;&#65292;&#23637;&#24320;&#24335;&#22914;&#19979;&#65306;</span>
+<pre class="src src-scheme"><span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">answer:</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">&#26041;&#27861;&#19968;&#20026;&#32447;&#24615;&#36882;&#24402;&#35745;&#31639;&#36807;&#31243;&#65292;&#23637;&#24320;&#24335;&#22914;&#19979;&#65306;</span>
 &#65288;+ 4 5&#65289;
 (inc (+ 3 5))
 (inc (inc (+ 2 5)))
@@ -415,7 +415,7 @@ $$\frac{5+4+(2-(3-(6+\frac{4}{5})))}{3*(6-2)*(2-7)}$$
 (inc 8)
 9
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#26041;&#27861;&#20108;&#20026;&#36882;&#24402;&#36845;&#20195;&#35745;&#31639;&#36807;&#31243;&#65292;&#23637;&#24320;&#24335;&#22914;&#19979;&#65306;</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">&#26041;&#27861;&#20108;&#20026;&#36882;&#24402;&#36845;&#20195;&#35745;&#31639;&#36807;&#31243;&#65292;&#23637;&#24320;&#24335;&#22914;&#19979;&#65306;</span>
 &#65288;+ 4 5&#65289;
 &#65288;+ 3 6&#65289;
 &#65288;+ 2 7&#65289;
@@ -432,20 +432,20 @@ $$\frac{5+4+(2-(3-(6+\frac{4}{5})))}{3*(6-2)*(2-7)}$$
 <div class="outline-text-2" id="text-10">
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define</span> (<span style="color: #b58900;">A</span> x y)
-  (<span style="color: #859900;">cond</span> ((= y 0) 0)
+<pre class="src src-scheme">(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">A</span> x y)
+  (<span style="color: #b5bd68;">cond</span> ((= y 0) 0)
         ((= x 0) (* 2 y))
         ((= y 1) 2)
-        (<span style="color: #859900;">else</span> (A (- x 1)
+        (<span style="color: #b5bd68;">else</span> (A (- x 1)
                  (A (- y 1))))))
 
 (A 1 10)
 (A 2 4)
 (A 3 3)
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">f</span> n) (A 0 n))
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">g</span> n) (A 1 n))
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">h</span> n) (A 2 n))
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">k</span> n) (* 5 n n))
+(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">f</span> n) (A 0 n))
+(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">g</span> n) (A 1 n))
+(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">h</span> n) (A 2 n))
+(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">k</span> n) (* 5 n n))
 </pre>
 </div>
 <ul class="org-ul">
@@ -476,19 +476,19 @@ $$\frac{5+4+(2-(3-(6+\frac{4}{5})))}{3*(6-2)*(2-7)}$$
 <div class="outline-text-2" id="text-11">
 <div class="org-src-container">
 
-<pre class="src src-scheme"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer:</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#36882;&#24402;&#35745;&#31639;&#36807;&#31243;&#23454;&#29616;</span>
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">f</span> n)
-  (<span style="color: #859900;">cond</span> ((&lt; n 3) n)
-        (<span style="color: #859900;">else</span> (+ (f (- n 1))
+<pre class="src src-scheme"><span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">answer:</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">&#36882;&#24402;&#35745;&#31639;&#36807;&#31243;&#23454;&#29616;</span>
+(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">f</span> n)
+  (<span style="color: #b5bd68;">cond</span> ((&lt; n 3) n)
+        (<span style="color: #b5bd68;">else</span> (+ (f (- n 1))
                  (* 2 (f (- n 2)))
                  (* 3 (f (- n 3)))))))
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#36845;&#20195;&#35745;&#31639;&#36807;&#31243;&#23454;&#29616;</span>
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">f-iter</span> n)
-  (<span style="color: #859900;">define</span> (<span style="color: #b58900;">iter</span> a b c count)
-    (<span style="color: #859900;">cond</span> ((= count 0) a)
-          (<span style="color: #859900;">else</span> (iter b c (+ (* 3 a) (* 2 b) c) (- count 1)))))
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">&#36845;&#20195;&#35745;&#31639;&#36807;&#31243;&#23454;&#29616;</span>
+(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">f-iter</span> n)
+  (<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">iter</span> a b c count)
+    (<span style="color: #b5bd68;">cond</span> ((= count 0) a)
+          (<span style="color: #b5bd68;">else</span> (iter b c (+ (* 3 a) (* 2 b) c) (- count 1)))))
   (iter 0 1 2 n))
 </pre>
 </div>
@@ -500,25 +500,25 @@ $$\frac{5+4+(2-(3-(6+\frac{4}{5})))}{3*(6-2)*(2-7)}$$
 <div class="outline-text-2" id="text-12">
 <div class="org-src-container">
 
-<pre class="src src-scheme"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer:</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#36882;&#24402;&#35745;&#31639;&#36807;&#31243;&#23454;&#29616;</span>
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">pascal</span> row col)
-  (<span style="color: #859900;">cond</span> ((&gt; col row) (error <span style="color: #2aa198;">"illegal col value!"</span>))
-        ((<span style="color: #859900;">or</span> (= col 0) (= row col)) 1)
-        (<span style="color: #859900;">else</span> (+ (pascal (- row 1) (- col 1))
+<pre class="src src-scheme"><span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">answer:</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">&#36882;&#24402;&#35745;&#31639;&#36807;&#31243;&#23454;&#29616;</span>
+(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">pascal</span> row col)
+  (<span style="color: #b5bd68;">cond</span> ((&gt; col row) (error <span style="color: #8abeb7;">"illegal col value!"</span>))
+        ((<span style="color: #b5bd68;">or</span> (= col 0) (= row col)) 1)
+        (<span style="color: #b5bd68;">else</span> (+ (pascal (- row 1) (- col 1))
                  (pascal (- row 1) col)))))
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#36845;&#20195;&#35745;&#31639;&#36807;&#31243;&#23454;&#29616;</span>
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">pascal-iter</span> row col)
-  (<span style="color: #859900;">define</span> (<span style="color: #b58900;">factorial-iter</span> value counter n)
-    (<span style="color: #859900;">cond</span> ((= counter n) value)
-          (<span style="color: #859900;">else</span> (factorial-iter (* value (+ counter 1))
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">&#36845;&#20195;&#35745;&#31639;&#36807;&#31243;&#23454;&#29616;</span>
+(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">pascal-iter</span> row col)
+  (<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">factorial-iter</span> value counter n)
+    (<span style="color: #b5bd68;">cond</span> ((= counter n) value)
+          (<span style="color: #b5bd68;">else</span> (factorial-iter (* value (+ counter 1))
                                 (+ counter 1)
                                 n))))
-  (<span style="color: #859900;">cond</span> ((&gt; col row)
-         (error <span style="color: #2aa198;">"illegal col value!"</span>))
-        ((<span style="color: #859900;">or</span> (= col 0) (= row col)) 1)
-        (<span style="color: #859900;">else</span>
+  (<span style="color: #b5bd68;">cond</span> ((&gt; col row)
+         (error <span style="color: #8abeb7;">"illegal col value!"</span>))
+        ((<span style="color: #b5bd68;">or</span> (= col 0) (= row col)) 1)
+        (<span style="color: #b5bd68;">else</span>
          (/ (factorial-iter 1 1 row)
             (* (factorial-iter 1 1 col)
                (factorial-iter 1 1 (- row col)))))))
@@ -555,26 +555,26 @@ $$\frac{5+4+(2-(3-(6+\frac{4}{5})))}{3*(6-2)*(2-7)}$$
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define</span> (<span style="color: #b58900;">cube</span> x) (* x x x))
+<pre class="src src-scheme">(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">cube</span> x) (* x x x))
 
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">p</span> x) (- (* 3 x) (* 4 (cube x))))
+(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">p</span> x) (- (* 3 x) (* 4 (cube x))))
 
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">sine</span> angle)
-  (<span style="color: #859900;">if</span> (&lt; (abs angle) 0.1)
+(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">sine</span> angle)
+  (<span style="color: #b5bd68;">if</span> (&lt; (abs angle) 0.1)
       angle
       (p (sine (/ angle 3.0)))))
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer:</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">a)</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">(sine 12.15)</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">(p (sine 4.5))</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">(p (p (sine 1.5)))</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">(p (p (p (sine 0.5))))</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">(p (p (p (p (sine 0.166666)))))</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">(p (p (p (p (p (p (sine 0.0555555)))))))</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">p&#34987;&#25191;&#34892;&#20102;6&#27425;&#65307;</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">answer:</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">a)</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">(sine 12.15)</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">(p (sine 4.5))</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">(p (p (sine 1.5)))</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">(p (p (p (sine 0.5))))</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">(p (p (p (p (sine 0.166666)))))</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">(p (p (p (p (p (p (sine 0.0555555)))))))</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">p&#34987;&#25191;&#34892;&#20102;6&#27425;&#65307;</span>
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">b)</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#920;(n)</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">b)</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">&#920;(n)</span>
 </pre>
 </div>
 </div>
@@ -585,12 +585,12 @@ $$\frac{5+4+(2-(3-(6+\frac{4}{5})))}{3*(6-2)*(2-7)}$$
 <div class="outline-text-2" id="text-16">
 <div class="org-src-container">
 
-<pre class="src src-scheme"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">answer:</span>
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">fast-expt-iter</span> b n)
-  (<span style="color: #859900;">cond</span> ((= n 0) 1)
+<pre class="src src-scheme"><span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">answer:</span>
+(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">fast-expt-iter</span> b n)
+  (<span style="color: #b5bd68;">cond</span> ((= n 0) 1)
         ((even? n)
          (fast-expt-iter (square b) (/ n 2)))
-        (<span style="color: #859900;">else</span> (* b (fast-expt-iter b (- n 1))))))
+        (<span style="color: #b5bd68;">else</span> (* b (fast-expt-iter b (- n 1))))))
 </pre>
 </div>
 </div>
@@ -601,17 +601,17 @@ $$\frac{5+4+(2-(3-(6+\frac{4}{5})))}{3*(6-2)*(2-7)}$$
 <div class="outline-text-2" id="text-17">
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define</span> (<span style="color: #b58900;">double</span> a)
+<pre class="src src-scheme">(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">double</span> a)
   (+ a a))
 
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">halve</span> a)
+(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">halve</span> a)
   (/ a 2))
 
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">fast-*</span> a b)
-  (<span style="color: #859900;">cond</span> ((<span style="color: #859900;">or</span> (= b 0) (= a 0)) 0)
+(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">fast-*</span> a b)
+  (<span style="color: #b5bd68;">cond</span> ((<span style="color: #b5bd68;">or</span> (= b 0) (= a 0)) 0)
         ((even? b)
          (fast-* (double a) (halve b)))
-        (<span style="color: #859900;">else</span> (+ a (fast-* a (- b 1))))))
+        (<span style="color: #b5bd68;">else</span> (+ a (fast-* a (- b 1))))))
 </pre>
 </div>
 </div>
@@ -640,18 +640,18 @@ $$\begin{pmatrix}p&q\\q&p+q\end{pmatrix}\begin{pmatrix}p&q\\q&p+q\end{pmatrix}=\
 </p>
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define</span> (<span style="color: #b58900;">fib</span> n)
+<pre class="src src-scheme">(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">fib</span> n)
   (fib-iter 1 0 0 1 n))
 
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">fib-iter</span> a b p q count)
-  (<span style="color: #859900;">cond</span> ((= 0 count) b)
+(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">fib-iter</span> a b p q count)
+  (<span style="color: #b5bd68;">cond</span> ((= 0 count) b)
         ((even? count)
          (fib-iter a
                    b
                    (+ (square p) (square q))
                    (+ (* 2 p q) (square q))
                    (/ count 2)))
-        (<span style="color: #859900;">else</span> (fib-iter (+ (* b q) (* a q) (* a p))
+        (<span style="color: #b5bd68;">else</span> (fib-iter (+ (* b q) (* a q) (* a p))
                         (+ (* b p) (* a q))
                         p
                         q
@@ -666,14 +666,14 @@ $$\begin{pmatrix}p&q\\q&p+q\end{pmatrix}\begin{pmatrix}p&q\\q&p+q\end{pmatrix}=\
 <div class="outline-text-2" id="text-19">
 <div class="org-src-container">
 
-<pre class="src src-scheme"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#27491;&#21017;&#24207;</span>
+<pre class="src src-scheme"><span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">&#27491;&#21017;&#24207;</span>
 (gcd 206 40)
 (gcd 40 (remainder 206 40))
 (gcd (remainder 206 40) (remainder 40 (remainder 206 40)))
 (gcd (remainder 40 (remainder 206 40)) (remiander (remainder 206 40) (remainder 40 (remainder 206 40))))
 (gcd (remiander (remainder 206 40) (remainder 40 (remainder 206 40))) ((remainder 40 (remainder 206 40)) (remiander (remainder 206 40) (remainder 40 (remainder 206 40)))))
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#24212;&#29992;&#24207;</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">&#24212;&#29992;&#24207;</span>
 (gcd 206 40)
 (gcd 40 (remainder 206 40))
 (gcd 40 6)
@@ -693,21 +693,21 @@ $$\begin{pmatrix}p&q\\q&p+q\end{pmatrix}\begin{pmatrix}p&q\\q&p+q\end{pmatrix}=\
 <div class="outline-text-2" id="text-20">
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define</span> (<span style="color: #b58900;">smallest-divisor</span> n)
-  (<span style="color: #859900;">define</span> (<span style="color: #b58900;">find-divisor</span> n test-divisor)
-    (<span style="color: #859900;">cond</span> ((&gt; (square test-divisor) n) n)
+<pre class="src src-scheme">(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">smallest-divisor</span> n)
+  (<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">find-divisor</span> n test-divisor)
+    (<span style="color: #b5bd68;">cond</span> ((&gt; (square test-divisor) n) n)
           ((divides? test-divisor n) test-divisor)
-          (<span style="color: #859900;">else</span> (find-divisor n (+ test-divisor 1)))))
-  (<span style="color: #859900;">define</span> (<span style="color: #b58900;">divides?</span> a b)
+          (<span style="color: #b5bd68;">else</span> (find-divisor n (+ test-divisor 1)))))
+  (<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">divides?</span> a b)
     (= (remainder b a) 0))
   (find-divisor n 2))
 
 (smallest-divisor 199)
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">199</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">199</span>
 (smallest-divisor 1999)
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">1999</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">1999</span>
 (smallest-divisor 19999)
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">7</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">7</span>
 </pre>
 </div>
 </div>
@@ -718,22 +718,22 @@ $$\begin{pmatrix}p&q\\q&p+q\end{pmatrix}\begin{pmatrix}p&q\\q&p+q\end{pmatrix}=\
 <div class="outline-text-2" id="text-21">
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define</span> (<span style="color: #b58900;">time-prime-test</span> n)
+<pre class="src src-scheme">(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">time-prime-test</span> n)
   (start-prime-time n (real-time-clock)))
 
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">start-prime-time</span> n start-time)
-  (<span style="color: #859900;">cond</span> ((prime? n)
+(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">start-prime-time</span> n start-time)
+  (<span style="color: #b5bd68;">cond</span> ((prime? n)
          (newline) (display n) (report-prime (- (real-time-clock) start-time)))))
 
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">report-prime</span> elapsed-time)
-  (display <span style="color: #2aa198;">" *** "</span>)
+(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">report-prime</span> elapsed-time)
+  (display <span style="color: #8abeb7;">" *** "</span>)
   (display elapsed-time))
 
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">search-for-primes</span> min max)
-  (<span style="color: #859900;">define</span> (<span style="color: #b58900;">iter</span> n min max)
-    (<span style="color: #859900;">cond</span> ((<span style="color: #859900;">or</span> (&lt; n min) (&gt; n max)) n (newline) (display <span style="color: #2aa198;">"end."</span>))
+(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">search-for-primes</span> min max)
+  (<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">iter</span> n min max)
+    (<span style="color: #b5bd68;">cond</span> ((<span style="color: #b5bd68;">or</span> (&lt; n min) (&gt; n max)) n (newline) (display <span style="color: #8abeb7;">"end."</span>))
           ((even? n) (iter (+ n 1) min max))
-          (<span style="color: #859900;">else</span> (time-prime-test n) (iter (+ n 2) min max))))
+          (<span style="color: #b5bd68;">else</span> (time-prime-test n) (iter (+ n 2) min max))))
   (iter min min max))
 </pre>
 </div>
@@ -745,16 +745,16 @@ $$\begin{pmatrix}p&q\\q&p+q\end{pmatrix}\begin{pmatrix}p&q\\q&p+q\end{pmatrix}=\
 <div class="outline-text-2" id="text-22">
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define</span> (<span style="color: #b58900;">smallest-divisor</span> n)
-  (<span style="color: #859900;">define</span> (<span style="color: #b58900;">find-divisor</span> n test-divisor)
-    (<span style="color: #859900;">cond</span> ((&gt; (square test-divisor) n) n)
+<pre class="src src-scheme">(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">smallest-divisor</span> n)
+  (<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">find-divisor</span> n test-divisor)
+    (<span style="color: #b5bd68;">cond</span> ((&gt; (square test-divisor) n) n)
           ((divides? test-divisor n) test-divisor)
-          (<span style="color: #859900;">else</span> (find-divisor n (+ 1 test-divisor)))))
-  (<span style="color: #859900;">define</span> (<span style="color: #b58900;">divides?</span> a b)
+          (<span style="color: #b5bd68;">else</span> (find-divisor n (+ 1 test-divisor)))))
+  (<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">divides?</span> a b)
     (= (remainder b a) 0))
-  (<span style="color: #859900;">define</span> (<span style="color: #b58900;">next</span> n)
-    (<span style="color: #859900;">cond</span> ((even? n) (+ n 1))
-          (<span style="color: #859900;">else</span> (+ n 2))))
+  (<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">next</span> n)
+    (<span style="color: #b5bd68;">cond</span> ((even? n) (+ n 1))
+          (<span style="color: #b5bd68;">else</span> (+ n 2))))
   (find-divisor n 2))
 </pre>
 </div>
@@ -766,23 +766,23 @@ $$\begin{pmatrix}p&q\\q&p+q\end{pmatrix}\begin{pmatrix}p&q\\q&p+q\end{pmatrix}=\
 <div class="outline-text-2" id="text-23">
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define</span> (<span style="color: #b58900;">expmod</span> base exp m)
-  (<span style="color: #859900;">cond</span> ((= exp 0) 1)
+<pre class="src src-scheme">(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">expmod</span> base exp m)
+  (<span style="color: #b5bd68;">cond</span> ((= exp 0) 1)
         ((even? exp)
          (remainder (square (expmod base (/ exp 2)))
                     m))
-        (<span style="color: #859900;">else</span> (remainder (* base (expmod base (- exp 1) m))
+        (<span style="color: #b5bd68;">else</span> (remainder (* base (expmod base (- exp 1) m))
                          m))))
 
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">fermat-test</span> n)
-  (<span style="color: #859900;">define</span> (<span style="color: #b58900;">try-it</span> a)
+(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">fermat-test</span> n)
+  (<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">try-it</span> a)
     (= (expmod a n n) a))
   (try-it (+ 1 (random (- n 1)))))
 
-(<span style="color: #859900;">define</span> (<span style="color: #b58900;">fast-prime?</span> n times)
-  (<span style="color: #859900;">cond</span> ((= times 0) true)
+(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">fast-prime?</span> n times)
+  (<span style="color: #b5bd68;">cond</span> ((= times 0) true)
         ((fermat-test n) (fast-prime? n (- times 1)))
-        (<span style="color: #859900;">else</span> false)))
+        (<span style="color: #b5bd68;">else</span> false)))
 </pre>
 </div>
 </div>
@@ -793,12 +793,12 @@ $$\begin{pmatrix}p&q\\q&p+q\end{pmatrix}\begin{pmatrix}p&q\\q&p+q\end{pmatrix}=\
 <div class="outline-text-2" id="text-24">
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define</span> (<span style="color: #b58900;">expmod-bad</span> base exp m)
+<pre class="src src-scheme">(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">expmod-bad</span> base exp m)
   (remainder (fast-expt base exp) m))
 
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">Alyssa &#30340; expmod-bad &#20989;&#25968;&#20174;&#29702;&#35770;&#19978;&#35828;&#27809;&#26377;&#20219;&#20309;&#38382;&#39064;&#65292;&#26159;&#21487;&#34892;&#30340;&#12290;&#20294;&#26159;&#22312;&#23454;&#38469;&#24212;&#29992;&#20013;&#26377;&#33268;&#21629;&#30340;&#32570;&#38519;&#12290;</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">&#24403;&#35745;&#31639;&#19968;&#20010;&#24456;&#22823;&#30340;&#32032;&#25968;&#26159;&#65292;&#38656;&#35201;&#35745;&#31639;&#19968;&#20010;&#38750;&#24120;&#22823;&#30340;&#20056;&#24130;&#12290;&#32780;&#36825;&#20250;&#23548;&#33268;&#35745;&#31639;&#36895;&#24230;&#38750;&#24120;&#24930;&#65292;&#32780;&#19988;&#21487;&#33021;&#20250;&#23548;&#33268;&#28322;&#20986;&#12290;</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">expmod &#20989;&#25968;&#65292;&#36890;&#36807;&#27599;&#27425;&#23545;&#20056;&#24130;&#36827;&#34892; remainder &#25805;&#20316;&#65292;&#20174;&#32780;&#23558;&#20056;&#24130;&#38480;&#21046;&#22312;&#19968;&#20010;&#24456;&#23567;&#30340;&#33539;&#22260;&#20869;&#65288;&#19981;&#36229;&#36807;&#21442;&#25968; m &#65289;&#65292;&#36825;&#26679;&#21487;&#20197;&#26368;&#22823;&#38480;&#24230;&#22320;&#36991;&#20813;&#28322;&#20986;&#65292;&#32780;&#19988;&#35745;&#31639;&#36895;&#24230;&#24555;&#24471;&#22810;&#12290;</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">Alyssa &#30340; expmod-bad &#20989;&#25968;&#20174;&#29702;&#35770;&#19978;&#35828;&#27809;&#26377;&#20219;&#20309;&#38382;&#39064;&#65292;&#26159;&#21487;&#34892;&#30340;&#12290;&#20294;&#26159;&#22312;&#23454;&#38469;&#24212;&#29992;&#20013;&#26377;&#33268;&#21629;&#30340;&#32570;&#38519;&#12290;</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">&#24403;&#35745;&#31639;&#19968;&#20010;&#24456;&#22823;&#30340;&#32032;&#25968;&#26159;&#65292;&#38656;&#35201;&#35745;&#31639;&#19968;&#20010;&#38750;&#24120;&#22823;&#30340;&#20056;&#24130;&#12290;&#32780;&#36825;&#20250;&#23548;&#33268;&#35745;&#31639;&#36895;&#24230;&#38750;&#24120;&#24930;&#65292;&#32780;&#19988;&#21487;&#33021;&#20250;&#23548;&#33268;&#28322;&#20986;&#12290;</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">expmod &#20989;&#25968;&#65292;&#36890;&#36807;&#27599;&#27425;&#23545;&#20056;&#24130;&#36827;&#34892; remainder &#25805;&#20316;&#65292;&#20174;&#32780;&#23558;&#20056;&#24130;&#38480;&#21046;&#22312;&#19968;&#20010;&#24456;&#23567;&#30340;&#33539;&#22260;&#20869;&#65288;&#19981;&#36229;&#36807;&#21442;&#25968; m &#65289;&#65292;&#36825;&#26679;&#21487;&#20197;&#26368;&#22823;&#38480;&#24230;&#22320;&#36991;&#20813;&#28322;&#20986;&#65292;&#32780;&#19988;&#35745;&#31639;&#36895;&#24230;&#24555;&#24471;&#22810;&#12290;</span>
 </pre>
 </div>
 </div>
@@ -818,18 +818,18 @@ $$\begin{pmatrix}p&q\\q&p+q\end{pmatrix}\begin{pmatrix}p&q\\q&p+q\end{pmatrix}=\
 <div class="outline-text-2" id="text-26">
 <div class="org-src-container">
 
-<pre class="src src-scheme">(<span style="color: #859900;">define</span> (<span style="color: #b58900;">carmichael-test</span> n)
-  (<span style="color: #859900;">define</span> (<span style="color: #b58900;">test</span> a n)
-    (<span style="color: #859900;">cond</span> ((= a n) true)
+<pre class="src src-scheme">(<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">carmichael-test</span> n)
+  (<span style="color: #b5bd68;">define</span> (<span style="color: #de935f;">test</span> a n)
+    (<span style="color: #b5bd68;">cond</span> ((= a n) true)
           ((= (expmod a n n) a)
            (test (+ a 1) n))
-          (<span style="color: #859900;">else</span> false)))
+          (<span style="color: #b5bd68;">else</span> false)))
   (test 1 n))
 
 (carmichael-test 561)
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">#t</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">#t</span>
 (carmichael-test 1105)
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">#t</span>
+<span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">#t</span>
 </pre>
 </div>
 </div>
@@ -837,9 +837,9 @@ $$\begin{pmatrix}p&q\\q&p+q\end{pmatrix}\begin{pmatrix}p&q\\q&p+q\end{pmatrix}=\
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: BillyHuang@sina.cn</p>
-<p class="date">Created: 2015-07-17 五 11:25</p>
+<p class="date">Created: 2016-04-22 五 17:44</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="validation"></p>
 </div>
 </body>
 </html>

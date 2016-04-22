@@ -2,6 +2,8 @@
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../resources/style/style.css" />
 #+LINK_HOME: ../index.html
 #+FILETAGS: :algorithms:sort:
+#+LATEX_CLASS: cn-article
+#+OPTIONS: ^:{}
 #+AUTHOR: BillyHuang@sina.cn
 
 *堆排序（Heapsort）* 是指利[[http://zh.wikipedia.org/wiki/%E5%A0%86_%28%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%29][堆]]这种数据结构所设计的一种排序算法。堆积是一个近似完全二叉树的结构，并同时满足堆积的性质：即子结点的键值或索引总是小于（或者大于）它的父节点。[fn:1]\\

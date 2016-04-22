@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>插入排序</title>
-<!-- 2015-07-08 三 18:01 -->
+<!-- 2016-04-22 五 17:44 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="BillyHuang@sina.cn" />
@@ -237,27 +237,27 @@ for the JavaScript code in this tag.
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #93a1a1; font-style: italic;">//</span><span style="color: #93a1a1; font-style: italic;">&#24102;&#21736;&#20853;&#30340;&#30452;&#25509;&#25554;&#20837;&#25490;&#24207;&#23454;&#29616;&#26041;&#24335;</span>
-<span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">int</span>[] <span style="color: #b58900;">straightInsertionSort</span>(<span style="color: #268bd2;">int</span>[] <span style="color: #6c71c4;">source</span>)
+<pre class="src src-java"><span style="color: #969896; font-style: italic;">//</span><span style="color: #969896; font-style: italic;">&#24102;&#21736;&#20853;&#30340;&#30452;&#25509;&#25554;&#20837;&#25490;&#24207;&#23454;&#29616;&#26041;&#24335;</span>
+<span style="color: #b5bd68;">public</span> <span style="color: #b5bd68;">static</span> <span style="color: #81a2be;">int</span>[] <span style="color: #de935f;">straightInsertionSort</span>(<span style="color: #81a2be;">int</span>[] <span style="color: #f0c674;">source</span>)
 {
-        <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">sentinel</span> = source[0];
-        <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">sentinelIdx</span> = 0;
+        <span style="color: #81a2be;">int</span> <span style="color: #f0c674;">sentinel</span> = source[0];
+        <span style="color: #81a2be;">int</span> <span style="color: #f0c674;">sentinelIdx</span> = 0;
 
-        <span style="color: #859900;">for</span> (<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">i</span> = 1; i &lt; source.<span style="color: #268bd2;">length</span>; i++)
+        <span style="color: #b5bd68;">for</span> (<span style="color: #81a2be;">int</span> <span style="color: #f0c674;">i</span> = 1; i &lt; source.<span style="color: #81a2be;">length</span>; i++)
         {
-                <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">tmp</span> = source[i];
-                <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">j</span> = sentinelIdx;
+                <span style="color: #81a2be;">int</span> <span style="color: #f0c674;">tmp</span> = source[i];
+                <span style="color: #81a2be;">int</span> <span style="color: #f0c674;">j</span> = sentinelIdx;
 
-                <span style="color: #859900;">if</span> (tmp &gt; sentinel)
+                <span style="color: #b5bd68;">if</span> (tmp &gt; sentinel)
                 {
-                        <span style="color: #859900;">while</span> (j &lt;= i &amp;&amp; tmp &gt; source[j])
+                        <span style="color: #b5bd68;">while</span> (j &lt;= i &amp;&amp; tmp &gt; source[j])
                         {
                                 j++;
                         }
                 }
-                <span style="color: #859900;">else</span> <span style="color: #859900;">if</span> (tmp &lt; <span style="color: #268bd2;">sentinel</span>)
+                <span style="color: #b5bd68;">else</span> <span style="color: #b5bd68;">if</span> (tmp &lt; <span style="color: #81a2be;">sentinel</span>)
                 {
-                        <span style="color: #859900;">while</span> (j &gt;= 0 &amp;&amp; tmp &lt; <span style="color: #268bd2;">source</span>[j])
+                        <span style="color: #b5bd68;">while</span> (j &gt;= 0 &amp;&amp; tmp &lt; <span style="color: #81a2be;">source</span>[j])
                         {
                                 j--;
                         }
@@ -265,7 +265,7 @@ for the JavaScript code in this tag.
                         j++;
                 }
 
-                <span style="color: #859900;">for</span> (<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">m</span> = i; m &gt; j; m--)
+                <span style="color: #b5bd68;">for</span> (<span style="color: #81a2be;">int</span> <span style="color: #f0c674;">m</span> = i; m &gt; j; m--)
                 {
                         source[m] = source[m - 1];
                 }
@@ -274,7 +274,7 @@ for the JavaScript code in this tag.
                 sentinelIdx = j;
         }
 
-        <span style="color: #859900;">return</span> source;
+        <span style="color: #b5bd68;">return</span> source;
 }
 </pre>
 </div>
@@ -306,24 +306,24 @@ for the JavaScript code in this tag.
 <div class="outline-text-3" id="text-2-3">
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">int</span>[] <span style="color: #b58900;">binaryInsertionSort</span>(<span style="color: #268bd2;">int</span>[] <span style="color: #6c71c4;">source</span>)
+<pre class="src src-java"><span style="color: #b5bd68;">public</span> <span style="color: #b5bd68;">static</span> <span style="color: #81a2be;">int</span>[] <span style="color: #de935f;">binaryInsertionSort</span>(<span style="color: #81a2be;">int</span>[] <span style="color: #f0c674;">source</span>)
 {
-        <span style="color: #859900;">for</span> (<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">i</span> = 1; i &lt; source.<span style="color: #268bd2;">length</span>; i++)
+        <span style="color: #b5bd68;">for</span> (<span style="color: #81a2be;">int</span> <span style="color: #f0c674;">i</span> = 1; i &lt; source.<span style="color: #81a2be;">length</span>; i++)
         {
-                <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">mid</span> = (i - 1) / 2;
-                <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">j</span> = mid;
-                <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">tmp</span> = source[i];
+                <span style="color: #81a2be;">int</span> <span style="color: #f0c674;">mid</span> = (i - 1) / 2;
+                <span style="color: #81a2be;">int</span> <span style="color: #f0c674;">j</span> = mid;
+                <span style="color: #81a2be;">int</span> <span style="color: #f0c674;">tmp</span> = source[i];
 
-                <span style="color: #859900;">if</span> (tmp &gt; source[mid])
+                <span style="color: #b5bd68;">if</span> (tmp &gt; source[mid])
                 {
-                        <span style="color: #859900;">while</span> (j &lt;= i &amp;&amp; tmp &gt; source[j])
+                        <span style="color: #b5bd68;">while</span> (j &lt;= i &amp;&amp; tmp &gt; source[j])
                         {
                                 j++;
                         }
                 }
-                <span style="color: #859900;">else</span> <span style="color: #859900;">if</span> (tmp &lt; <span style="color: #268bd2;">source</span>[mid])
+                <span style="color: #b5bd68;">else</span> <span style="color: #b5bd68;">if</span> (tmp &lt; <span style="color: #81a2be;">source</span>[mid])
                 {
-                        <span style="color: #859900;">while</span> (j &gt;= 0 &amp;&amp; tmp &lt; <span style="color: #268bd2;">source</span>[j])
+                        <span style="color: #b5bd68;">while</span> (j &gt;= 0 &amp;&amp; tmp &lt; <span style="color: #81a2be;">source</span>[j])
                         {
                                 j--;
                         }
@@ -331,7 +331,7 @@ for the JavaScript code in this tag.
                         j++;
                 }
 
-                <span style="color: #859900;">for</span> (<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">m</span> = i; m &gt; j; m--)
+                <span style="color: #b5bd68;">for</span> (<span style="color: #81a2be;">int</span> <span style="color: #f0c674;">m</span> = i; m &gt; j; m--)
                 {
                         source[m] = source[m - 1];
                 }
@@ -339,7 +339,7 @@ for the JavaScript code in this tag.
                 source[j] = tmp;
         }
 
-        <span style="color: #859900;">return</span> source;
+        <span style="color: #b5bd68;">return</span> source;
 }
 </pre>
 </div>
@@ -485,24 +485,24 @@ for the JavaScript code in this tag.
 <div class="outline-text-3" id="text-3-4">
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">int</span>[] <span style="color: #b58900;">shellSort</span>(<span style="color: #268bd2;">int</span>[] <span style="color: #6c71c4;">source</span>, <span style="color: #268bd2;">int</span>[] <span style="color: #6c71c4;">increment</span>)
+<pre class="src src-java"><span style="color: #b5bd68;">public</span> <span style="color: #b5bd68;">static</span> <span style="color: #81a2be;">int</span>[] <span style="color: #de935f;">shellSort</span>(<span style="color: #81a2be;">int</span>[] <span style="color: #f0c674;">source</span>, <span style="color: #81a2be;">int</span>[] <span style="color: #f0c674;">increment</span>)
 {
-        <span style="color: #268bd2;">long</span> <span style="color: #6c71c4;">start</span> = System.currentTimeMillis();
+        <span style="color: #81a2be;">long</span> <span style="color: #f0c674;">start</span> = System.currentTimeMillis();
 
-        <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">d</span> = 0;
-        <span style="color: #859900;">for</span> (<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">n</span> = 0; n &lt; increment.<span style="color: #268bd2;">length</span>; n++)
+        <span style="color: #81a2be;">int</span> <span style="color: #f0c674;">d</span> = 0;
+        <span style="color: #b5bd68;">for</span> (<span style="color: #81a2be;">int</span> <span style="color: #f0c674;">n</span> = 0; n &lt; increment.<span style="color: #81a2be;">length</span>; n++)
         {
                 d = increment[n];
 
-                <span style="color: #859900;">for</span> (<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">x</span> = 0; x &lt; <span style="color: #268bd2;">d</span>; x++)
+                <span style="color: #b5bd68;">for</span> (<span style="color: #81a2be;">int</span> <span style="color: #f0c674;">x</span> = 0; x &lt; <span style="color: #81a2be;">d</span>; x++)
                 {
-                        <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">&#20998;&#32452;</span>
-                        <span style="color: #859900;">for</span> (<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">i</span> = x + d; i &lt; source.<span style="color: #268bd2;">length</span>; i = i + d)
+                        <span style="color: #969896; font-style: italic;">// </span><span style="color: #969896; font-style: italic;">&#20998;&#32452;</span>
+                        <span style="color: #b5bd68;">for</span> (<span style="color: #81a2be;">int</span> <span style="color: #f0c674;">i</span> = x + d; i &lt; source.<span style="color: #81a2be;">length</span>; i = i + d)
                         {
-                                <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">temp</span> = source[i];
-                                <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">j</span>;
-                                <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">&#30452;&#25509;&#25554;&#20837;&#25490;&#24207;</span>
-                                <span style="color: #859900;">for</span> (j = i - d; j &gt;= 0 &amp;&amp; source[j] &gt; temp; j -= d)
+                                <span style="color: #81a2be;">int</span> <span style="color: #f0c674;">temp</span> = source[i];
+                                <span style="color: #81a2be;">int</span> <span style="color: #f0c674;">j</span>;
+                                <span style="color: #969896; font-style: italic;">// </span><span style="color: #969896; font-style: italic;">&#30452;&#25509;&#25554;&#20837;&#25490;&#24207;</span>
+                                <span style="color: #b5bd68;">for</span> (j = i - d; j &gt;= 0 &amp;&amp; source[j] &gt; temp; j -= d)
                                 {
                                         source[j + d] = source[j];
                                 }
@@ -510,10 +510,10 @@ for the JavaScript code in this tag.
                         }
                 }
         }
-        <span style="color: #268bd2;">long</span> <span style="color: #6c71c4;">end</span> = System.currentTimeMillis();
+        <span style="color: #81a2be;">long</span> <span style="color: #f0c674;">end</span> = System.currentTimeMillis();
 
-        System.out.println(<span style="color: #2aa198;">"shellSort time:"</span> + (end - start));
-        <span style="color: #859900;">return</span> source;
+        System.out.println(<span style="color: #8abeb7;">"shellSort time:"</span> + (end - start));
+        <span style="color: #b5bd68;">return</span> source;
 }
 </pre>
 </div>
@@ -524,50 +524,50 @@ for the JavaScript code in this tag.
 <div class="outline-text-3" id="text-3-5">
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">&#24076;&#23572;&#22686;&#37327;</span>
-<span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">int</span>[] <span style="color: #b58900;">getShellIncrement</span>(<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">length</span>)
+<pre class="src src-java"><span style="color: #969896; font-style: italic;">// </span><span style="color: #969896; font-style: italic;">&#24076;&#23572;&#22686;&#37327;</span>
+<span style="color: #b5bd68;">public</span> <span style="color: #b5bd68;">static</span> <span style="color: #81a2be;">int</span>[] <span style="color: #de935f;">getShellIncrement</span>(<span style="color: #81a2be;">int</span> <span style="color: #f0c674;">length</span>)
 {
-        <span style="color: #268bd2;">List</span>&lt;<span style="color: #268bd2;">Integer</span>&gt; <span style="color: #6c71c4;">shellIncrement</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">ArrayList</span>&lt;<span style="color: #268bd2;">Integer</span>&gt;();
-        <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">tmp</span> = length / 2;
+        <span style="color: #81a2be;">List</span>&lt;<span style="color: #81a2be;">Integer</span>&gt; <span style="color: #f0c674;">shellIncrement</span> = <span style="color: #b5bd68;">new</span> <span style="color: #81a2be;">ArrayList</span>&lt;<span style="color: #81a2be;">Integer</span>&gt;();
+        <span style="color: #81a2be;">int</span> <span style="color: #f0c674;">tmp</span> = length / 2;
 
-        <span style="color: #859900;">while</span> (tmp &gt; 0)
+        <span style="color: #b5bd68;">while</span> (tmp &gt; 0)
         {
                 shellIncrement.add(tmp);
                 tmp /= 2;
         }
 
-        <span style="color: #859900;">return</span> listToArr(shellIncrement);
+        <span style="color: #b5bd68;">return</span> listToArr(shellIncrement);
 }
 
-<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">Hibbard</span>
-<span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">int</span>[] <span style="color: #b58900;">getHibbardIncrement</span>(<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">length</span>)
+<span style="color: #969896; font-style: italic;">// </span><span style="color: #969896; font-style: italic;">Hibbard</span>
+<span style="color: #b5bd68;">public</span> <span style="color: #b5bd68;">static</span> <span style="color: #81a2be;">int</span>[] <span style="color: #de935f;">getHibbardIncrement</span>(<span style="color: #81a2be;">int</span> <span style="color: #f0c674;">length</span>)
 {
-        <span style="color: #268bd2;">List</span>&lt;<span style="color: #268bd2;">Integer</span>&gt; <span style="color: #6c71c4;">hibbarIncrement</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">ArrayList</span>&lt;<span style="color: #268bd2;">Integer</span>&gt;();
+        <span style="color: #81a2be;">List</span>&lt;<span style="color: #81a2be;">Integer</span>&gt; <span style="color: #f0c674;">hibbarIncrement</span> = <span style="color: #b5bd68;">new</span> <span style="color: #81a2be;">ArrayList</span>&lt;<span style="color: #81a2be;">Integer</span>&gt;();
 
-        <span style="color: #859900;">for</span> (<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">i</span> = 1, <span style="color: #6c71c4;">increment</span>; (increment = (<span style="color: #268bd2;">int</span>) Math.pow(2, i++) - 1) &lt; length;)
+        <span style="color: #b5bd68;">for</span> (<span style="color: #81a2be;">int</span> <span style="color: #f0c674;">i</span> = 1, <span style="color: #f0c674;">increment</span>; (increment = (<span style="color: #81a2be;">int</span>) Math.pow(2, i++) - 1) &lt; length;)
         {
                 hibbarIncrement.add(increment);
         }
 
-        <span style="color: #859900;">return</span> reverseArr(listToArr(hibbarIncrement));
+        <span style="color: #b5bd68;">return</span> reverseArr(listToArr(hibbarIncrement));
 }
 
- <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">Sedgewick</span>
-<span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">int</span>[] <span style="color: #b58900;">getSedgewickIncrement</span>(<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">length</span>)
+ <span style="color: #969896; font-style: italic;">// </span><span style="color: #969896; font-style: italic;">Sedgewick</span>
+<span style="color: #b5bd68;">public</span> <span style="color: #b5bd68;">static</span> <span style="color: #81a2be;">int</span>[] <span style="color: #de935f;">getSedgewickIncrement</span>(<span style="color: #81a2be;">int</span> <span style="color: #f0c674;">length</span>)
 {
-        <span style="color: #268bd2;">List</span>&lt;<span style="color: #268bd2;">Integer</span>&gt; <span style="color: #6c71c4;">sedgewickIncrement</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">ArrayList</span>&lt;<span style="color: #268bd2;">Integer</span>&gt;();
+        <span style="color: #81a2be;">List</span>&lt;<span style="color: #81a2be;">Integer</span>&gt; <span style="color: #f0c674;">sedgewickIncrement</span> = <span style="color: #b5bd68;">new</span> <span style="color: #81a2be;">ArrayList</span>&lt;<span style="color: #81a2be;">Integer</span>&gt;();
 
-        <span style="color: #859900;">for</span> (<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">i</span> = 0, <span style="color: #6c71c4;">increment</span>; (increment = 9 * (<span style="color: #268bd2;">int</span>) Math.pow(4, i) - 9 * (<span style="color: #268bd2;">int</span>) Math.pow(2, i) + 1) &lt; length; i++)
+        <span style="color: #b5bd68;">for</span> (<span style="color: #81a2be;">int</span> <span style="color: #f0c674;">i</span> = 0, <span style="color: #f0c674;">increment</span>; (increment = 9 * (<span style="color: #81a2be;">int</span>) Math.pow(4, i) - 9 * (<span style="color: #81a2be;">int</span>) Math.pow(2, i) + 1) &lt; length; i++)
         {
                 sedgewickIncrement.add(increment);
         }
 
-        <span style="color: #859900;">for</span> (<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">i</span> = 2, <span style="color: #6c71c4;">increment</span>; (increment = (<span style="color: #268bd2;">int</span>) Math.pow(4, i) - 3 * (<span style="color: #268bd2;">int</span>) Math.pow(2, i) + 1) &lt; length; i++)
+        <span style="color: #b5bd68;">for</span> (<span style="color: #81a2be;">int</span> <span style="color: #f0c674;">i</span> = 2, <span style="color: #f0c674;">increment</span>; (increment = (<span style="color: #81a2be;">int</span>) Math.pow(4, i) - 3 * (<span style="color: #81a2be;">int</span>) Math.pow(2, i) + 1) &lt; length; i++)
         {
                 sedgewickIncrement.add(increment);
         }
 
-        <span style="color: #859900;">return</span> straightInsertionSort(listToArr(sedgewickIncrement));
+        <span style="color: #b5bd68;">return</span> straightInsertionSort(listToArr(sedgewickIncrement));
 }
 </pre>
 </div>
@@ -586,58 +586,58 @@ for the JavaScript code in this tag.
 </ul>
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">sortPerformanceTest</span>(<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">n</span>)
+<pre class="src src-java"><span style="color: #b5bd68;">public</span> <span style="color: #81a2be;">void</span> <span style="color: #de935f;">sortPerformanceTest</span>(<span style="color: #81a2be;">int</span> <span style="color: #f0c674;">n</span>)
 {
-        <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">count</span> = 1000000;
-        <span style="color: #268bd2;">int</span>[] <span style="color: #6c71c4;">values</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">int</span>[count];
-        <span style="color: #268bd2;">int</span>[] <span style="color: #6c71c4;">sourceValues</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">int</span>[count];
+        <span style="color: #81a2be;">int</span> <span style="color: #f0c674;">count</span> = 1000000;
+        <span style="color: #81a2be;">int</span>[] <span style="color: #f0c674;">values</span> = <span style="color: #b5bd68;">new</span> <span style="color: #81a2be;">int</span>[count];
+        <span style="color: #81a2be;">int</span>[] <span style="color: #f0c674;">sourceValues</span> = <span style="color: #b5bd68;">new</span> <span style="color: #81a2be;">int</span>[count];
 
-        <span style="color: #268bd2;">Random</span> <span style="color: #6c71c4;">random</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">Random</span>();
+        <span style="color: #81a2be;">Random</span> <span style="color: #f0c674;">random</span> = <span style="color: #b5bd68;">new</span> <span style="color: #81a2be;">Random</span>();
 
-        <span style="color: #859900;">for</span> (<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">i</span> = 0; i &lt; <span style="color: #268bd2;">count</span>; i++)
+        <span style="color: #b5bd68;">for</span> (<span style="color: #81a2be;">int</span> <span style="color: #f0c674;">i</span> = 0; i &lt; <span style="color: #81a2be;">count</span>; i++)
         {
                 sourceValues[i] = random.nextInt(10000);
         }
 
-        <span style="color: #268bd2;">int</span>[] <span style="color: #6c71c4;">shellIncrement</span> = InsertionSort.getShellIncrement(count);
-        <span style="color: #268bd2;">int</span>[] <span style="color: #6c71c4;">hibbardIncrement</span> = InsertionSort.getHibbardIncrement(count);
-        <span style="color: #268bd2;">int</span>[] <span style="color: #6c71c4;">sedgewickIncrement</span> = InsertionSort.getSedgewickIncrement(count);
+        <span style="color: #81a2be;">int</span>[] <span style="color: #f0c674;">shellIncrement</span> = InsertionSort.getShellIncrement(count);
+        <span style="color: #81a2be;">int</span>[] <span style="color: #f0c674;">hibbardIncrement</span> = InsertionSort.getHibbardIncrement(count);
+        <span style="color: #81a2be;">int</span>[] <span style="color: #f0c674;">sedgewickIncrement</span> = InsertionSort.getSedgewickIncrement(count);
 
-        <span style="color: #268bd2;">long</span> <span style="color: #6c71c4;">start</span> = 0, <span style="color: #6c71c4;">end</span> = 0;
-        System.out.println(<span style="color: #2aa198;">"Start  "</span> + count);
-        System.out.println(<span style="color: #2aa198;">"-------------------------------------------------"</span>);
+        <span style="color: #81a2be;">long</span> <span style="color: #f0c674;">start</span> = 0, <span style="color: #f0c674;">end</span> = 0;
+        System.out.println(<span style="color: #8abeb7;">"Start  "</span> + count);
+        System.out.println(<span style="color: #8abeb7;">"-------------------------------------------------"</span>);
 
         System.arraycopy(sourceValues, 0, values, 0, count);
         start = System.currentTimeMillis();
         InsertionSort.straightInsertionSort(values);
         end = System.currentTimeMillis();
-        System.out.println(<span style="color: #2aa198;">"StraightInsertionSort:\t"</span> + (end - start));
+        System.out.println(<span style="color: #8abeb7;">"StraightInsertionSort:</span><span style="color: #f0c674;">\</span><span style="color: #b294bb;">t</span><span style="color: #8abeb7;">"</span> + (end - start));
 
         System.arraycopy(sourceValues, 0, values, 0, count);
         start = System.currentTimeMillis();
         InsertionSort.binaryInsertionSort(values);
         end = System.currentTimeMillis();
-        System.out.println(<span style="color: #2aa198;">"BinaryInsertionSort:\t"</span> + (end - start));
+        System.out.println(<span style="color: #8abeb7;">"BinaryInsertionSort:</span><span style="color: #f0c674;">\</span><span style="color: #b294bb;">t</span><span style="color: #8abeb7;">"</span> + (end - start));
 
         System.arraycopy(sourceValues, 0, values, 0, count);
         start = System.currentTimeMillis();
         InsertionSort.shellSort(values, shellIncrement);
         end = System.currentTimeMillis();
-        System.out.println(<span style="color: #2aa198;">"ShellSort ShellIncrement:\t"</span> + (end - start));
+        System.out.println(<span style="color: #8abeb7;">"ShellSort ShellIncrement:</span><span style="color: #f0c674;">\</span><span style="color: #b294bb;">t</span><span style="color: #8abeb7;">"</span> + (end - start));
 
         System.arraycopy(sourceValues, 0, values, 0, count);
         start = System.currentTimeMillis();
         InsertionSort.shellSort(values, hibbardIncrement);
         end = System.currentTimeMillis();
-        System.out.println(<span style="color: #2aa198;">"ShellSort HibbardIncrement:\t"</span> + (end - start));
+        System.out.println(<span style="color: #8abeb7;">"ShellSort HibbardIncrement:</span><span style="color: #f0c674;">\</span><span style="color: #b294bb;">t</span><span style="color: #8abeb7;">"</span> + (end - start));
 
         System.arraycopy(sourceValues, 0, values, 0, count);
         start = System.currentTimeMillis();
         InsertionSort.shellSort(values, sedgewickIncrement);
         end = System.currentTimeMillis();
-        System.out.println(<span style="color: #2aa198;">"ShellSort SedgewickIncrement:\t"</span> + (end - start));
+        System.out.println(<span style="color: #8abeb7;">"ShellSort SedgewickIncrement:</span><span style="color: #f0c674;">\</span><span style="color: #b294bb;">t</span><span style="color: #8abeb7;">"</span> + (end - start));
 
-        System.out.println(<span style="color: #2aa198;">"-------------------------------------------------"</span>);
+        System.out.println(<span style="color: #8abeb7;">"-------------------------------------------------"</span>);
 }
 </pre>
 </div>
@@ -808,9 +808,9 @@ for the JavaScript code in this tag.
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: BillyHuang@sina.cn</p>
-<p class="date">Created: 2015-07-08 三 18:01</p>
+<p class="date">Created: 2016-04-22 五 17:44</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="validation"></p>
 </div>
 </body>
 </html>
