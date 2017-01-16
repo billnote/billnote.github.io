@@ -1,0 +1,33 @@
+#+BLOG: my-blog
+#+POSTID: 48
+#+DATE: [2017-01-16 一 17:26]
+#+OPTIONS: toc:nil num:nil todo:nil pri:nil tags:nil ^:nil
+#+CATEGORY: emacs
+#+TAGS:
+#+DESCRIPTION:
+#+TITLE: 关于 Emacs25.1 url-http-create-request: Multibyte text in HTTP request error
+* 错误现象
+当emacs更新至25.1之后，是有url-http.el构建请求，只要包含中文会日文字符时，就会出现上述错误。这是url-http.el的一个bug。详情可以参见：[[https://debbugs.gnu.org/cgi/bugreport.cgi?bug=23750][Bug#23750]]
+* 错误原因
+具体原因请看一下代码:
+#+BEGIN_SRC emacs-lisp
+;; Bug#23750
+(unless (= (string-bytes request)
+           (length request))
+  (error "Multibyte text in HTTP request: %s" request))
+#+END_SRC
+当包含中文字符时，(string-bytes request) 和 (length request) 的返回值不一样。这时就会产生这个错误。
+* 解决方案
+ 1. 对request都进行编码，编码后在进行长度比较。这只是一个临时解决方案，作用也仅仅只是跳过当前长度验证，后续可能会有其他问题产生。具体问题可以参看Bug#23750.
+    + 修改url-http.el代码
+#+BEGIN_SRC emacs-lisp
+;; Bug#23750
+(unless (= (string-bytes (url-http--encode-string request))
+           (length (url-http--encode-string request)))
+  (error "Multibyte text in HTTP request: %s" request))
+#+END_SRC
+    + 也可直接[[https://pan.baidu.com/s/1slk1AmL][下载]]我已经修改好的代码，覆盖现有url-http.el.gz。 linux系统，将下载好的gz包，复制到/usr/share/emacs/25.1/lisp/url下即可。
+ 2. 等待官方解决方案，根据官方讨论bug应该会在26.1中修复。
+* 参考资源
+ 1. https://debbugs.gnu.org/cgi/bugreport.cgi?bug=23750
+ 2. http://www.cnblogs.com/yangwen0228/p/6238528.html
