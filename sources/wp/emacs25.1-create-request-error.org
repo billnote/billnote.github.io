@@ -10,7 +10,7 @@
 当emacs更新至25.1之后，是有url-http.el构建请求，只要包含中文会日文字符时，就会出现上述错误。这是url-http.el的一个bug。详情可以参见：[[https://debbugs.gnu.org/cgi/bugreport.cgi?bug=23750][Bug#23750]]
 * 错误原因
 具体原因请看一下代码:
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC elisp
 ;; Bug#23750
 (unless (= (string-bytes request)
            (length request))
@@ -20,7 +20,7 @@
 * 解决方案
  1. 对request都进行编码，编码后在进行长度比较。这只是一个临时解决方案，作用也仅仅只是跳过当前长度验证，后续可能会有其他问题产生。具体问题可以参看Bug#23750.
     + 修改url-http.el代码
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC elisp
 ;; Bug#23750
 (unless (= (string-bytes (url-http--encode-string request))
            (length (url-http--encode-string request)))

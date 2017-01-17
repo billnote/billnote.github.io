@@ -16,7 +16,7 @@
  在你的emacs配置中加入如下内容：
 
 #+ATTR_WP: :syntaxhl light=true
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC elisp
 (require-package 'xml-rpc)
 (require-package 'metaweblog)
 (require-package 'org2blog)

@@ -1,0 +1,136 @@
+#+BLOG: my-blog
+#+POSTID: 53
+#+DATE: [2017-01-16 一 19:41]
+#+OPTIONS: toc:nil num:nil todo:nil pri:nil tags:nil ^:nil
+#+CATEGORY: java
+#+TAGS:
+#+DESCRIPTION:
+#+TITLE: 关于Java执行外部程序进程卡死问题
+* 错误现象
+在编写java程序时，我们经常需要调用外部程序，如shell脚本或exe程序等。且有时我们必须使用process.waitFor()方法等待子进程结束，才能执行后续代码。但是这里处理不当，很容易导致子进程卡死。
+我们看看以下示例：
+ + java 代码：
+#+BEGIN_SRC java
+public static void main(String[] args) {
+  try {
+    Process process = Runtime.getRuntime().exec("/home/bill.huang/tmp/test-java-process.sh");
+    process.waitFor();
+    System.out.println(process.exitValue());
+    process.destroy();
+  } catch (IOException e) {
+    e.printStackTrace();
+  } catch (InterruptedException e) {
+    e.printStackTrace();
+  }
+}
+#+END_SRC
+
+ + 执行的Shell脚本：
+#+BEGIN_SRC shell
+#!/bin/bash
+while [ 1 ]
+do
+    echo "test for java process waiting for"
+    echo "test for java process waiting for" >>/home/bill.huang/tmp/process.log
+    sleep 0.01
+done
+#+END_SRC
+
+ + 预期结果：只要没有认为的终止程序，process.log文件应该一直有内容写入。（加速磁盘空间充足)
+ + 运行结果：如下所示当文件写至64k后，就不再有内容写入了，与我们的预期并不相符。
+#+BEGIN_SRC
+-rw-rw-r--. 1 bill.huang bill.huang 0 1月  16 20:01 /home/bill.huang/tmp/process.log
+-rw-rw-r--. 1 bill.huang bill.huang 2.8K 1月  16 20:05 /home/bill.huang/tmp/process.log
+-rw-rw-r--. 1 bill.huang bill.huang 5.6K 1月  16 20:05 /home/bill.huang/tmp/process.log
+-rw-rw-r--. 1 bill.huang bill.huang 8.6K 1月  16 20:05 /home/bill.huang/tmp/process.log
+-rw-rw-r--. 1 bill.huang bill.huang 12K 1月  16 20:06 /home/bill.huang/tmp/process.log
+-rw-rw-r--. 1 bill.huang bill.huang 15K 1月  16 20:06 /home/bill.huang/tmp/process.log
+-rw-rw-r--. 1 bill.huang bill.huang 18K 1月  16 20:06 /home/bill.huang/tmp/process.log
+-rw-rw-r--. 1 bill.huang bill.huang 21K 1月  16 20:06 /home/bill.huang/tmp/process.log
+-rw-rw-r--. 1 bill.huang bill.huang 24K 1月  16 20:06 /home/bill.huang/tmp/process.log
+-rw-rw-r--. 1 bill.huang bill.huang 27K 1月  16 20:06 /home/bill.huang/tmp/process.log
+-rw-rw-r--. 1 bill.huang bill.huang 30K 1月  16 20:06 /home/bill.huang/tmp/process.log
+-rw-rw-r--. 1 bill.huang bill.huang 33K 1月  16 20:06 /home/bill.huang/tmp/process.log
+-rw-rw-r--. 1 bill.huang bill.huang 36K 1月  16 20:06 /home/bill.huang/tmp/process.log
+-rw-rw-r--. 1 bill.huang bill.huang 39K 1月  16 20:06 /home/bill.huang/tmp/process.log
+-rw-rw-r--. 1 bill.huang bill.huang 42K 1月  16 20:06 /home/bill.huang/tmp/process.log
+-rw-rw-r--. 1 bill.huang bill.huang 45K 1月  16 20:06 /home/bill.huang/tmp/process.log
+-rw-rw-r--. 1 bill.huang bill.huang 48K 1月  16 20:06 /home/bill.huang/tmp/process.log
+-rw-rw-r--. 1 bill.huang bill.huang 51K 1月  16 20:06 /home/bill.huang/tmp/process.log
+-rw-rw-r--. 1 bill.huang bill.huang 54K 1月  16 20:06 /home/bill.huang/tmp/process.log
+-rw-rw-r--. 1 bill.huang bill.huang 57K 1月  16 20:06 /home/bill.huang/tmp/process.log
+-rw-rw-r--. 1 bill.huang bill.huang 60K 1月  16 20:06 /home/bill.huang/tmp/process.log
+-rw-rw-r--. 1 bill.huang bill.huang 63K 1月  16 20:06 /home/bill.huang/tmp/process.log
+-rw-rw-r--. 1 bill.huang bill.huang 64K 1月  16 20:06 /home/bill.huang/tmp/process.log
+-rw-rw-r--. 1 bill.huang bill.huang 64K 1月  16 20:06 /home/bill.huang/tmp/process.log
+-rw-rw-r--. 1 bill.huang bill.huang 64K 1月  16 20:06 /home/bill.huang/tmp/process.log
+-rw-rw-r--. 1 bill.huang bill.huang 64K 1月  16 20:06 /home/bill.huang/tmp/process.log
+-rw-rw-r--. 1 bill.huang bill.huang 64K 1月  16 20:06 /home/bill.huang/tmp/process.log
+-rw-rw-r--. 1 bill.huang bill.huang 64K 1月  16 20:06 /home/bill.huang/tmp/process.log
+-rw-rw-r--. 1 bill.huang bill.huang 64K 1月  16 20:06 /home/bill.huang/tmp/process.log
+-rw-rw-r--. 1 bill.huang bill.huang 64K 1月  16 20:06 /home/bill.huang/tmp/process.log
+#+END_SRC
+
+* 错误原因
+要知道产生上述问题的具体原因是什么？我们得先说说Process涉及到的IO流。开启一个进程初始化时，会打开三个文件。他们分别为：
+ + 标准输出流(stdout)：对应Process.getInputStream()
+ + 标准输入流(stdin)：对应Process.getOutStream()
+ + 标准错误流(stderr)：对应Process.getErrorStream()
+我们在回到上述例子中，我们的Shell脚本会不停的向标准输入流打印“test for java process waiting for”,但是我们的Java程序并没有及时读取标准输入流，而大部分平台对输入、输出流的缓冲区大小是有限制的。因此当Shell将标准输入流缓冲区写满时，进程会被堵塞。从而产生了上诉现象。
+
+* 解决方案
+ 我们只需要及时读取标准输入流以及标准错误流，即可避免子进程堵塞的问题。示例代码如下：
+#+BEGIN_SRC java
+public class CallCommandExample {
+  static class StdReader implements Runnable {
+    final InputStream in;
+
+    StdReader(InputStream in) {
+      this.in = in;
+    }
+
+    @Override
+    public void run() {
+      try (InputStreamReader stdin = new InputStreamReader(in);
+              BufferedReader read = new BufferedReader(stdin)) {
+        String line1 = null;
+        while (true) {
+          while ((line1 = read.readLine()) != null) {
+            // do something
+            if (line1 != null) {
+              System.out.println(read.readLine());
+            }
+          }
+
+          Thread.sleep(100);
+        }
+      } catch (IOException | InterruptedException e) {
+        e.printStackTrace();
+      }
+    }
+  }
+
+  public static void main(String[] args) {
+    try {
+      Process process = Runtime.getRuntime().exec("/home/bill.huang/tmp/test-java-process.sh");
+      try (InputStream stdin = process.getInputStream()) {
+        StdReader reader = new StdReader(stdin);
+        // 开启一个线程读取子进程的标准输入流
+        new Thread(reader).start();
+        process.waitFor();
+        System.out.println(process.exitValue());
+      }
+      process.destroy();
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+  }
+}
+#+END_SRC
+
+注：
+ + 上述只给了标准输入流的处理方式，标准错误流处理方法类似。不再赘述。
+ + JDK 1.7 之后，ProcessBuilder提供了重定向子进程标准输入流、标准输入流和标准错误流方法，可以非常方便的处理上述问题。详细用法可以查看JDK。
