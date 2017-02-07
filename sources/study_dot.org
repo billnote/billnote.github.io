@@ -1,6 +1,5 @@
+#+SETUPFILE: ~/.emacs.d/org-templates/level-0.org
 #+TITLE: dot language 学习笔记
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./resources/style/style.css" />
-#+LINK_HOME: ./index.html
 #+FILETAGS: :dot language:Graphviz:org-mode:
 #+LATEX_CLASS: cn-article
 #+AUTHOR: Billyhuang@sina.cn
@@ -287,6 +286,162 @@ digraph structs {
 }
 #+end_src
 
+*** tree
+#+begin_src dot :file ./resources/svg/tree.svg :cmdline -Kdot -Tsvg :exports both
+digraph "directory tree" {
+rankdir=LR;
+"/home/bill.huang/documents/m" [label="m"]
+"/home/bill.huang/documents/m/server" [label="server"]
+"/home/bill.huang/documents/m/server/adx" [label="adx"]
+"/home/bill.huang/documents/m/server/wiki" [label="wiki"]
+"/home/bill.huang/documents/m/server/vast" [label="vast"]
+"/home/bill.huang/documents/m/smg" [label="smg"]
+"/home/bill.huang/documents/m/smg/s01" [label="s01"]
+"/home/bill.huang/documents/m/common" [label="common"]
+"/home/bill.huang/documents" -> "/home/bill.huang/documents/m" [len=3]
+"/home/bill.huang/documents/m" -> "/home/bill.huang/documents/m/common" [len=3]
+"/home/bill.huang/documents/m" -> "/home/bill.huang/documents/m/server" [len=3]
+"/home/bill.huang/documents/m/server" -> "/home/bill.huang/documents/m/server/adx" [len=3]
+"/home/bill.huang/documents/m/server" -> "/home/bill.huang/documents/m/server/vast" [len=3]
+"/home/bill.huang/documents/m/server" -> "/home/bill.huang/documents/m/server/wiki" [len=3]
+"/home/bill.huang/documents/m" -> "/home/bill.huang/documents/m/smg" [len=3]
+"/home/bill.huang/documents/m/smg" -> "/home/bill.huang/documents/m/smg/s01" [len=3]
+}
+#+end_src
+
+#+begin_src dot :file ./resources/svg/tree1.svg :cmdline -Kdot -Tsvg :exports both
+digraph tree
+{
+    charset="latin1";
+    fixedsize=true;
+    node [style="rounded,filled", width=0, height=0, shape=box, fillcolor="#E5E5E5", concentrate=true]
+
+    a_dir_1 [label="Software-Qualität" shape=box, width=3]
+
+    {rank=same
+      a_point_1 [shape=point]
+      b_dir_1 [label="Produktqualität", width=3]
+    }
+    a_dir_1 -> a_point_1 [arrowhead=none]
+    a_point_1 -> b_dir_1
+
+    {rank=same
+      b_point_1 [shape=point]
+      c_dir_1 [label="Konstruktive Qualitätssicherung", width=3]
+    }
+    b_point_1 -> c_dir_1
+    b_dir_1 -> b_point_1 [arrowhead=none]
+
+    {rank=same
+    c_point_1 [shape=point]
+    d_dir_1 [label="Software-Richtlinien", width=3]
+    }
+    c_point_1 -> d_dir_1
+
+    {rank=same
+      c_point_2 [shape=point]
+      d_dir_2 [label="Typisierung\l", width=3]
+    }
+    c_point_2 -> d_dir_2
+
+    {rank=same
+      c_point_3 [shape=point]
+      d_dir_3 [label="Vertragsbasierte Programmierung", width=3]
+    }
+    c_point_3 -> d_dir_3
+
+    {rank=same
+      c_point_4 [shape=point]
+      d_dir_4 [label="Fehlertolerante Programmierung", width=3]
+    }
+    c_point_4 -> d_dir_4
+
+    {rank=same
+      c_point_5 [shape=point]
+      d_dir_5 [label="Portabilität", width=3]
+    }
+    c_point_5 -> d_dir_5
+
+    {rank=same
+      c_point_6 [shape=point]
+      d_dir_6 [label="Dokumentation", width=3]
+    }
+    c_point_6 -> d_dir_6
+
+    {rank=same
+      b_point_2 [shape=point]
+      c_dir_2 [label="Analytische Qualitätssicherung", width=3]
+    }
+    b_point_2 -> c_dir_2
+    b_point_1 -> b_point_2 [arrowhead=none minlen=7]
+
+    c_dir_1 -> c_point_1 -> c_point_2 -> c_point_3 -> c_point_4 -> c_point_5 -> c_point_6 [arrowhead=none]
+}
+#+end_src
+
+#+begin_src dot :file ./resources/svg/tree2.svg :cmdline -Kdot -Tsvg :exports both
+digraph tree
+{
+    nodesep=0.5;
+
+    charset="latin1";
+    rankdir=LR;
+    fixedsize=true;
+    node [style="rounded,filled", width=0, height=0, shape=box, fillcolor="#E5E5E5", concentrate=true]
+
+    a_dir_1 [label="Software-Qualität" shape=box, width=3]
+
+    a_point_1 [shape=point]
+    b_dir_1 [label="Produktqualität", width=3]
+    a_point_1 -> b_dir_1
+
+    b_point_1 [shape=point]
+    c_dir_1 [label="Konstruktive Qualitätssicherung", width=3]
+    b_point_1 -> c_dir_1
+
+    c_point_1 [shape=point]
+    d_dir_1 [label="Software-Richtlinien", width=3]
+    c_point_1 -> d_dir_1
+
+    c_point_2 [shape=point]
+    d_dir_2 [label="Typisierung\l", width=3]
+    c_point_2 -> d_dir_2
+
+    c_point_3 [shape=point]
+    d_dir_3 [label="Vertragsbasierte Programmierung", width=3]
+    c_point_3 -> d_dir_3
+
+    c_point_4 [shape=point]
+    d_dir_4 [label="Fehlertolerante Programmierung", width=3]
+    c_point_4 -> d_dir_4
+
+    c_point_5 [shape=point]
+    d_dir_5 [label="Portabilität", width=3]
+    c_point_5 -> d_dir_5
+
+    c_point_6 [shape=point]
+    d_dir_6 [label="Dokumentation", width=3]
+    c_point_6 -> d_dir_6
+
+    b_point_2 [shape=point]
+    c_dir_2 [label="Analytische Qualitätssicherung", width=3]
+    b_point_2 -> c_dir_2
+
+    {
+        rank=same;
+        a_dir_1 -> a_point_1 [arrowhead=none]
+    }
+    {
+        rank=same;
+        b_dir_1 -> b_point_1 -> b_point_2 [arrowhead=none]
+    }
+    {
+        rank=same;
+        c_dir_1 -> c_point_1 -> c_point_2 -> c_point_3 -> c_point_4 -> c_point_5 -> c_point_6 [arrowhead=none]
+    }
+}
+#+end_src
+
 * 总结
 通过这几天对dot语言的学习，发现它还是非常强大和灵活的。只要能够发挥你的组合及想象能力，肯定是能够满足一些基本文档图表的绘制需求。而且还摆脱了普通制图功能繁琐的排版工作，还是非常适合有一定编程基础的用户使用的。\\
 个人非常厌恶繁琐的排版工作，因此emacs + org-mode + Graphviz会是以后书写文档的必备工具。\\
@@ -297,3 +452,5 @@ digraph structs {
 http://www.cnblogs.com/chenfanyu/archive/2013/01/27/2878845.html \\
 http://coldnew.github.io/blog/2013/07/13_07e15.html \\
 http://www.graphviz.org
+
+#+HTML: <div class="ds-thread" data-thread-key="dot language 学习笔记" data-title="dot language 学习笔记"></div>

@@ -1,6 +1,5 @@
+#+SETUPFILE: ~/.emacs.d/org-templates/level-1.org
 #+TITLE: 快速排序
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../resources/style/style.css" />
-#+LINK_HOME: ../index.html
 #+FILETAGS: :algorithms:sort:
 #+AUTHOR: BillyHuang@sina.cn
 *快速排序 （quick sort）* 是一种相对高效稳定的排序算法。算法主要思想是，从待排序集合中选择一个“基准数”，将队列分成大于基准数和小于等于基准数的两个子集合。对得到的两个集合继续执行上诉操作，直到排序完成。基准数的选择会影响到排序算法的性能。\\
@@ -122,3 +121,4 @@ digraph exp{
 * Footnotes
 
 [fn:1] http://zh.wikipedia.org/wiki/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F
+#+HTML: <div class="ds-thread" data-thread-key="quicksort" data-title="quicksort"></div>

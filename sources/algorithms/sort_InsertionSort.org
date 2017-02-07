@@ -1,6 +1,5 @@
+#+SETUPFILE: ~/.emacs.d/org-templates/level-1.org
 #+TITLE: 插入排序
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../resources/style/style.css" />
-#+LINK_HOME: ../index.html
 #+FILETAGS: :algorithms:sort:
 #+AUTHOR: BillyHuang@sina.cn
 
@@ -335,3 +334,4 @@
 [fn:2] http://baike.baidu.com/view/1950627.htm
 
 [fn:3] http://zh.wikipedia.org/wiki/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F
+#+HTML: <div class="ds-thread" data-thread-key="insertionsort" data-title="insertionsort"></div>

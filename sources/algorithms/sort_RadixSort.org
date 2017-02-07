@@ -1,5 +1,5 @@
+#+SETUPFILE: ~/.emacs.d/org-templates/level-1.org
 #+TITLE:  基数排序
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../resources/style/style.css" />
-#+LINK_HOME: ../index.html
 #+FILETAGS: :algorithms:sort:
 #+AUTHOR: BillyHuang@sina.cn
+#+HTML: <div class="ds-thread" data-thread-key="radixsort" data-title="radixsort"></div>

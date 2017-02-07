@@ -1,6 +1,5 @@
+#+SETUPFILE: ~/.emacs.d/org-templates/level-0.org
 #+TITLE: plantuml 学习笔记
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./resources/style/style.css" />
-#+LINK_HOME: ./index.html
 #+FILETAGS: :plantuml:uml:org-mode:
 #+AUTHOR: BillyHuang@sina.cn
 
@@ -63,3 +62,4 @@ deactivate BJDB
 * Footnotes
 
 [fn:1] http://www.ibm.com/developerworks/cn/rational/rationaledge/content/feb05/bell/3101.html
+#+HTML: <div class="ds-thread" data-thread-key="plantuml 学习笔记" data-title="plantuml 学习笔记"></div>

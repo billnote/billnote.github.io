@@ -1,6 +1,5 @@
+#+SETUPFILE: ~/.emacs.d/org-templates/level-1.org
 #+TITLE: 堆排序
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../resources/style/style.css" />
-#+LINK_HOME: ../index.html
 #+FILETAGS: :algorithms:sort:
 #+LATEX_CLASS: cn-article
 #+OPTIONS: ^:{}
@@ -239,3 +238,4 @@ digraph headSort {
 * Footnotes
 
 [fn:1] http://zh.wikipedia.org/wiki/%E5%A0%86%E6%8E%92%E5%BA%8F
+#+HTML: <div class="ds-thread" data-thread-key="heapsort" data-title="heapsort"></div>
