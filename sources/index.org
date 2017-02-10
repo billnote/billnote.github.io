@@ -16,3 +16,7 @@
    + [[./study_plantuml.org][org-mode使用plantuml画UML模型图]]
  + *SICP*
    + [[./sicp/p1.org][第一章习题集]]
+ + 我的2017
+   + [[./2017/books.org][读过的书]]
+   + [[./2017/movie.org][看过的影视作品]]
+   + [[./2017/travel.org][去过的地]]

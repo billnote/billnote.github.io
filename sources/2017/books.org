@@ -1,0 +1,16 @@
+#+SETUPFILE: ~/.emacs.d/org-templates/level-1.org
+#+TITLE: 2017 读书
+#+FILETAGS: :book:2017:read
+#+LATEX_CLASS: cn-article
+#+AUTHOR: Billyhuang@sina.cn
+
+* 一月
+惭愧，惭愧，一月份竟然一本书都未读。实在是惭愧。
+
+* 二月
+** 未来世界的幸存者
+ + 作者: 阮一峰
+ + 类型: 资讯 / 信息
+ + 阅读方式: 在线浏览
+ + 在线地址: https://ruanyf.github.io/survivor/index.html
+本书是阮一峰老师对当前人工智能快速发展环境下，对未来社会发展的一些思考。全书探讨了，作为底层工薪者未来一些可能的选择和准备。本书有一些观点和思考是我之前未曾思考过的，能够带来一定的启示。如有时间建议大家可以阅读阅读。
