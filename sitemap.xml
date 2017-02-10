@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+     xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+     xmlns:georss="http://www.georss.org/georss"
+     xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+     xmlns:media="http://search.yahoo.com/mrss/"><channel>
+  <title>sitemap</title>
+  <atom:link href="http://billhuang.me/sitemap.xml" rel="self" type="application/rss+xml" />
+  <link>http://billhuang.me/</link>
+  <description><![CDATA[]]></description>
+  <language>en</language>
+  <pubDate>Fri, 10 Feb 2017 17:35:09 +0800</pubDate>
+  <lastBuildDate>Fri, 10 Feb 2017 17:35:09 +0800</lastBuildDate>
+  <generator>Emacs 25.1 Org-mode 9.0.3</generator>
+  <webMaster>bill.huang@mplus.tech (Bill.Huang)</webMaster>
+  <image>
+    <url>http://orgmode.org/img/org-mode-unicorn-logo.png</url>
+    <title>sitemap</title>
+    <link>http://billhuang.me/</link>
+  </image>
+
+  <ul class="org-ul">
+    <li>2017
+    <ul class="org-ul">
+      <li><a href="2017/travel.html">2017 旅行</a></li>
+      <li><a href="2017/movie.html">2017 观影</a></li>
+      <li><a href="2017/books.html">2017 读书</a></li>
+    </ul></li>
+    <li><a href="knowledge.html">Bill's Knowledge</a></li>
+    <li>algorithms
+    <ul class="org-ul">
+      <li><a href="algorithms/sort_RadixSort.html">基数排序</a></li>
+      <li><a href="algorithms/sort_HeapSort.html">堆排序</a></li>
+      <li><a href="algorithms/sort_MergeSort.html">归并排序</a></li>
+      <li><a href="algorithms/sort_QuickSort.html">快速排序</a></li>
+      <li><a href="algorithms/sort_InsertionSort.html">插入排序</a></li>
+      <li><a href="algorithms/sort_SelectionSort.html">选择排序</a></li>
+    </ul></li>
+    <li><a href="study_dot.html">dot language 学习笔记</a></li>
+    <li><a href="emacs-test.html">emacs org-mode test</a></li>
+    <li><a href="latex-test.html">latex-test</a></li>
+    <li><a href="study_plantuml.html">plantuml 学习笔记</a></li>
+    <li>sicp
+    <ul class="org-ul">
+      <li><a href="sicp/p1.html">第一章： 构造过程抽象 解题集</a></li>
+    </ul></li>
+    <li><a href="match-symbol.html">数学符号表</a></li>
+    <li><a href="index.html">笔记列表</a></li>
+  </ul>
+</channel>
+</rss>
